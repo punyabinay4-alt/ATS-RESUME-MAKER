@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATS RESUME PLATFORM</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<style>
+  :root{--black:#000; --light-black:#3a3a3a; --bg:#f5f5f5; --border:#ccc}
+  *{box-sizing:border-box; font-family:'Arial', 'Calibri', sans-serif}
+  body{background:var(--bg); margin:0; padding:0; color:#000}
+
+  header{background:var(--black); color:#fff; padding:20px; text-align:center;}
+  header h1{margin:0; font-size:22px; font-weight:700; text-transform:uppercase}
+  header p{margin:5px 0 0; font-size:12px}
+
+ .tabs{display:flex; background:var(--light-black)}
+ .tab{flex:1; padding:14px; text-align:center; color:#fff; cursor:pointer; font-weight:700; border:none; background:transparent}
+ .tab.active{background:var(--black)}
+
+ .container{max-width:1000px; margin:20px auto; padding:0 15px}
+ .card{background:#fff; padding:25px; border:1px solid var(--border); margin-bottom:20px}
+  h3{color:var(--black); font-size:15px; font-weight:700; margin-top:20px; margin-bottom:10px}
+  input, textarea{width:100%; padding:10px; margin:5px 0; border:1px solid var(--border); font-size:12px}
+  
+ .section-group{border:1px solid var(--border); padding:12px; margin:8px 0; position:relative; background:#fafafa}
+ .remove-btn{position:absolute; right:8px; top:8px; background:var(--black); color:#fff; border:none; padding:4px 8px; cursor:pointer; font-size:10px; font-weight:700}
+ .btn{border:none; padding:12px; cursor:pointer; width:100%; margin-top:10px; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:8px}
+ .btn-primary{background:var(--black); color:#fff}
+ .btn-success{background:var(--light-black); color:#fff}
+ .btn-ats{background:#222; color:#fff}
+
+  /* RESUME STYLE */
+ .resume{width:210mm; min-height:297mm; background:#fff; padding:12mm; margin:auto; font-size:10pt; line-height:1.4; color:#000}
+ .resume-header{display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid var(--black); padding-bottom:10px; margin-bottom:10px}
+ .resume-photo{width:90px; height:90px; border:1px solid var(--black); object-fit:cover}
+ .photo-box{width:110px; height:110px; border:2px dashed var(--black); display:flex; align-items:center; justify-content:center; overflow:hidden; margin-top:5px; font-size:10px; background:#f0f0f0; font-weight:600}
+ .photo-box img{width:100%; height:100%; object-fit:cover}
+
+  /* HEADER BLACK BOX */
+ .section-header{background:var(--black); color:#fff; padding:5px 10px; font-size:11pt; font-weight:700; text-transform:uppercase; margin:12px 0 6px 0; page-break-inside: avoid;}
+  /* SUB HEADER LIGHT BLACK NO BOX */
+ .section-subheader{color:var(--light-black); font-size:10pt; font-weight:700; margin:8px 0 4px 0; page-break-inside: avoid;}
+
+ .resume-table{width:100%; border-collapse:collapse; margin:5px 0 10px 0; font-size:9.5pt; page-break-inside: avoid;}
+ .resume-table th{background:var(--light-black); color:#fff; padding:5px; text-align:left; font-weight:700; border:1px solid var(--black)}
+ .resume-table td{padding:4px; border:1px solid var(--border); vertical-align:top}
+
+  footer{background:var(--black); color:#fff; text-align:center; padding:12px; font-size:10px; margin-top:20px}
+ .resume-section{page-break-inside: avoid;}
+  #preview-area, #ats-upload-area{display:none}
+ .modal{display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000a; z-index:999; justify-content:center; align-items:center}
+ .modal-content{background:#fff; padding:15px; width:95%; max-width:900px; max-height:90vh; overflow:auto}
+  #ats-result{background:#f9f9f9; padding:15px; margin-top:10px; border:2px solid var(--black)}
+ .ats-score{font-size:28px; font-weight:700; color:var(--black)}
+ .ats-good{color:green}.ats-bad{color:red}
+ .upload-box{border:2px dashed var(--black); padding:40px; text-align:center; cursor:pointer; background:#fafafa}
+</style>
+</head>
+<body>
+<header>
+  <h1><i class="fa-solid fa-file-shield"></i> ATS RESUME PLATFORM</h1>
+  <p>Black & White | ATS Score | PDF/DOCX Checker</p>
+</header>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('create')"><i class="fa-solid fa-pen"></i> CREATE RESUME</button>
+  <button class="tab" onclick="showTab('check')"><i class="fa-solid fa-upload"></i> CHECK ATS SCORE</button>
+</div>
+
+<div class="container">
+<!-- TAB 1: CREATE RESUME -->
+<div class="card" id="create-tab">
+  <div id="input-form">
+    <h3>1. PERSONAL DETAILS</h3>
+    <div style="display:flex; gap:15px">
+      <div style="flex:1">
+        <input id="name" placeholder="FULL NAME *" required>
+        <input id="dob" type="date">
+        <input id="email" placeholder="EMAIL ID" type="email">
+        <input id="mobile" placeholder="CONTACT NUMBER">
+      </div>
+      <div style="width:120px">
+        <label><b>PHOTO</b></label>
+        <input type="file" id="photo" accept="image/*">
+        <div class="photo-box" id="photo-box">No Photo</div>
+      </div>
+    </div>
+    <textarea id="address" rows="2" placeholder="ADDRESS"></textarea>
+    <input id="linkedin" placeholder="LINKEDIN URL">
+    <input id="website" placeholder="GITHUB / PORTFOLIO URL">
+
+    <h3>2. PROFILE SUMMARY</h3>
+    <textarea id="summary" rows="4" placeholder="Write manually... No AI Suggestion"></textarea>
+
+    <h3>3. QUALIFICATION</h3><div id="edu-list"></div><button type="button" class="btn btn-success" onclick="addField('edu')"><i class="fa-solid fa-plus"></i> Add Qualification</button>
+
+    <h3>4. PROJECTS</h3><div id="proj-list"></div><button type="button" class="btn btn-success" onclick="addField('proj')"><i class="fa-solid fa-plus"></i> Add Project</button>
+
+    <h3>5. LANGUAGES</h3>
+    <b class="section-subheader">Technical Languages:</b><div id="tech-lang-list"></div><button type="button" class="btn btn-success" onclick="addField('tech-lang')"><i class="fa-solid fa-plus"></i> Add</button>
+    <b class="section-subheader">Normal Languages:</b><div id="normal-lang-list"></div><button type="button" class="btn btn-success" onclick="addField('normal-lang')"><i class="fa-solid fa-plus"></i> Add</button>
+
+    <h3>6. EXPERIENCE</h3><div id="exp-list"></div><button type="button" class="btn btn-success" onclick="addField('exp')"><i class="fa-solid fa-plus"></i> Add Experience</button>
+
+    <h3>7. SKILLS</h3>
+    <b class="section-subheader">Technical Skills:</b><div id="tech-skill-list"></div><button type="button" class="btn btn-success" onclick="addField('tech-skill')"><i class="fa-solid fa-plus"></i> Add</button>
+    <b class="section-subheader">Soft Skills:</b><div id="soft-skill-list"></div><button type="button" class="btn btn-success" onclick="addField('soft-skill')"><i class="fa-solid fa-plus"></i> Add</button>
+
+    <h3>8. DECLARATION</h3>
+    <textarea id="declaration" rows="3" placeholder="I hereby declare that... Manual only"></textarea>
+
+    <button type="button" class="btn btn-ats" onclick="runATSTest()"><i class="fa-solid fa-robot"></i> RUN ATS TEST</button>
+    <div id="ats-result"></div>
+    <button type="button" class="btn btn-primary" onclick="generateResume()"><i class="fa-solid fa-file-pdf"></i> GENERATE & DOWNLOAD PDF</button>
+  </div>
+
+  <div id="preview-area">
+    <h3>FINAL PREVIEW</h3>
+    <div id="resume" class="resume"></div>
+    <button type="button" class="btn btn-primary" onclick="downloadPDF()"><i class="fa-solid fa-download"></i> Download PDF</button>
+    <button type="button" class="btn btn-success" onclick="backToForm()"><i class="fa-solid fa-arrow-left"></i> Back to Edit</button>
+  </div>
+</div>
+
+<!-- TAB 2: UPLOAD & CHECK ATS -->
+<div class="card" id="check-tab" style="display:none">
+  <h3>Upload Your Resume PDF or DOCX</h3>
+  <div class="upload-box" onclick="document.getElementById('file-upload').click()">
+    <i class="fa-solid fa-cloud-arrow-up" style="font-size:40px"></i>
+    <p><b>Click to Upload PDF / DOCX</b></p>
+    <input type="file" id="file-upload" accept=".pdf,.docx" style="display:none" onchange="handleFileUpload(event)">
+  </div>
+  <div id="ats-upload-result"></div>
+</div>
+
+</div>
+
+<div class="modal" id="crop-modal">
+  <div class="modal-content" style="max-width:500px">
+    <h3>Crop Your Photograph</h3>
+    <img id="cropper-img" style="max-width:100%">
+    <button type="button" class="btn btn-primary" onclick="cropImage()">Crop & Save</button>
+    <button type="button" class="btn btn-success" onclick="closeCrop()">Cancel</button>
+  </div>
+</div>
+
+<footer>
+  © CREATED AND DEVELOPED BY PUNYA BINAY SWAIN. ALL RIGHTS RESERVED.
+</footer>
+
+<script>
+let photoData=''; let cropper;
+
+function showTab(tab){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  if(tab=='create'){document.getElementById('create-tab').style.display='block'; document.getElementById('check-tab').style.display='none'; document.querySelectorAll('.tab')[0].classList.add('active')}
+  else{document.getElementById('create-tab').style.display='none'; document.getElementById('check-tab').style.display='block'; document.querySelectorAll('.tab')[1].classList.add('active')}
+}
+
+document.getElementById('photo').onchange = e=>{
+  let file = e.target.files[0]; if(!file) return;
+  let reader = new FileReader();
+  reader.onload = ()=>{document.getElementById('cropper-img').src = reader.result; document.getElementById('crop-modal').style.display='flex'; if(cropper) cropper.destroy(); cropper = new Cropper(document.getElementById('cropper-img'), {aspectRatio:1, viewMode:1});}
+  reader.readAsDataURL(file);
+}
+window.cropImage = function(){photoData = cropper.getCroppedCanvas({width:200, height:200}).toDataURL('image/jpeg', 0.9); document.getElementById('photo-box').innerHTML = `<img src="${photoData}">`; closeCrop();}
+window.closeCrop = function(){document.getElementById('crop-modal').style.display='none'; if(cropper) cropper.destroy()}
+
+function formatDate(dateStr){if(!dateStr) return '-'; const d = new Date(dateStr); return d.toLocaleDateString('en-GB', {month:'short', year:'numeric'});}
+function calcDuration(start, end){if(!start||!end) return '-'; let s=new Date(start), e=new Date(end); let months=(e.getFullYear()-s.getFullYear())*12+(e.getMonth()-s.getMonth()); let years=Math.floor(months/12); months=months%12; return years>0?`${years} Yr ${months} Mo`:`${months} Mo`; }
+
+window.addField = function(type){
+  let container = document.getElementById(type+'-list');
+  let div = document.createElement('div'); div.className='section-group';
+  div.innerHTML = `<button type="button" class="remove-btn" onclick="this.parentElement.remove()">X</button>`;
+  if(type=='edu') div.innerHTML += `<input placeholder="COURSE NAME *" data-req><input placeholder="INSTITUTE NAME *" data-req><input placeholder="UNIVERSITY / BOARD NAME"><input type="date" placeholder="START DATE"><input type="date" placeholder="END DATE">`;
+  if(type=='exp') div.innerHTML += `<input placeholder="JOB TITLE *" data-req><input placeholder="COMPANY NAME *" data-req><input type="date" placeholder="START DATE"><input type="date" placeholder="END DATE"><textarea placeholder="JOB DESCRIPTION"></textarea>`;
+  if(type=='proj') div.innerHTML += `<input placeholder="PROJECT NAME *" data-req><textarea placeholder="PROJECT DESCRIPTION"></textarea>`;
+  if(type.includes('skill')||type.includes('lang')) div.innerHTML += `<input placeholder="NAME *" data-req>`;
+  container.appendChild(div);
+}
+
+function getTableEdu(){
+  let items = [...document.getElementById('edu-list').children]; if(items.length==0) return '';
+  let rows = items.map(d=>{let i=[...d.querySelectorAll('input')]; let dur=calcDuration(i[3].value,i[4].value);
+    return `<tr><td>${i[0].value}</td><td>${i[1].value}</td><td>${i[2].value}</td><td>${formatDate(i[3].value)}</td><td>${formatDate(i[4].value)}</td><td>${dur}</td></tr>`;
+  }).join('');
+  return `<div class="resume-section"><div class="section-header">Qualification</div><table class="resume-table"><thead><tr><th>Course Name</th><th>Institute Name</th><th>University/Board</th><th>Start Date</th><th>End Date</th><th>Duration</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+function getTableExp(){
+  let items = [...document.getElementById('exp-list').children]; if(items.length==0) return '';
+  let rows = items.map(d=>{let i=[...d.querySelectorAll('input,textarea')]; let dur=calcDuration(i[2].value,i[3].value);
+    return `<tr><td>${i[0].value}</td><td>${i[1].value}</td><td>${formatDate(i[2].value)}</td><td>${formatDate(i[3].value)}</td><td>${dur}</td><td>${i[4].value}</td></tr>`;
+  }).join('');
+  return `<div class="resume-section"><div class="section-header">Experience</div><table class="resume-table"><thead><tr><th>Job Title</th><th>Company</th><th>From</th><th>To</th><th>Duration</th><th>Description</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+function getSkillList(id, title){
+  let items = [...document.getElementById(id).children].map(d=>d.querySelector('input').value).filter(Boolean);
+  if(items.length==0) return '';
+  return `<div class="section-subheader">${title}</div><p>${items.join(' | ')}</p>`;
+}
+
+function renderResume(){
+  let linkedin = document.getElementById('linkedin').value;
+  let github = document.getElementById('website').value;
+
+  document.getElementById('resume').innerHTML = `
+    <div class="resume-header">
+      <div style="flex:1">
+        <h1 style="margin:0; font-size:18pt">${document.getElementById('name').value}</h1>
+        <p><b>Date of Birth:</b> ${formatDate(document.getElementById('dob').value)}</p>
+        <p><b>Email:</b> ${document.getElementById('email').value} | <b>Phone:</b> ${document.getElementById('mobile').value}</p>
+        <p><b>Address:</b> ${document.getElementById('address').value}</p>
+        ${linkedin?`<p><b>LinkedIn:</b> ${linkedin}</p>`:''}
+        ${github?`<p><b>GitHub/Portfolio:</b> ${github}</p>`:''}
+      </div>
+      ${photoData?`<img src="${photoData}" class="resume-photo">`:''}
+    </div>
+    ${document.getElementById('summary').value?`<div class="resume-section"><div class="section-header">Profile Summary</div><p>${document.getElementById('summary').value}</p></div>`:''}
+    ${getTableEdu()}
+    ${document.getElementById('proj-list').children.length?`<div class="resume-section"><div class="section-header">Projects</div>`+[...document.getElementById('proj-list').children].map(d=>{let i=[...d.querySelectorAll('input,textarea')]; return `<p><b>Project Name:</b> ${i[0].value}<br><b>Description:</b> ${i[1].value}</p>`}).join('')+`</div>`:''}
+    <div class="resume-section"><div class="section-header">Languages</div>${getSkillList('tech-lang-list','Technical Languages')}${getSkillList('normal-lang-list','Normal Languages')}</div>
+    ${getTableExp()}
+    <div class="resume-section"><div class="section-header">Skills</div>${getSkillList('tech-skill-list','Technical Skills')}${getSkillList('soft-skill-list','Soft Skills')}</div>
+    ${document.getElementById('declaration').value?`<div class="resume-section"><div class="section-header">Declaration</div><p>${document.getElementById('declaration').value}</p></div>`:''}
+  `;
+}
+
+window.generateResume = function(){
+  if(!document.getElementById('name').value){alert('Please Enter Name'); return}
+  renderResume();
+  document.getElementById('input-form').style.display='none';
+  document.getElementById('preview-area').style.display='block';
+  window.scrollTo(0,0);
+}
+window.backToForm = function(){document.getElementById('preview-area').style.display='none'; document.getElementById('input-form').style.display='block';}
+
+window.downloadPDF = async function(){
+  const { jsPDF } = window.jspdf;
+  const element = document.getElementById('resume');
+  const canvas = await html2canvas(element, {scale:2});
+  const imgData = canvas.toDataURL('image/png');
+  const pdf = new jsPDF('p', 'mm', 'a4');
+  const pdfWidth = pdf.internal.pageSize.getWidth();
+  const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+  pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+  pdf.save(`${document.getElementById('name').value}_ATS_Resume.pdf`);
+}
+
+// ATS ALGORITHM
+function runATSOnText(text){
+  let score=100; let feedback=[]; let good=[];
+  let lowerText = text.toLowerCase();
+  let wordCount = text.split(' ').length;
+
+  if(!lowerText.includes('email')){score-=10; feedback.push('Add Email ID')}
+  if(!lowerText.includes('profile summary') &&!lowerText.includes('summary')){score-=15; feedback.push('Add Profile Summary Section')}
+  if(!lowerText.includes('education') &&!lowerText.includes('qualification')){score-=10; feedback.push('Add Education/Qualification Section')}
+  if(!lowerText.includes('experience')){score-=10; feedback.push('Add Experience Section')}
+  if(!lowerText.includes('skill')){score-=10; feedback.push('Add Skills Section with Keywords')}
+
+  if(wordCount<200){score-=10; feedback.push(`Resume too short: ${wordCount} words. Add more details.`)}
+  else if(wordCount>700){score-=5; feedback.push(`Resume too long: ${wordCount} words.`)}
+  else good.push(`Good length: ${wordCount} words`)
+
+  let keywords = ['project', 'leadership', 'team', 'management', 'developed', 'achieved'];
+  let foundKeywords = keywords.filter(k=>lowerText.includes(k));
+  if(foundKeywords.length>2) good.push(`Good keywords found: ${foundKeywords.join(', ')}`)
+  else feedback.push('Add more action keywords like: developed, managed, achieved')
+
+  if(score>=85) var level=`<span class="ats-good">Excellent</span>`;
+  else if(score>=70) var level=`<span style="color:orange">Good</span>`;
+  else var level=`<span class="ats-bad">Needs Improvement</span>`;
+
+  return `<h4>ATS SCORE: <span class="ats-score">${score}%</span> - ${level}</h4>
+    <b class="ats-good">✓ Good Points:</b><ul>${good.map(f=>`<li>${f}</li>`).join('') || '<li>None</li>'}</ul>
+    <b class="ats-bad">✗ Areas to Improve:</b><ul>${feedback.map(f=>`<li>${f}</li>`).join('') || '<li>None. Resume is ATS Ready!</li>'}</ul>`;
+}
+
+window.runATSTest = function(){
+  renderResume();
+  let text = document.getElementById('resume').innerText;
+  document.getElementById('ats-result').innerHTML = runATSOnText(text);
+}
+
+// PDF/DOCX UPLOAD ATS CHECK
+window.handleFileUpload = async function(event){
+  let file = event.target.files[0]; if(!file) return;
+  document.getElementById('ats-upload-result').innerHTML = '<p>Reading file... Please wait</p>';
+  let text = '';
+  
+  if(file.name.endsWith('.pdf')){
+    const pdf = await pdfjsLib.getDocument(URL.createObjectURL(file)).promise;
+    for(let i=1; i<=pdf.numPages; i++){
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      text += content.items.map(item=>item.str).join(' ');
+    }
+  }
+  if(file.name.endsWith('.docx')){
+    const result = await mammoth.extractRawText({arrayBuffer: await file.arrayBuffer()});
+    text = result.value;
+  }
+  document.getElementById('ats-upload-result').innerHTML = runATSOnText(text);
+}
+</script>
+</body>
+</html>
