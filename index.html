@@ -14,30 +14,32 @@ body { background: #f5f5f5; padding: 20px; }
 .front-page h1 { font-size: 32px; color: #000; margin-bottom: 30px; }
 .btn-main { background: #000; color: #fff; border: none; padding: 14px 30px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; margin: 10px; }
 .form-page { display: none; background: #fff; padding: 30px; border-radius: 12px; }
-.section { margin-bottom: 25px; border: 1px solid #ddd; padding: 20px; border-radius: 8px; }
+.section { margin-bottom: 25px; border: 1px solid #ddd; padding: 20px; border-radius: 8px; page-break-inside: avoid; } /* PAGE BREAK FIX */
 .section h2 { color: #000; margin-bottom: 15px; font-size: 18px; border-bottom: 2px solid #000; padding-bottom: 8px; }
 .input-group { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 12px; }
 input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; }
 textarea { resize: vertical; min-height: 80px; }
 .photo-upload { display: flex; gap: 15px; align-items: center; }
-.photo-preview { width: 100px; height: 100px; border: 2px solid #000; border-radius: 50%; object-fit: cover; }
+.photo-preview { width: 90px; height: 90px; border: 2px solid #000; border-radius: 50%; object-fit: cover; }
 .btn-add { background: #000; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; margin-top: 10px; }
 .btn-remove { background: #cc0000; color: #fff; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; }
-.table-entry { border: 1px solid #eee; padding: 12px; margin-bottom: 10px; border-radius: 6px; position: relative; }
+.table-entry { border: 1px solid #eee; padding: 12px; margin-bottom: 10px; border-radius: 6px; position: relative; page-break-inside: avoid; }
 .ats-box { background: #000; color: #fff; padding: 20px; border-radius: 8px; margin-bottom: 20px; text-align: center; }
 .ats-score { font-size: 48px; font-weight: 700; }
+.ats-bar { width: 100%; height: 10px; background: #333; border-radius: 5px; margin: 10px 0; }
+.ats-fill { height: 100%; background: #fff; border-radius: 5px; }
 .ats-suggestions { text-align: left; margin-top: 15px; font-size: 13px; }
 #resumeTemplate { display: none; background: #fff; padding: 40px; color: #000; max-width: 800px; margin: 0 auto; }
 #resumeTemplate h1 { font-size: 24px; text-align: center; }
-#resumeTemplate h2 { font-size: 16px; border-bottom: 1px solid #000; margin: 15px 0 8px 0; padding-bottom: 4px; }
-#resumeTemplate.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+#resumeTemplate h2 { font-size: 16px; border-bottom: 1px solid #000; margin: 15px 0 8px 0; padding-bottom: 4px; page-break-after: avoid; }
+#resumeTemplate.section-pdf { page-break-inside: avoid; margin-bottom: 15px; } /* NO SPLIT */
+#resumeTemplate.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; page-break-inside: avoid; }
 #resumeTemplate.header img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 2px solid #000; }
-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 12px; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
 table, th, td { border: 1px solid #000; }
 th, td { padding: 6px; text-align: left; }
 .footer-copy { text-align: center; font-size: 12px; margin-top: 30px; color: #555; }
 .action-btns { text-align: center; margin-top: 20px; }
-@media print {.container { display: none; } }
 </style>
 </head>
 <body>
@@ -54,8 +56,9 @@ th, td { padding: 6px; text-align: left; }
     <button class="btn-main" onclick="backToFront()">⬅ BACK</button>
 
     <div id="atsResult" class="ats-box" style="display:none;">
-      <div>ATS SCORE</div>
+      <div>REAL ATS SCORE</div>
       <div class="ats-score" id="atsScore">0%</div>
+      <div class="ats-bar"><div class="ats-fill" id="atsFill"></div></div>
       <div class="ats-suggestions" id="atsSuggestions"></div>
     </div>
 
@@ -65,7 +68,7 @@ th, td { padding: 6px; text-align: left; }
         <h2>1. PERSONAL DETAILS</h2>
         <div class="input-group">
           <input type="text" id="name" placeholder="Full Name">
-          <input type="date" id="dob" placeholder="Date of Birth">
+          <input type="date" id="dob">
         </div>
         <div class="input-group">
           <input type="tel" id="mobile" placeholder="Mobile Number">
@@ -111,9 +114,16 @@ th, td { padding: 6px; text-align: left; }
         <button type="button" class="btn-add" onclick="addExperience()">+ Add Experience</button>
       </div>
 
-      <!-- 6. DECLARATION -->
+      <!-- 6. LANGUAGES -->
       <div class="section">
-        <h2>6. DECLARATION</h2>
+        <h2>6. LANGUAGES KNOWN</h2>
+        <div id="languageList"></div>
+        <button type="button" class="btn-add" onclick="addLanguage()">+ Add Language</button>
+      </div>
+
+      <!-- 7. DECLARATION -->
+      <div class="section">
+        <h2>7. DECLARATION</h2>
         <textarea id="declaration" placeholder="Declaration - Unlimited words"></textarea>
       </div>
 
@@ -126,7 +136,7 @@ th, td { padding: 6px; text-align: left; }
 
 <!-- RESUME TEMPLATE FOR PDF -->
 <div id="resumeTemplate">
-  <div class="header">
+  <div class="header section-pdf">
     <div>
       <h1 id="r_name"></h1>
       <p id="r_contact"></p>
@@ -135,27 +145,42 @@ th, td { padding: 6px; text-align: left; }
     <img id="r_photo">
   </div>
 
-  <p id="r_objective"></p>
+  <div class="section-pdf"><p id="r_objective"></p></div>
 
-  <h2>EDUCATION</h2>
-  <table id="r_qualification"></table>
+  <div class="section-pdf">
+    <h2>EDUCATION</h2>
+    <table id="r_qualification"></table>
+  </div>
 
-  <h2>PROJECTS</h2>
-  <table id="r_projects"></table>
+  <div class="section-pdf">
+    <h2>PROJECTS</h2>
+    <table id="r_projects"></table>
+  </div>
 
-  <h2>SKILLS</h2>
-  <p><b>Technical Skills:</b> <span id="r_tech"></span></p>
-  <p><b>Soft Skills:</b> <span id="r_soft"></span></p>
+  <div class="section-pdf">
+    <h2>SKILLS</h2>
+    <p><b>Technical Skills:</b> <span id="r_tech"></span></p>
+    <p><b>Soft Skills:</b> <span id="r_soft"></span></p>
+  </div>
 
-  <h2>EXPERIENCE</h2>
-  <table id="r_experience"></table>
+  <div class="section-pdf">
+    <h2>EXPERIENCE</h2>
+    <table id="r_experience"></table>
+  </div>
 
-  <h2>DECLARATION</h2>
-  <p id="r_declaration"></p>
+  <div class="section-pdf">
+    <h2>LANGUAGES KNOWN</h2>
+    <p id="r_languages"></p>
+  </div>
+
+  <div class="section-pdf">
+    <h2>DECLARATION</h2>
+    <p id="r_declaration"></p>
+  </div>
 </div>
 
 <script>
-let qCount=0, pCount=0, eCount=0;
+let qCount=0, pCount=0, eCount=0, lCount=0;
 
 function showForm(){ document.getElementById('frontPage').style.display='none'; document.getElementById('formPage').style.display='block'; }
 function backToFront(){ document.getElementById('frontPage').style.display='block'; document.getElementById('formPage').style.display='none'; }
@@ -211,32 +236,66 @@ function addExperience(){
   </div>`;
 }
 
-function checkATS(){
-  let score = 0; let suggestions = [];
-  if(document.getElementById('name').value) score+=10; else suggestions.push("Add Full Name");
-  if(document.getElementById('email').value) score+=10; else suggestions.push("Add Email");
-  if(document.getElementById('mobile').value) score+=10; else suggestions.push("Add Mobile");
-  if(document.getElementById('technicalSkills').value) score+=20; else suggestions.push("Add Technical Skills");
-  if(document.getElementById('objective').value.length>50) score+=15; else suggestions.push("Add detailed Career Objective");
-  if(qCount>0) score+=15; else suggestions.push("Add Education Details");
-  if(pCount>0 || eCount>0) score+=20; else suggestions.push("Add Projects or Experience");
+function addLanguage(){
+  lCount++;
+  document.getElementById('languageList').innerHTML += `
+  <div class="table-entry" id="l${lCount}">
+    <div class="input-group">
+      <input placeholder="Language Name">
+      <select>
+        <option>Read</option><option>Write</option><option>Speak</option><option>All</option>
+      </select>
+    </div>
+    <button type="button" class="btn-remove" onclick="document.getElementById('l${lCount}').remove()">Remove</button>
+  </div>`;
+}
 
+// REAL ATS CHECKER
+function checkATS(){
+  let score = 0; let total = 100; let suggestions = [];
+  let name = document.getElementById('name').value;
+  let email = document.getElementById('email').value;
+  let mobile = document.getElementById('mobile').value;
+  let tech = document.getElementById('technicalSkills').value.toLowerCase();
+  let obj = document.getElementById('objective').value;
+
+  // 1. Contact Info 20%
+  if(name) score+=5; else suggestions.push("Add Full Name");
+  if(email && email.includes('@')) score+=5; else suggestions.push("Add Valid Email");
+  if(mobile && mobile.length>=10) score+=5; else suggestions.push("Add Valid Mobile");
+  if(document.getElementById('address').value) score+=5; else suggestions.push("Add Address");
+
+  // 2. Keywords 30%
+  let keywords = ['project','team','lead','manage','develop','design','experience','skill'];
+  let found = keywords.filter(k=> tech.includes(k) || obj.toLowerCase().includes(k)).length;
+  score += (found/keywords.length)*30;
+  if(found<4) suggestions.push("Add more action keywords like project, manage, develop");
+
+  // 3. Content 30%
+  if(obj.length>100) score+=10; else suggestions.push("Career Objective should be 100+ characters");
+  if(qCount>0) score+=10; else suggestions.push("Add Education Details");
+  if(pCount>0 || eCount>0) score+=10; else suggestions.push("Add Projects or Experience");
+
+  // 4. Skills 20%
+  if(tech.split(',').length>3) score+=10; else suggestions.push("Add at least 4 Technical Skills");
+  if(document.getElementById('softSkills').value.split(',').length>2) score+=10; else suggestions.push("Add Soft Skills");
+
+  score = Math.round(score);
   document.getElementById('atsScore').innerText = score + "%";
-  document.getElementById('atsSuggestions').innerHTML = "<b>Suggestions:</b><br>" + suggestions.join("<br>");
+  document.getElementById('atsFill').style.width = score + "%";
+  document.getElementById('atsSuggestions').innerHTML = "<b>ATS Suggestions:</b><br>" + suggestions.join("<br>");
   document.getElementById('atsResult').style.display='block';
 }
 
 function showATS(){ showForm(); checkATS(); }
 
 function generateResume(){
-  // Fill template
   document.getElementById('r_name').innerText = document.getElementById('name').value || "Your Name";
   document.getElementById('r_contact').innerText = `${document.getElementById('mobile').value} | ${document.getElementById('email').value} | ${document.getElementById('address').value}`;
   document.getElementById('r_links').innerHTML = `LinkedIn: ${document.getElementById('linkedin').value}<br>GitHub: ${document.getElementById('github').value}`;
   document.getElementById('r_photo').src = document.getElementById('photoPreview').src || "";
   document.getElementById('r_objective').innerText = document.getElementById('objective').value;
 
-  // Qualification Table
   let qHTML = "<tr><th>Course</th><th>Institute</th><th>Board/University</th><th>Year</th><th>Score</th></tr>";
   document.querySelectorAll('#qualificationList.table-entry').forEach(el=>{
     let inputs = el.querySelectorAll('input');
@@ -244,7 +303,6 @@ function generateResume(){
   });
   document.getElementById('r_qualification').innerHTML = qHTML;
 
-  // Projects
   let pHTML = "<tr><th>Project Name</th><th>Description</th></tr>";
   document.querySelectorAll('#projectList.table-entry').forEach(el=>{
     let inputs = el.querySelectorAll('input,textarea');
@@ -255,7 +313,6 @@ function generateResume(){
   document.getElementById('r_tech').innerText = document.getElementById('technicalSkills').value;
   document.getElementById('r_soft').innerText = document.getElementById('softSkills').value;
 
-  // Experience
   let eHTML = "<tr><th>Employer</th><th>Duration</th><th>Description</th></tr>";
   document.querySelectorAll('#experienceList.table-entry').forEach(el=>{
     let inputs = el.querySelectorAll('input,textarea');
@@ -263,16 +320,28 @@ function generateResume(){
   });
   document.getElementById('r_experience').innerHTML = eHTML;
 
+  let lang = [];
+  document.querySelectorAll('#languageList.table-entry').forEach(el=>{
+    let inputs = el.querySelectorAll('input,select');
+    lang.push(`${inputs[0].value} - ${inputs[1].value}`);
+  });
+  document.getElementById('r_languages').innerText = lang.join(', ');
+
   document.getElementById('r_declaration').innerText = document.getElementById('declaration').value;
 
-  // Generate PDF
   const element = document.getElementById('resumeTemplate');
-  const opt = { margin: 0.5, filename: 'Resume.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' } };
+  const opt = {
+    margin: 0.5,
+    filename: 'Resume.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] } // NO SPLIT
+  };
   html2pdf().set(opt).from(element).save();
 }
 
-// Add 1 default entry
-addQualification(); addProject(); addExperience();
+addQualification(); addProject(); addExperience(); addLanguage();
 </script>
 
 </body>
