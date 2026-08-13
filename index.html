@@ -2,271 +2,361 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ATS RESUME PLATFORM X PRO BY SP</title>
 
-<title>ATS RESUME PLATFORM X BY SP</title>
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet"/>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
 
 <style>
-
 :root{
---black:#000;
---dark:#222;
---light-black:#3a3a3a;
---bg:#f5f5f5;
---border:#d0d0d0;
+--black:#050505;
+--dark:#111;
+--dark2:#1d1d1d;
+--gray:#666;
+--line:#ddd;
+--bg:#f4f4f4;
 --white:#fff;
---success:#087a32;
---danger:#c40000;
+--green:#087a38;
+--red:#b40000;
 }
 
-*{
-box-sizing:border-box;
-font-family:Arial,Calibri,sans-serif;
-}
+*{box-sizing:border-box;font-family:Arial,Calibri,sans-serif}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:#111}
 
-body{
-margin:0;
-background:var(--bg);
-color:#000;
-}
+button,input,textarea,select{font:inherit}
 
 header{
-background:#000;
+background:linear-gradient(135deg,#000,#202020);
 color:#fff;
-padding:22px 15px;
-text-align:center;
+padding:25px 18px;
+text-align:center
 }
 
 header h1{
 margin:0;
-font-size:23px;
-font-weight:800;
-letter-spacing:.5px;
+font-size:24px;
+letter-spacing:.8px
 }
 
 header p{
-margin:6px 0 0;
-font-size:12px;
-opacity:.9;
+margin:7px 0 0;
+font-size:11px;
+color:#ddd
 }
 
-.tabs{
-display:flex;
-background:#333;
+.pro-badge{
+display:inline-block;
+background:#fff;
+color:#000;
+padding:4px 9px;
+border-radius:20px;
+font-size:9px;
+font-weight:900;
+margin-left:6px;
+vertical-align:middle
 }
 
-.tab{
-flex:1;
-padding:15px 8px;
+.layout{
+max-width:1250px;
+margin:0 auto;
+padding:18px;
+display:grid;
+grid-template-columns:230px 1fr;
+gap:18px
+}
+
+.sidebar{
+position:sticky;
+top:12px;
+height:max-content;
+background:#080808;
+color:#fff;
+border-radius:14px;
+padding:12px;
+box-shadow:0 10px 30px #0002
+}
+
+.brand{
+padding:12px;
+border-bottom:1px solid #333;
+margin-bottom:8px
+}
+
+.brand b{font-size:14px}
+.brand small{
+display:block;
+color:#aaa;
+margin-top:4px
+}
+
+.nav{
+width:100%;
 border:0;
 background:transparent;
-color:#fff;
-font-weight:700;
+color:#ddd;
+text-align:left;
+padding:11px;
+border-radius:9px;
 cursor:pointer;
+font-weight:700;
+font-size:11px;
+margin:2px 0
 }
 
-.tab.active{
-background:#000;
+.nav:hover,.nav.active{
+background:#fff;
+color:#000
 }
 
-.container{
-max-width:1050px;
-margin:20px auto;
-padding:0 15px;
+.side-info{
+margin-top:12px;
+padding:10px;
+border:1px solid #333;
+border-radius:9px;
+font-size:9px;
+color:#aaa;
+line-height:1.5
+}
+
+.main{min-width:0}
+
+.topbar{
+background:#fff;
+border:1px solid var(--line);
+border-radius:14px;
+padding:13px 16px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+margin-bottom:15px
+}
+
+.topbar b{font-size:13px}
+.status{
+font-size:10px;
+color:#087a38;
+font-weight:800
 }
 
 .card{
 background:#fff;
-border:1px solid #ccc;
-padding:25px;
-margin-bottom:20px;
-box-shadow:0 2px 8px rgba(0,0,0,.04);
+border:1px solid var(--line);
+border-radius:14px;
+padding:20px;
+margin-bottom:15px;
+box-shadow:0 5px 18px #00000008
 }
 
-h3{
-font-size:15px;
-margin:20px 0 10px;
-font-weight:800;
-}
-
-.section-title{
+.card-title{
 display:flex;
 align-items:center;
-gap:8px;
-border-bottom:2px solid #000;
-padding-bottom:6px;
+gap:9px;
+font-size:14px;
+font-weight:900;
+margin-bottom:12px;
+border-bottom:2px solid #111;
+padding-bottom:8px
 }
 
-input,
-textarea,
-select{
+.grid2{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px
+}
+
+.grid3{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:12px
+}
+
+label{
+font-size:9px;
+font-weight:800;
+display:block;
+margin:5px 0 3px;
+text-transform:uppercase
+}
+
+input,textarea,select{
 width:100%;
-padding:10px;
 border:1px solid #ccc;
-margin:5px 0;
-font-size:12px;
+border-radius:8px;
+padding:10px;
 background:#fff;
+font-size:11px;
+outline:none
+}
+
+input:focus,textarea:focus,select:focus{
+border-color:#000;
+box-shadow:0 0 0 2px #0001
 }
 
 textarea{
-resize:vertical;
+min-height:78px;
+resize:vertical
 }
 
 .btn{
-width:100%;
 border:0;
-padding:12px;
-margin-top:10px;
+border-radius:8px;
+padding:11px 14px;
 cursor:pointer;
-font-size:13px;
-font-weight:700;
-display:flex;
+font-size:11px;
+font-weight:900;
+display:inline-flex;
 align-items:center;
 justify-content:center;
-gap:8px;
+gap:7px
 }
 
-.btn-primary{
+.btn-black{
 background:#000;
-color:#fff;
+color:#fff
 }
 
-.btn-success{
-background:#3a3a3a;
-color:#fff;
+.btn-white{
+background:#fff;
+color:#000;
+border:1px solid #ccc
 }
 
-.btn-ats{
-background:#111;
-color:#fff;
+.btn-gray{
+background:#333;
+color:#fff
 }
 
-.section-group{
+.full{
+width:100%;
+margin-top:9px
+}
+
+.row-between{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:8px
+}
+
+.group{
 position:relative;
+border:1px solid #ddd;
 background:#fafafa;
-border:1px solid #ccc;
-padding:14px;
-margin:9px 0;
+border-radius:10px;
+padding:13px;
+margin:9px 0
 }
 
-.remove-btn{
+.remove{
 position:absolute;
 right:8px;
 top:8px;
 background:#000;
 color:#fff;
 border:0;
-padding:4px 9px;
-font-size:10px;
-font-weight:bold;
-cursor:pointer;
+border-radius:5px;
+padding:4px 8px;
+font-size:9px;
+cursor:pointer
 }
 
-.field-label{
-font-size:10px;
-font-weight:bold;
+.template-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px
+}
+
+.template{
+border:2px solid #ddd;
+border-radius:11px;
+padding:10px;
+cursor:pointer;
+background:#fff
+}
+
+.template.active{
+border-color:#000;
+box-shadow:0 0 0 2px #000
+}
+
+.thumb{
+height:145px;
+border:1px solid #bbb;
+padding:8px;
+overflow:hidden;
+font-size:6px;
+background:#fff
+}
+
+.thumb-name{
+font-size:12px;
+font-weight:900;
+border-bottom:2px solid #000;
+padding-bottom:4px
+}
+
+.thumb-head{
+background:#000;
+color:#fff;
+padding:3px;
+margin:5px 0;
+font-weight:bold
+}
+
+.template strong{
+font-size:11px;
 display:block;
-margin-top:5px;
+margin-top:8px
+}
+
+.template span{
+font-size:9px;
+color:#666
 }
 
 .photo-box{
-width:110px;
-height:110px;
-border:2px dashed #000;
+width:105px;
+height:105px;
+border:2px dashed #111;
 display:flex;
 align-items:center;
 justify-content:center;
 overflow:hidden;
-background:#f0f0f0;
-font-size:10px;
-font-weight:bold;
+background:#f2f2f2;
+font-size:9px;
+font-weight:800
 }
 
 .photo-box img{
 width:100%;
 height:100%;
-object-fit:cover;
+object-fit:cover
 }
 
-/* TEMPLATE SELECTOR */
-
-.template-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
+.photo-area{
+display:flex;
 gap:12px;
-margin-top:10px;
+align-items:flex-start
 }
 
-.template-card{
-border:2px solid #ccc;
-background:#fff;
-padding:12px;
-cursor:pointer;
-transition:.2s;
-}
+.hidden{display:none!important}
 
-.template-card:hover{
-border-color:#000;
-}
+#previewArea{display:none}
 
-.template-card.active{
-border-color:#000;
-box-shadow:0 0 0 2px #000;
-}
-
-.template-mini{
-height:115px;
-border:1px solid #aaa;
-padding:7px;
-background:#fff;
-overflow:hidden;
-font-size:6px;
-}
-
-.mini-name{
-font-size:11px;
-font-weight:bold;
-border-bottom:1px solid #000;
-padding-bottom:3px;
-margin-bottom:4px;
-}
-
-.mini-section{
-background:#000;
-color:#fff;
-padding:2px 3px;
-margin:4px 0;
-font-weight:bold;
-}
-
-.template-name{
-font-weight:bold;
-font-size:12px;
-margin-top:8px;
-}
-
-.template-desc{
-font-size:9px;
-color:#555;
-margin-top:3px;
-}
-
-/* RESUME */
-
-#preview-area{
-display:none;
+.resume-wrap{
+background:#e7e7e7;
+padding:15px;
+border-radius:10px;
+overflow:auto
 }
 
 .resume{
@@ -277,505 +367,655 @@ margin:auto;
 padding:12mm;
 color:#000;
 font-size:9.5pt;
-line-height:1.35;
-}
-
-.resume-header{
-display:flex;
-justify-content:space-between;
-align-items:flex-start;
-border-bottom:2px solid #000;
-padding-bottom:9px;
-margin-bottom:9px;
-}
-
-.resume-photo{
-width:90px;
-height:90px;
-object-fit:cover;
-border:1px solid #000;
+line-height:1.35
 }
 
 .resume h1{
-margin:0;
-font-size:20pt;
+font-size:21pt;
+margin:0 0 5px
 }
 
-.resume p{
-margin:4px 0;
-}
+.resume p{margin:4px 0}
 
 .resume a{
 color:#000;
 text-decoration:underline;
-font-weight:bold;
+font-weight:bold
 }
 
-.section-header{
+.r-head{
+display:flex;
+justify-content:space-between;
+gap:15px;
+border-bottom:2px solid #000;
+padding-bottom:9px;
+margin-bottom:9px
+}
+
+.r-photo{
+width:88px;
+height:88px;
+object-fit:cover;
+border:1px solid #000
+}
+
+.r-section{
+page-break-inside:avoid;
+break-inside:avoid-page
+}
+
+.r-title{
 background:#000;
 color:#fff;
-font-weight:bold;
+padding:5px 9px;
+font-weight:900;
 font-size:10.5pt;
 text-transform:uppercase;
-padding:5px 9px;
 margin:10px 0 6px;
+page-break-after:avoid
 }
 
-.section-subheader{
-font-size:9pt;
-font-weight:bold;
+.r-sub{
+font-weight:900;
 color:#333;
-margin-top:6px;
+font-size:9pt;
+margin-top:6px
 }
 
-.resume-section,
-.keep-together{
-page-break-inside:avoid !important;
-break-inside:avoid-page !important;
-}
-
-.section-header{
-page-break-after:avoid !important;
-break-after:avoid-page !important;
-}
-
-.resume-table{
+.r-table{
 width:100%;
 border-collapse:collapse;
-font-size:8.5pt;
-margin:5px 0 10px;
-page-break-inside:avoid !important;
-break-inside:avoid-page !important;
+font-size:8.3pt;
+page-break-inside:avoid
 }
 
-.resume-table th{
-background:#3a3a3a;
+.r-table th{
+background:#333;
 color:#fff;
-padding:5px;
 border:1px solid #000;
-text-align:left;
+padding:5px;
+text-align:left
 }
 
-.resume-table td{
+.r-table td{
 border:1px solid #ccc;
 padding:5px;
-vertical-align:top;
+vertical-align:top
 }
 
-.resume-table tr{
-page-break-inside:avoid !important;
-break-inside:avoid !important;
+.r-table tr{
+page-break-inside:avoid
 }
 
-.skill-list{
-margin:4px 0;
+/* EXECUTIVE */
+
+.resume.executive .r-head{
+border-bottom:5px solid #000
 }
 
-/* TEMPLATE 2 */
-
-.resume.template-executive .resume-header{
-border-bottom:5px solid #000;
-}
-
-.resume.template-executive .section-header{
+.resume.executive .r-title{
 background:#fff;
 color:#000;
 border-bottom:2px solid #000;
-padding-left:0;
+padding-left:0
 }
 
-.resume.template-executive .resume-table th{
-background:#000;
-}
+/* MODERN */
 
-/* TEMPLATE 3 */
-
-.resume.template-modern .resume-header{
-border-bottom:0;
+.resume.modern .r-head{
 background:#000;
 color:#fff;
 padding:12px;
+border:0
 }
 
-.resume.template-modern .resume-header a{
+.resume.modern a{
+color:#fff
+}
+
+.resume.modern .r-title{
+background:#222;
+border-left:5px solid #000
+}
+
+/* SLATE SIDEBAR TEMPLATE */
+
+.resume.slate{
+padding:0;
+display:grid;
+grid-template-columns:34% 66%;
+min-height:297mm;
+font-size:9pt;
+line-height:1.3
+}
+
+.resume.slate .slate-left{
+background:#34445b;
 color:#fff;
+padding:11mm 7mm;
+min-height:297mm
 }
 
-.resume.template-modern .section-header{
-background:#333;
-border-left:5px solid #000;
+.resume.slate .slate-right{
+background:#fff;
+padding:11mm 10mm
+}
+
+.resume.slate .slate-photo{
+width:88px;
+height:88px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #fff;
+display:block;
+margin:0 auto 16px
+}
+
+.resume.slate .slate-name{
+text-align:center;
+font-size:20pt;
+font-weight:900;
+line-height:1.05;
+margin:0 0 5px
+}
+
+.resume.slate .slate-role{
+text-align:center;
+font-size:9pt;
+margin-bottom:22px
+}
+
+.resume.slate .slate-side-title{
+font-size:10.5pt;
+font-weight:900;
+border-bottom:1px solid #ffffff77;
+padding-bottom:5px;
+margin:17px 0 7px
+}
+
+.resume.slate .slate-side p{
+margin:4px 0;
+word-break:break-word
+}
+
+.resume.slate .slate-side a{
+color:#fff;
+text-decoration:underline
+}
+
+.resume.slate .slate-right .r-title{
+background:transparent;
+color:#111;
+border:0;
+border-bottom:2px solid #111;
+padding:0 0 5px;
+margin:0 0 8px;
+font-size:13pt
+}
+
+.resume.slate .slate-right .r-section{
+margin-bottom:15px
+}
+
+.resume.slate .slate-right .r-table th{
+background:#34445b
+}
+
+.resume.slate .slate-right a{
+color:#111
 }
 
 /* ONE PAGE */
 
-.resume.one-page{
+.resume.onepage{
 padding:7mm;
 font-size:8pt;
-line-height:1.18;
+line-height:1.15
 }
 
-.resume.one-page .resume-header{
-padding-bottom:5px;
-margin-bottom:5px;
+.resume.onepage h1{
+font-size:17pt
 }
 
-.resume.one-page h1{
-font-size:17pt;
-}
-
-.resume.one-page .section-header{
+.resume.onepage .r-title{
 font-size:9pt;
 padding:3px 7px;
-margin:6px 0 3px;
+margin:6px 0 3px
 }
 
-.resume.one-page .resume-table{
-font-size:7pt;
-margin-bottom:4px;
+.resume.onepage .r-table{
+font-size:7pt
 }
 
-.resume.one-page .resume-table th,
-.resume.one-page .resume-table td{
-padding:2px 3px;
-}
-
-.resume.one-page p{
-margin:2px 0;
+.resume.onepage .r-table th,
+.resume.onepage .r-table td{
+padding:2px 3px
 }
 
 /* ATS */
 
-#ats-result,
-#ats-upload-result{
-margin-top:12px;
+.ats-box{
+border:2px solid #111;
+border-radius:10px;
+padding:14px;
+background:#fafafa
 }
 
-.ats-main{
-border:2px solid #000;
-padding:15px;
-background:#fafafa;
-}
-
-.ats-score-box{
+.score{
 text-align:center;
-border:2px solid #000;
-padding:15px;
 background:#fff;
+border:1px solid #ddd;
+border-radius:10px;
+padding:15px
 }
 
-.ats-score{
-font-size:38px;
-font-weight:900;
+.score-num{
+font-size:40px;
+font-weight:900
 }
 
-.ats-level{
-font-weight:bold;
-font-size:15px;
-}
-
-.ats-meter{
+.meter{
 height:12px;
 background:#ddd;
-margin-top:10px;
+border-radius:10px;
+overflow:hidden;
+margin-top:9px
 }
 
-.ats-meter-fill{
+.meter>div{
 height:100%;
-background:#000;
+background:#000
 }
 
 .ats-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:12px;
-margin-top:12px;
+gap:10px;
+margin-top:10px
 }
 
 .ats-card{
 background:#fff;
-border:1px solid #ccc;
+border:1px solid #ddd;
+border-radius:9px;
 padding:12px;
+font-size:11px
 }
 
-.good{
-color:#087a32;
-}
-
-.bad{
-color:#c40000;
-}
+.good{color:var(--green)}
+.bad{color:var(--red)}
 
 .ats-table{
 width:100%;
 border-collapse:collapse;
-margin-top:10px;
+margin-top:10px
 }
 
 .ats-table td{
-border:1px solid #ccc;
-padding:7px;
-font-size:12px;
+border:1px solid #ddd;
+padding:7px
 }
 
-.upload-box{
-border:2px dashed #000;
-padding:45px 15px;
+.upload{
+border:2px dashed #111;
+border-radius:10px;
+padding:45px;
 text-align:center;
 cursor:pointer;
-background:#fafafa;
+background:#fafafa
 }
 
-.upload-box i{
-font-size:42px;
+.upload i{
+font-size:40px
 }
-
-/* MODAL */
 
 .modal{
 display:none;
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.7);
+background:#000b;
 z-index:999;
 align-items:center;
-justify-content:center;
+justify-content:center
 }
 
 .modal-content{
 background:#fff;
-padding:15px;
+padding:16px;
+border-radius:12px;
 width:95%;
-max-width:500px;
+max-width:520px;
 max-height:90vh;
-overflow:auto;
+overflow:auto
 }
-
-/* FOOTER */
 
 footer{
-background:#000;
+background:#050505;
 color:#fff;
 text-align:center;
-padding:13px;
-font-size:10px;
-margin-top:20px;
+padding:14px;
+font-size:9px
 }
 
-@media(max-width:700px){
-
-.container{
-padding:0 8px;
-}
-
-.card{
-padding:15px;
-}
-
+@media(max-width:1000px){
 .template-grid{
-grid-template-columns:1fr;
+grid-template-columns:repeat(2,1fr)
+}
+}
+
+@media(max-width:850px){
+.layout{
+grid-template-columns:1fr
+}
+
+.sidebar{
+position:relative;
+top:0
+}
+
+.grid2,.grid3{
+grid-template-columns:1fr
 }
 
 .resume{
 width:100%;
-min-height:auto;
-padding:12px;
+padding:12px
 }
 
-.resume-header{
-flex-direction:column;
-}
-
-.resume-photo{
-margin-top:8px;
+.r-head{
+flex-direction:column
 }
 
 .ats-grid{
-grid-template-columns:1fr;
+grid-template-columns:1fr
+}
 }
 
+@media(max-width:650px){
+.template-grid{
+grid-template-columns:1fr
+}
+
+.resume.slate{
+grid-template-columns:1fr
+}
+
+.resume.slate .slate-left{
+min-height:auto
+}
+
+.resume.slate .slate-right{
+padding:8mm
+}
 }
 
 @media print{
-
 header,
-.tabs,
-footer,
-.btn{
-display:none !important;
+.sidebar,
+.topbar,
+.btn,
+footer{
+display:none!important
 }
 
 body{
-background:#fff;
+background:#fff
 }
 
-.resume{
-margin:0;
+.layout{
+display:block;
+padding:0
 }
 
+.resume-wrap{
+padding:0;
+background:#fff
 }
-
+}
 </style>
 </head>
 
 <body>
 
 <header>
-
 <h1>
 <i class="fa-solid fa-file-shield"></i>
-ATS RESUME PLATFORM
+ATS RESUME PLATFORM X
+<span class="pro-badge">PRO</span>
 </h1>
-
 <p>
-Professional Resume Builder | ATS Score | PDF / DOCX Checker
+Professional Resume Builder • ATS Analysis • PDF / DOCX Checker • Interview Ready Templates
 </p>
-
 </header>
 
+<div class="layout">
 
-<div class="tabs">
+<aside class="sidebar">
 
-<button class="tab active" onclick="showTab('create')">
-<i class="fa-solid fa-pen"></i>
-CREATE RESUME
-</button>
-
-<button class="tab" onclick="showTab('check')">
-<i class="fa-solid fa-robot"></i>
-CHECK ATS SCORE
-</button>
-
+<div class="brand">
+<b>PLATFORM X</b>
+<small>Created & Developed by Punya Binay Swain</small>
 </div>
 
+<button class="nav active" onclick="go('builder',this)">
+<i class="fa-solid fa-pen"></i> Resume Builder
+</button>
 
-<div class="container">
+<button class="nav" onclick="go('templates',this)">
+<i class="fa-solid fa-layer-group"></i> Templates
+</button>
 
+<button class="nav" onclick="go('ats',this)">
+<i class="fa-solid fa-robot"></i> ATS Test
+</button>
 
-<!-- ================= CREATE ================= -->
+<button class="nav" onclick="go('checker',this)">
+<i class="fa-solid fa-file-circle-check"></i> PDF/DOCX Checker
+</button>
 
-<div class="card" id="create-tab">
+<div class="side-info">
+<b>PRO FEATURES</b><br>
+✓ 4 free templates<br>
+✓ One-page interview format<br>
+✓ Clickable LinkedIn/GitHub<br>
+✓ Unlimited entries<br>
+✓ Professional ATS report<br>
+✓ Better PDF pagination<br>
+✓ Compressed PDF export
+</div>
 
-<div id="input-form">
+</aside>
 
+<main class="main">
 
-<h3 class="section-title">
+<div class="topbar">
+<div>
+<b>Professional Resume Workspace</b><br>
+<span style="font-size:9px;color:#777">
+Build • Analyse • Preview • Export
+</span>
+</div>
+
+<div class="status">
+<i class="fa-solid fa-circle"></i> READY
+</div>
+</div>
+
+<section id="builder">
+
+<!-- TEMPLATES -->
+
+<div class="card" id="templates">
+
+<div class="card-title">
 <i class="fa-solid fa-palette"></i>
-RESUME TEMPLATE
-</h3>
+FREE PROFESSIONAL TEMPLATES
+</div>
 
 <div class="template-grid">
 
-<div class="template-card active"
-id="template-standard"
-onclick="selectTemplate('standard')">
+<div class="template active" id="tpl-standard" onclick="selectTemplate('standard')">
 
-<div class="template-mini">
+<div class="thumb">
 
-<div class="mini-name">
-YOUR NAME
-</div>
+<div class="thumb-name">YOUR NAME</div>
 
-CONTACT | EMAIL | LINKEDIN
+EMAIL • PHONE • LINKEDIN
 
-<div class="mini-section">
+<div class="thumb-head">
 PROFILE SUMMARY
 </div>
 
-Professional summary goes here...
+Professional candidate profile
 
-<div class="mini-section">
+<div class="thumb-head">
 EDUCATION
 </div>
 
 Education table
 
-<div class="mini-section">
-EXPERIENCE
-</div>
-
-Experience details
-
-</div>
-
-<div class="template-name">
-Standard ATS
-</div>
-
-<div class="template-desc">
-Clean & ATS friendly
-</div>
-
-</div>
-
-
-<div class="template-card"
-id="template-executive"
-onclick="selectTemplate('executive')">
-
-<div class="template-mini">
-
-<div class="mini-name">
-YOUR NAME
-</div>
-
-PROFESSIONAL INFORMATION
-
-<div class="mini-section">
-PROFILE
-</div>
-
-Professional candidate
-
-<div class="mini-section">
+<div class="thumb-head">
 EXPERIENCE
 </div>
 
 Career history
 
-<div class="mini-section">
+<div class="thumb-head">
 SKILLS
 </div>
 
-Technical | Leadership
+Technical • Soft
 
 </div>
 
-<div class="template-name">
-Executive Pro
-</div>
-
-<div class="template-desc">
-Premium interview style
-</div>
+<strong>Standard ATS</strong>
+<span>Clean, readable and ATS focused</span>
 
 </div>
 
 
-<div class="template-card"
-id="template-modern"
-onclick="selectTemplate('modern')">
+<div class="template" id="tpl-executive" onclick="selectTemplate('executive')">
 
-<div class="template-mini">
+<div class="thumb">
 
-<div class="mini-name">
+<div class="thumb-name">YOUR NAME</div>
+
+PROFESSIONAL CONTACT
+
+<div class="thumb-head" style="background:#fff;color:#000;border-bottom:2px solid #000">
+PROFILE
+</div>
+
+Executive profile
+
+<div class="thumb-head" style="background:#fff;color:#000;border-bottom:2px solid #000">
+EXPERIENCE
+</div>
+
+Career achievements
+
+<div class="thumb-head" style="background:#fff;color:#000;border-bottom:2px solid #000">
+STRENGTHS
+</div>
+
+Leadership • Results
+
+</div>
+
+<strong>Executive Pro</strong>
+<span>Premium interview-selected look</span>
+
+</div>
+
+
+<!-- SLATE TEMPLATE -->
+
+<div class="template" id="tpl-slate" onclick="selectTemplate('slate')">
+
+<div class="thumb"
+style="display:grid;grid-template-columns:35% 65%;padding:0">
+
+<div style="background:#34445b;color:#fff;padding:7px">
+
+<div style="
+width:38px;
+height:38px;
+border-radius:50%;
+border:2px solid #fff;
+margin:auto">
+</div>
+
+<div style="font-size:6px;font-weight:bold;margin-top:8px">
+YOUR NAME
+</div>
+
+<div style="font-size:5px;margin-top:12px">
+CONTACT
+</div>
+
+<div style="font-size:5px;margin-top:18px">
+SKILLS
+</div>
+
+<div style="font-size:5px;margin-top:18px">
+LANGUAGES
+</div>
+
+</div>
+
+<div style="padding:7px">
+
+<div style="font-size:8px;font-weight:bold">
+Profile
+</div>
+
+<div style="height:4px;background:#eee;margin:5px 0"></div>
+
+<div style="font-size:8px;font-weight:bold;margin-top:13px">
+Work Experience
+</div>
+
+<div style="height:4px;background:#eee;margin:5px 0"></div>
+
+<div style="height:4px;background:#eee;margin:4px 0"></div>
+
+<div style="font-size:8px;font-weight:bold;margin-top:13px">
+Education
+</div>
+
+</div>
+</div>
+
+<strong>Slate Sidebar Pro</strong>
+<span>Screenshot-style professional interview layout</span>
+
+</div>
+
+
+<div class="template" id="tpl-modern" onclick="selectTemplate('modern')">
+
+<div class="thumb">
+
+<div class="thumb-name"
+style="background:#000;color:#fff;padding:5px">
 YOUR NAME
 </div>
 
 CONTACT INFORMATION
 
-<div class="mini-section">
+<div class="thumb-head">
 SUMMARY
 </div>
 
 Career profile
 
-<div class="mini-section">
+<div class="thumb-head">
 PROJECTS
 </div>
 
 Major projects
 
-<div class="mini-section">
+<div class="thumb-head">
 SKILLS
 </div>
 
@@ -783,28 +1023,17 @@ Professional skills
 
 </div>
 
-<div class="template-name">
-Modern Professional
-</div>
-
-<div class="template-desc">
-Modern black & white design
-</div>
+<strong>Modern Professional</strong>
+<span>Bold modern black & white layout</span>
 
 </div>
 
 </div>
 
 
-<input type="hidden"
-id="selectedTemplate"
-value="standard">
-
-
-<h3 class="section-title">
-<i class="fa-solid fa-compress"></i>
-PAGE FORMAT
-</h3>
+<label style="margin-top:14px">
+PDF FORMAT
+</label>
 
 <select id="resumeFormat">
 
@@ -818,87 +1047,81 @@ Standard Multi-Page ATS Resume
 
 </select>
 
+<input type="hidden" id="selectedTemplate" value="standard">
 
-<!-- PERSONAL -->
+</div>
 
-<h3 class="section-title">
+
+<!-- PERSONAL DETAILS -->
+
+<div class="card">
+
+<div class="card-title">
 <i class="fa-solid fa-user"></i>
 1. PERSONAL DETAILS
-</h3>
+</div>
 
-
-<div style="display:flex;gap:15px">
+<div class="photo-area">
 
 <div style="flex:1">
 
-<input
-id="name"
-placeholder="FULL NAME *">
+<div class="grid2">
 
-<input
-id="dob"
-type="date"
-title="Date of Birth">
-
-<input
-id="email"
-type="email"
-placeholder="EMAIL ID">
-
-<input
-id="mobile"
-placeholder="CONTACT NUMBER">
-
+<div>
+<label>FULL NAME *</label>
+<input id="name" placeholder="FULL NAME *">
 </div>
 
+<div>
+<label>DATE OF BIRTH</label>
+<input id="dob" type="date">
+</div>
 
-<div style="width:120px">
+<div>
+<label>EMAIL ID</label>
+<input id="email" type="email" placeholder="EMAIL ID">
+</div>
 
-<label>
-<b>PHOTO</b>
-</label>
-
-<input
-type="file"
-id="photo"
-accept="image/*">
-
-<div
-class="photo-box"
-id="photo-box">
-
-No Photo
-
+<div>
+<label>CONTACT NUMBER</label>
+<input id="mobile" placeholder="CONTACT NUMBER">
 </div>
 
 </div>
 
+<textarea id="address" placeholder="ADDRESS"></textarea>
+
+<input id="linkedin" placeholder="LINKEDIN URL">
+
+<input id="website" placeholder="GITHUB / PORTFOLIO URL">
+
 </div>
 
+<div style="width:110px">
 
-<textarea
-id="address"
-rows="2"
-placeholder="ADDRESS">
-</textarea>
+<label>PHOTO</label>
 
+<input type="file" id="photo" accept="image/*">
 
-<input
-id="linkedin"
-placeholder="LINKEDIN URL">
+<div class="photo-box" id="photo-box">
+NO PHOTO
+</div>
 
+</div>
 
-<input
-id="website"
-placeholder="GITHUB / PORTFOLIO URL">
+</div>
+
+</div>
 
 
 <!-- SUMMARY -->
 
-<h3 class="section-title">
+<div class="card">
+
+<div class="card-title">
 <i class="fa-solid fa-user-tie"></i>
 2. PROFILE SUMMARY
-</h3>
+</div>
 
 <textarea
 id="summary"
@@ -906,182 +1129,152 @@ rows="4"
 placeholder="Write your professional profile summary manually...">
 </textarea>
 
+</div>
+
 
 <!-- EDUCATION -->
 
-<h3 class="section-title">
+<div class="card">
+
+<div class="card-title">
 <i class="fa-solid fa-graduation-cap"></i>
 3. EDUCATION / QUALIFICATION
-</h3>
+</div>
 
 <div id="edu-list"></div>
 
-<button
-type="button"
-class="btn btn-success"
-onclick="addField('edu')">
-
+<button class="btn btn-gray full" onclick="addField('edu')">
 <i class="fa-solid fa-plus"></i>
 Add Qualification
-
 </button>
+
+</div>
 
 
 <!-- PROJECTS -->
 
-<h3 class="section-title">
+<div class="card">
+
+<div class="card-title">
 <i class="fa-solid fa-diagram-project"></i>
 4. PROJECTS
-</h3>
+</div>
 
 <div id="proj-list"></div>
 
-<button
-type="button"
-class="btn btn-success"
-onclick="addField('proj')">
-
+<button class="btn btn-gray full" onclick="addField('proj')">
 <i class="fa-solid fa-plus"></i>
 Add Project
-
 </button>
+
+</div>
 
 
 <!-- LANGUAGES -->
 
-<h3 class="section-title">
+<div class="card">
+
+<div class="card-title">
 <i class="fa-solid fa-language"></i>
 5. LANGUAGES
-</h3>
+</div>
 
-
-<b class="section-subheader">
-Technical Languages
-</b>
+<label>Technical Languages</label>
 
 <div id="tech-lang-list"></div>
 
-<button
-type="button"
-class="btn btn-success"
-onclick="addField('tech-lang')">
-
-<i class="fa-solid fa-plus"></i>
-Add Technical Language
-
+<button class="btn btn-gray full" onclick="addField('tech-lang')">
++ Add Technical Language
 </button>
 
-
-<b class="section-subheader">
-Normal Languages
-</b>
+<label>Normal Languages</label>
 
 <div id="normal-lang-list"></div>
 
-<button
-type="button"
-class="btn btn-success"
-onclick="addField('normal-lang')">
-
-<i class="fa-solid fa-plus"></i>
-Add Normal Language
-
+<button class="btn btn-gray full" onclick="addField('normal-lang')">
++ Add Normal Language
 </button>
+
+</div>
 
 
 <!-- EXPERIENCE -->
 
-<h3 class="section-title">
+<div class="card">
+
+<div class="card-title">
 <i class="fa-solid fa-briefcase"></i>
 6. EXPERIENCE
-</h3>
+</div>
 
 <div id="exp-list"></div>
 
-<button
-type="button"
-class="btn btn-success"
-onclick="addField('exp')">
-
+<button class="btn btn-gray full" onclick="addField('exp')">
 <i class="fa-solid fa-plus"></i>
 Add Experience
-
 </button>
+
+</div>
 
 
 <!-- STRENGTH -->
 
-<h3 class="section-title">
+<div class="card">
+
+<div class="card-title">
 <i class="fa-solid fa-bolt"></i>
 7. STRENGTHS
-</h3>
-
-<p style="font-size:11px;color:#555">
-Add unlimited professional strengths. Example:
-Leadership, Team Management, Problem Solving, Communication.
-</p>
+<small style="font-size:9px;color:#777">
+(UNLIMITED)
+</small>
+</div>
 
 <div id="strength-list"></div>
 
-<button
-type="button"
-class="btn btn-success"
-onclick="addField('strength')">
-
+<button class="btn btn-gray full" onclick="addField('strength')">
 <i class="fa-solid fa-plus"></i>
 Add Strength
-
 </button>
+
+</div>
 
 
 <!-- SKILLS -->
 
-<h3 class="section-title">
+<div class="card">
+
+<div class="card-title">
 <i class="fa-solid fa-gears"></i>
 8. SKILLS
-</h3>
+</div>
 
-
-<b class="section-subheader">
-Technical Skills
-</b>
+<label>Technical Skills</label>
 
 <div id="tech-skill-list"></div>
 
-<button
-type="button"
-class="btn btn-success"
-onclick="addField('tech-skill')">
-
-<i class="fa-solid fa-plus"></i>
-Add Technical Skill
-
+<button class="btn btn-gray full" onclick="addField('tech-skill')">
++ Add Technical Skill
 </button>
 
-
-<b class="section-subheader">
-Soft Skills
-</b>
+<label>Soft Skills</label>
 
 <div id="soft-skill-list"></div>
 
-<button
-type="button"
-class="btn btn-success"
-onclick="addField('soft-skill')">
-
-<i class="fa-solid fa-plus"></i>
-Add Soft Skill
-
+<button class="btn btn-gray full" onclick="addField('soft-skill')">
++ Add Soft Skill
 </button>
+
+</div>
 
 
 <!-- DECLARATION -->
 
-<h3 class="section-title">
+<div class="card">
+
+<div class="card-title">
 <i class="fa-solid fa-file-signature"></i>
 9. DECLARATION
-</h3>
+</div>
 
 <textarea
 id="declaration"
@@ -1089,99 +1282,100 @@ rows="3"
 placeholder="I hereby declare that...">
 </textarea>
 
+</div>
 
-<button
-type="button"
-class="btn btn-ats"
-onclick="runATSTest()">
 
+<!-- ATS -->
+
+<div class="card" id="ats">
+
+<div class="card-title">
 <i class="fa-solid fa-robot"></i>
-RUN PROFESSIONAL ATS TEST
+PROFESSIONAL ATS ANALYSIS
+</div>
 
+<button class="btn btn-black full" onclick="runATSTest()">
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+RUN ATS TEST
 </button>
 
 <div id="ats-result"></div>
 
+</div>
 
-<button
-type="button"
-class="btn btn-primary"
-onclick="generateResume()">
 
+<div class="card">
+
+<button class="btn btn-black full" onclick="generateResume()">
 <i class="fa-solid fa-eye"></i>
-GENERATE & PREVIEW RESUME
-
+GENERATE PROFESSIONAL PREVIEW
 </button>
 
 </div>
+
+</section>
 
 
 <!-- PREVIEW -->
 
-<div id="preview-area">
+<section id="previewArea">
 
-<h3>
-FINAL PROFESSIONAL PREVIEW
-</h3>
+<div class="card">
 
-<div id="resume"
-class="resume">
-</div>
+<div class="row-between">
 
-
-<button
-type="button"
-class="btn btn-primary"
-onclick="downloadPDF()">
+<div class="card-title" style="border:0;margin:0">
 
 <i class="fa-solid fa-file-pdf"></i>
+FINAL RESUME PREVIEW
+
+</div>
+
+<button class="btn btn-white" onclick="backToForm()">
+← Edit
+</button>
+
+</div>
+
+<div class="resume-wrap">
+
+<div id="resume" class="resume"></div>
+
+</div>
+
+<button class="btn btn-black full" onclick="downloadPDF()">
+<i class="fa-solid fa-download"></i>
 DOWNLOAD PROFESSIONAL PDF
-
-</button>
-
-
-<button
-type="button"
-class="btn btn-success"
-onclick="backToForm()">
-
-<i class="fa-solid fa-arrow-left"></i>
-BACK TO EDIT
-
 </button>
 
 </div>
 
-</div>
+</section>
 
 
-<!-- ================= ATS CHECK ================= -->
+<!-- CHECKER -->
 
-<div
-class="card"
-id="check-tab"
-style="display:none">
+<section id="checker" style="display:none">
 
-<h3 class="section-title">
+<div class="card">
+
+<div class="card-title">
 <i class="fa-solid fa-file-circle-check"></i>
-UPLOAD RESUME FOR ATS CHECK
-</h3>
-
+PDF / DOCX ATS CHECKER
+</div>
 
 <div
-class="upload-box"
+class="upload"
 onclick="document.getElementById('file-upload').click()">
 
 <i class="fa-solid fa-cloud-arrow-up"></i>
 
-<p>
-<b>
-Click to Upload PDF / DOCX
-</b>
-</p>
+<h3 style="margin:10px 0 5px">
+UPLOAD RESUME
+</h3>
 
 <p style="font-size:10px">
-Your file will be analysed locally in your browser.
+PDF or DOCX • Text is analysed locally in your browser
 </p>
 
 <input
@@ -1193,47 +1387,38 @@ onchange="handleFileUpload(event)">
 
 </div>
 
-
 <div id="ats-upload-result"></div>
 
 </div>
 
+</section>
 
+</main>
 </div>
 
 
-<!-- CROP -->
+<!-- PHOTO CROPPER -->
 
-<div
-class="modal"
-id="crop-modal">
+<div class="modal" id="crop-modal">
 
 <div class="modal-content">
 
-<h3>
-Crop Your Photograph
-</h3>
+<h3>Crop Your Photograph</h3>
 
 <img
 id="cropper-img"
 style="max-width:100%">
 
 <button
-type="button"
-class="btn btn-primary"
+class="btn btn-black full"
 onclick="cropImage()">
-
 Crop & Save
-
 </button>
 
 <button
-type="button"
-class="btn btn-success"
+class="btn btn-white full"
 onclick="closeCrop()">
-
 Cancel
-
 </button>
 
 </div>
@@ -1242,10 +1427,7 @@ Cancel
 
 
 <footer>
-
-© CREATED AND DEVELOPED BY PUNYA BINAY SWAIN.
-ALL RIGHTS RESERVED.
-
+© CREATED AND DEVELOPED BY PUNYA BINAY SWAIN. ALL RIGHTS RESERVED.
 </footer>
 
 
@@ -1255,84 +1437,85 @@ let photoData='';
 let cropper=null;
 
 
-/* TAB */
+/* NAVIGATION */
 
-function showTab(tab){
+function go(id,btn){
 
-document.querySelectorAll('.tab')
-.forEach(t=>t.classList.remove('active'));
+document.querySelectorAll('.nav')
+.forEach(x=>x.classList.remove('active'));
 
-if(tab==='create'){
+if(id==='builder'||id==='templates'||id==='ats'){
 
-document.getElementById('create-tab')
-.style.display='block';
+document.getElementById('builder').style.display='block';
 
-document.getElementById('check-tab')
-.style.display='none';
-
-document.querySelectorAll('.tab')[0]
-.classList.add('active');
-
-}else{
-
-document.getElementById('create-tab')
-.style.display='none';
-
-document.getElementById('check-tab')
-.style.display='block';
-
-document.querySelectorAll('.tab')[1]
-.classList.add('active');
+document.getElementById('checker').style.display='none';
 
 }
+
+if(id==='checker'){
+
+document.getElementById('builder').style.display='none';
+
+document.getElementById('checker').style.display='block';
+
+}
+
+if(id==='templates'){
+
+document.getElementById('templates')
+.scrollIntoView({behavior:'smooth'});
+
+}
+
+if(id==='ats'){
+
+document.getElementById('ats')
+.scrollIntoView({behavior:'smooth'});
+
+}
+
+if(btn)btn.classList.add('active');
 
 }
 
 
 /* TEMPLATE */
 
-function selectTemplate(template){
+function selectTemplate(t){
 
-document.getElementById('selectedTemplate')
-.value=template;
+document.getElementById('selectedTemplate').value=t;
 
-document.querySelectorAll('.template-card')
-.forEach(card=>{
-card.classList.remove('active');
-});
+document.querySelectorAll('.template')
+.forEach(x=>x.classList.remove('active'));
 
-document.getElementById(
-'template-'+template
-).classList.add('active');
+document.getElementById('tpl-'+t)
+.classList.add('active');
 
 }
 
 
 /* PHOTO */
 
-document.getElementById('photo')
-.addEventListener('change',function(e){
+document.getElementById('photo').onchange=e=>{
 
-let file=e.target.files[0];
+let f=e.target.files[0];
 
-if(!file)return;
+if(!f)return;
 
-let reader=new FileReader();
+let r=new FileReader();
 
-reader.onload=function(){
+r.onload=()=>{
 
-let image=document.getElementById('cropper-img');
+let img=document.getElementById('cropper-img');
 
-image.src=reader.result;
+img.src=r.result;
 
 document.getElementById('crop-modal')
 .style.display='flex';
 
-if(cropper){
-cropper.destroy();
-}
+if(cropper)cropper.destroy();
 
-cropper=new Cropper(image,{
+cropper=new Cropper(img,{
 aspectRatio:1,
 viewMode:1,
 autoCropArea:1
@@ -1340,9 +1523,9 @@ autoCropArea:1
 
 };
 
-reader.readAsDataURL(file);
+r.readAsDataURL(f);
 
-});
+};
 
 
 function cropImage(){
@@ -1350,15 +1533,15 @@ function cropImage(){
 if(!cropper)return;
 
 photoData=
-cropper.getCroppedCanvas({
+cropper
+.getCroppedCanvas({
 width:300,
 height:300
 })
-.toDataURL('image/jpeg',0.9);
+.toDataURL('image/jpeg',.9);
 
 document.getElementById('photo-box')
-.innerHTML=
-`<img src="${photoData}">`;
+.innerHTML='<img src="'+photoData+'">';
 
 closeCrop();
 
@@ -1373,6 +1556,7 @@ document.getElementById('crop-modal')
 if(cropper){
 
 cropper.destroy();
+
 cropper=null;
 
 }
@@ -1380,15 +1564,26 @@ cropper=null;
 }
 
 
-/* DATE */
+/* HELPERS */
 
-function formatDate(dateStr){
+function esc(v){
 
-if(!dateStr)return '-';
+return String(v||'')
+.replace(/&/g,'&amp;')
+.replace(/</g,'&lt;')
+.replace(/>/g,'&gt;')
+.replace(/"/g,'&quot;')
+.replace(/'/g,'&#039;');
 
-let d=new Date(dateStr);
+}
 
-return d.toLocaleDateString(
+
+function dateFmt(v){
+
+if(!v)return '-';
+
+return new Date(v)
+.toLocaleDateString(
 'en-GB',
 {
 month:'short',
@@ -1399,93 +1594,83 @@ year:'numeric'
 }
 
 
-/* DURATION */
+function duration(a,b){
 
-function calcDuration(start,end){
+if(!a||!b)return '-';
 
-if(!start||!end)return '-';
+let s=new Date(a),
+e=new Date(b);
 
-let s=new Date(start);
-let e=new Date(end);
-
-let months=
+let m=
 (e.getFullYear()-s.getFullYear())*12+
-(e.getMonth()-s.getMonth());
+e.getMonth()-s.getMonth();
 
-let years=Math.floor(months/12);
+if(m<0)return '-';
 
-months=months%12;
+let y=Math.floor(m/12);
 
-return years>0
-?`${years} Yr ${months} Mo`
-:`${months} Mo`;
+m%=12;
+
+return y
+?(y+' Yr '+m+' Mo')
+:(m+' Mo');
 
 }
 
 
-/* ADD FIELD */
+function url(v){
+
+return /^https?:\/\//i.test(v)
+?v
+:'https://'+v;
+
+}
+
+
+/* ADD FIELDS */
 
 function addField(type){
 
-let container=
-document.getElementById(type+'-list');
+let c=document.getElementById(type+'-list');
 
-let div=document.createElement('div');
+let d=document.createElement('div');
 
-div.className='section-group';
+d.className='group';
 
-div.innerHTML=`
-<button
-type="button"
-class="remove-btn"
-onclick="this.parentElement.remove()">
-X
-</button>
-`;
+d.innerHTML=
+'<button class="remove" onclick="this.parentElement.remove()">X</button>';
 
 
 /* EDUCATION */
 
 if(type==='edu'){
 
-div.innerHTML+=`
+d.innerHTML+=`
 
-<label class="field-label">
-COURSE NAME
-</label>
+<label>Course Name</label>
 
 <input
-placeholder="COURSE NAME *"
-data-req>
+placeholder="COURSE NAME *">
 
-<label class="field-label">
-INSTITUTE NAME
-</label>
+<label>Institute Name</label>
 
 <input
-placeholder="INSTITUTE NAME *"
-data-req>
+placeholder="INSTITUTE NAME *">
 
-<label class="field-label">
-UNIVERSITY NAME
-</label>
+<label>University Name</label>
 
 <input
 placeholder="UNIVERSITY NAME">
 
-<label class="field-label">
-PASSING YEAR
-</label>
+<label>Passing Year</label>
 
 <input
 type="number"
-placeholder="PASSING YEAR"
 min="1900"
-max="2100">
+max="2100"
+placeholder="PASSING YEAR">
 
-<label class="field-label">
-PERCENTAGE / CGPA
-</label>
+<label>Percentage / CGPA</label>
 
 <input
 placeholder="PERCENTAGE / CGPA">
@@ -1499,11 +1684,14 @@ placeholder="PERCENTAGE / CGPA">
 
 if(type==='proj'){
 
-div.innerHTML+=`
+d.innerHTML+=`
+
+<label>Project Name</label>
 
 <input
-placeholder="PROJECT NAME *"
-data-req>
+placeholder="PROJECT NAME *">
+
+<label>Project Description</label>
 
 <textarea
 placeholder="PROJECT DESCRIPTION">
@@ -1518,39 +1706,31 @@ placeholder="PROJECT DESCRIPTION">
 
 if(type==='exp'){
 
-div.innerHTML+=`
+d.innerHTML+=`
 
-<label class="field-label">
-JOB TITLE
-</label>
+<label>Job Title</label>
 
 <input
-placeholder="JOB TITLE *"
-data-req>
+placeholder="JOB TITLE *">
 
-<label class="field-label">
-COMPANY NAME
-</label>
+<label>Company Name</label>
 
 <input
-placeholder="COMPANY NAME *"
-data-req>
+placeholder="COMPANY NAME *">
 
-<label class="field-label">
-START DATE
-</label>
+<label>Start Date</label>
 
 <input
 type="date"
 title="Employment Start Date">
 
-<label class="field-label">
-END DATE
-</label>
+<label>End Date</label>
 
 <input
 type="date"
 title="Employment End Date">
+
+<label>Job Description</label>
 
 <textarea
 placeholder="JOB DESCRIPTION">
@@ -1565,95 +1745,101 @@ placeholder="JOB DESCRIPTION">
 
 if(type==='strength'){
 
-div.innerHTML+=`
+d.innerHTML+=`
+
+<label>Strength</label>
 
 <input
-placeholder="STRENGTH *"
-data-req>
+placeholder="STRENGTH *">
 
 `;
 
 }
 
 
-/* SKILLS & LANGUAGES */
+/* SKILLS / LANGUAGES */
 
 if(
 type.includes('skill')||
 type.includes('lang')
 ){
 
-div.innerHTML+=`
+d.innerHTML+=`
+
+<label>Name</label>
 
 <input
-placeholder="NAME *"
-data-req>
+placeholder="NAME *">
 
 `;
 
 }
 
-container.appendChild(div);
+c.appendChild(d);
+
+}
+
+
+/* LIST */
+
+function list(id,title){
+
+let a=[
+...document.getElementById(id).children
+]
+.map(
+x=>x.querySelector('input').value.trim()
+)
+.filter(Boolean);
+
+return a.length
+?`<div class="r-sub">${title}</div>
+<p>${a.map(esc).join(' | ')}</p>`
+:'';
 
 }
 
 
 /* EDUCATION TABLE */
 
-function getEducationHTML(){
+function education(){
 
-let items=[
+let a=[
 ...document.getElementById('edu-list').children
 ];
 
-if(!items.length)return '';
+if(!a.length)return '';
 
-let rows=items.map(d=>{
+let rows=a.map(d=>{
 
-let i=[
-...d.querySelectorAll('input')
-];
+let i=d.querySelectorAll('input');
 
 return `
-
 <tr>
 
-<td>
-${escapeHTML(i[0].value)}
-</td>
+<td>${esc(i[0].value)}</td>
 
-<td>
-${escapeHTML(i[1].value)}
-</td>
+<td>${esc(i[1].value)}</td>
 
-<td>
-${escapeHTML(i[2].value)}
-</td>
+<td>${esc(i[2].value)}</td>
 
-<td>
-${escapeHTML(i[3].value)}
-</td>
+<td>${esc(i[3].value)}</td>
 
-<td>
-${escapeHTML(i[4].value)}
-</td>
+<td>${esc(i[4].value)}</td>
 
 </tr>
-
 `;
 
 }).join('');
 
-
 return `
+<div class="r-section">
 
-<div class="resume-section keep-together">
-
-<div class="section-header">
+<div class="r-title">
 Education / Qualification
 </div>
 
-<table class="resume-table">
+<table class="r-table">
 
 <thead>
 
@@ -1678,78 +1864,109 @@ ${rows}
 </table>
 
 </div>
-
 `;
 
 }
 
 
-/* EXPERIENCE TABLE */
+/* PROJECTS */
 
-function getExperienceHTML(){
+function projects(){
 
-let items=[
-...document.getElementById('exp-list').children
+let a=[
+...document.getElementById('proj-list').children
 ];
 
-if(!items.length)return '';
+if(!a.length)return '';
 
-let rows=items.map(d=>{
+let x=a.map(d=>{
 
-let i=[
-...d.querySelectorAll('input,textarea')
-];
-
-let duration=
-calcDuration(
-i[2].value,
-i[3].value
-);
+let i=d.querySelectorAll('input,textarea');
 
 return `
+<div
+style="page-break-inside:avoid;margin:6px 0">
 
-<tr>
+<b>${esc(i[0].value)}</b>
 
-<td>
-<b>${escapeHTML(i[0].value)}</b>
-</td>
+<br>
 
-<td>
-${escapeHTML(i[1].value)}
-</td>
+${esc(i[1].value)}
 
-<td>
-${formatDate(i[2].value)}
-</td>
-
-<td>
-${formatDate(i[3].value)}
-</td>
-
-<td>
-${duration}
-</td>
-
-<td>
-${escapeHTML(i[4].value)}
-</td>
-
-</tr>
-
+</div>
 `;
 
 }).join('');
 
+return `
+<div class="r-section">
+
+<div class="r-title">
+Projects
+</div>
+
+${x}
+
+</div>
+`;
+
+}
+
+
+/* EXPERIENCE */
+
+function experience(){
+
+let a=[
+...document.getElementById('exp-list').children
+];
+
+if(!a.length)return '';
+
+let rows=a.map(d=>{
+
+let i=d.querySelectorAll('input,textarea');
 
 return `
+<tr>
 
-<div class="resume-section keep-together">
+<td>
+<b>${esc(i[0].value)}</b>
+</td>
 
-<div class="section-header">
+<td>
+${esc(i[1].value)}
+</td>
+
+<td>
+${dateFmt(i[2].value)}
+</td>
+
+<td>
+${dateFmt(i[3].value)}
+</td>
+
+<td>
+${duration(i[2].value,i[3].value)}
+</td>
+
+<td>
+${esc(i[4].value)}
+</td>
+
+</tr>
+`;
+
+}).join('');
+
+return `
+<div class="r-section">
+
+<div class="r-title">
 Experience
 </div>
 
-<table class="resume-table">
+<table class="r-table">
 
 <thead>
 
@@ -1775,96 +1992,6 @@ ${rows}
 </table>
 
 </div>
-
-`;
-
-}
-
-
-/* PROJECTS */
-
-function getProjectsHTML(){
-
-let items=[
-...document.getElementById('proj-list').children
-];
-
-if(!items.length)return '';
-
-let html=items.map(d=>{
-
-let i=[
-...d.querySelectorAll('input,textarea')
-];
-
-return `
-
-<div
-style="
-margin-bottom:7px;
-page-break-inside:avoid;
-">
-
-<p>
-
-<b>
-${escapeHTML(i[0].value)}
-</b>
-
-<br>
-
-${escapeHTML(i[1].value)}
-
-</p>
-
-</div>
-
-`;
-
-}).join('');
-
-
-return `
-
-<div class="resume-section keep-together">
-
-<div class="section-header">
-Projects
-</div>
-
-${html}
-
-</div>
-
-`;
-
-}
-
-
-/* LIST */
-
-function getListHTML(id,title){
-
-let items=[
-...document.getElementById(id).children
-]
-.map(d=>
-d.querySelector('input').value.trim()
-)
-.filter(Boolean);
-
-if(!items.length)return '';
-
-return `
-
-<div class="section-subheader">
-${title}
-</div>
-
-<p class="skill-list">
-${items.map(escapeHTML).join(' | ')}
-</p>
-
 `;
 
 }
@@ -1872,256 +1999,406 @@ ${items.map(escapeHTML).join(' | ')}
 
 /* STRENGTHS */
 
-function getStrengthHTML(){
+function strengths(){
 
-let items=[
+let a=[
 ...document.getElementById('strength-list').children
 ]
-.map(d=>
-d.querySelector('input').value.trim()
+.map(
+x=>x.querySelector('input').value.trim()
 )
 .filter(Boolean);
 
-if(!items.length)return '';
+return a.length
+?`
+<div class="r-section">
 
-return `
-
-<div class="resume-section keep-together">
-
-<div class="section-header">
+<div class="r-title">
 Strengths
 </div>
 
 <p>
-
-${items.map(x=>
-`<b>${escapeHTML(x)}</b>`
+${a.map(
+x=>'<b>'+esc(x)+'</b>'
 ).join(' | ')}
-
 </p>
 
 </div>
-
-`;
-
-}
-
-
-/* ESCAPE */
-
-function escapeHTML(value){
-
-return String(value||'')
-.replace(/&/g,'&amp;')
-.replace(/</g,'&lt;')
-.replace(/>/g,'&gt;')
-.replace(/"/g,'&quot;')
-.replace(/'/g,'&#039;');
+`
+:'';
 
 }
 
 
-/* URL */
+/* RENDER RESUME */
 
-function makeURL(url){
+function render(){
 
-if(!url)return '';
+let r=document.getElementById('resume');
 
-return /^https?:\/\//i.test(url)
-?url
-:'https://'+url;
+let t=document.getElementById('selectedTemplate').value;
 
-}
+let f=document.getElementById('resumeFormat').value;
 
+r.className=
+'resume '+
+(t==='executive'?'executive ':'')+
+(t==='modern'?'modern ':'')+
+(t==='slate'?'slate ':'')+
+(f==='onepage'?'onepage':'');
 
-/* RENDER */
+let li=
+document.getElementById('linkedin')
+.value.trim();
 
-function renderResume(){
-
-let resume=
-document.getElementById('resume');
-
-let template=
-document.getElementById('selectedTemplate').value;
-
-let format=
-document.getElementById('resumeFormat').value;
-
-resume.className='resume';
-
-if(format==='onepage'){
-resume.classList.add('one-page');
-}
-
-if(template==='executive'){
-resume.classList.add('template-executive');
-}
-
-if(template==='modern'){
-resume.classList.add('template-modern');
-}
-
+let gh=
+document.getElementById('website')
+.value.trim();
 
 let name=
-document.getElementById('name').value;
+esc(document.getElementById('name').value);
 
-let linkedin=
-document.getElementById('linkedin').value.trim();
+let email=
+esc(document.getElementById('email').value);
 
-let github=
-document.getElementById('website').value.trim();
+let phone=
+esc(document.getElementById('mobile').value);
 
+let address=
+esc(document.getElementById('address').value);
 
-resume.innerHTML=`
+let role='';
 
-<div class="resume-header">
+let ex=[
+...document.getElementById('exp-list').children
+];
 
-<div style="flex:1">
+if(ex.length){
 
-<h1>
-${escapeHTML(name)}
-</h1>
+role=
+esc(
+ex[0]
+.querySelector('input')
+?.value||''
+);
 
-<p>
-<b>Date of Birth:</b>
-${formatDate(
-document.getElementById('dob').value
-)}
-</p>
-
-<p>
-
-<b>Email:</b>
-${escapeHTML(
-document.getElementById('email').value
-)}
-
-&nbsp; | &nbsp;
-
-<b>Phone:</b>
-${escapeHTML(
-document.getElementById('mobile').value
-)}
-
-</p>
-
-<p>
-
-<b>Address:</b>
-${escapeHTML(
-document.getElementById('address').value
-)}
-
-</p>
-
-
-${
-linkedin
-?
-`
-
-<p>
-
-<b>LinkedIn:</b>
-
-<a
-href="${makeURL(linkedin)}"
-target="_blank">
-
-${escapeHTML(linkedin)}
-
-</a>
-
-</p>
-
-`
-:''
 }
 
 
-${
-github
-?
-`
+/* SLATE */
 
-<p>
+if(t==='slate'){
 
-<b>GitHub / Portfolio:</b>
+r.innerHTML=`
 
-<a
-href="${makeURL(github)}"
-target="_blank">
-
-${escapeHTML(github)}
-
-</a>
-
-</p>
-
-`
-:''
-}
-
-</div>
-
+<div class="slate-left slate-side">
 
 ${
 photoData
 ?
+`<img
+class="slate-photo"
+src="${photoData}">`
+:
 `
-
-<img
-src="${photoData}"
-class="resume-photo">
-
+<div
+class="slate-photo"
+style="
+display:flex;
+align-items:center;
+justify-content:center;
+background:#ffffff22;
+font-size:9px">
+PHOTO
+</div>
 `
+}
+
+<div class="slate-name">
+${name||'YOUR NAME'}
+</div>
+
+${
+role
+?
+`<div class="slate-role">${role}</div>`
 :''
 }
 
+<div class="slate-side-title">
+Contact Details
+</div>
+
+${
+phone
+?
+`<p>☎ ${phone}</p>`
+:''
+}
+
+${
+email
+?
+`<p>✉ ${email}</p>`
+:''
+}
+
+${
+address
+?
+`<p>⌖ ${address}</p>`
+:''
+}
+
+${
+li
+?
+`<p>
+in
+<a
+href="${url(li)}"
+target="_blank">
+${esc(li)}
+</a>
+</p>`
+:''
+}
+
+${
+gh
+?
+`<p>
+⌘
+<a
+href="${url(gh)}"
+target="_blank">
+${esc(gh)}
+</a>
+</p>`
+:''
+}
+
+<div class="slate-side-title">
+Strengths
+</div>
+
+${
+[
+...document
+.getElementById('strength-list')
+.children
+]
+.map(
+x=>x.querySelector('input').value.trim()
+)
+.filter(Boolean)
+.map(
+x=>`<p>• ${esc(x)}</p>`
+)
+.join('')
+}
+
+<div class="slate-side-title">
+Skills
+</div>
+
+${list('tech-skill-list','Technical Skills')}
+
+${list('soft-skill-list','Soft Skills')}
+
+<div class="slate-side-title">
+Languages
+</div>
+
+${list('tech-lang-list','Technical Languages')}
+
+${list('normal-lang-list','Normal Languages')}
+
 </div>
 
 
+<div class="slate-right">
+
 ${
-document.getElementById('summary').value.trim()
+document
+.getElementById('summary')
+.value.trim()
 ?
 `
+<div class="r-section">
 
-<div class="resume-section keep-together">
-
-<div class="section-header">
-Profile Summary
+<div class="r-title">
+Profile
 </div>
 
 <p>
-${escapeHTML(
+${esc(
 document.getElementById('summary').value
 )}
 </p>
 
 </div>
-
 `
 :''
 }
 
+${experience()}
 
-${getEducationHTML()}
+${education()}
 
-${getProjectsHTML()}
+${projects()}
+
+${
+document
+.getElementById('declaration')
+.value.trim()
+?
+`
+<div class="r-section">
+
+<div class="r-title">
+Declaration
+</div>
+
+<p>
+${esc(
+document.getElementById('declaration').value
+)}
+</p>
+
+</div>
+`
+:''
+}
+
+</div>
+`;
+
+return;
+
+}
 
 
-<div class="resume-section keep-together">
+/* STANDARD / OTHER TEMPLATES */
 
-<div class="section-header">
+r.innerHTML=`
+
+<div class="r-head">
+
+<div style="flex:1">
+
+<h1>
+${name}
+</h1>
+
+<p>
+<b>Date of Birth:</b>
+${dateFmt(
+document.getElementById('dob').value
+)}
+</p>
+
+<p>
+<b>Email:</b>
+${email}
+&nbsp; | &nbsp;
+<b>Phone:</b>
+${phone}
+</p>
+
+<p>
+<b>Address:</b>
+${address}
+</p>
+
+${
+li
+?
+`
+<p>
+<b>LinkedIn:</b>
+<a
+href="${url(li)}"
+target="_blank">
+${esc(li)}
+</a>
+</p>
+`
+:''
+}
+
+${
+gh
+?
+`
+<p>
+<b>GitHub / Portfolio:</b>
+<a
+href="${url(gh)}"
+target="_blank">
+${esc(gh)}
+</a>
+</p>
+`
+:''
+}
+
+</div>
+
+${
+photoData
+?
+`
+<img
+src="${photoData}"
+class="r-photo">
+`
+:''
+}
+
+</div>
+
+
+${
+document
+.getElementById('summary')
+.value.trim()
+?
+`
+<div class="r-section">
+
+<div class="r-title">
+Profile Summary
+</div>
+
+<p>
+${esc(
+document.getElementById('summary').value
+)}
+</p>
+
+</div>
+`
+:''
+}
+
+${education()}
+
+${projects()}
+
+
+<div class="r-section">
+
+<div class="r-title">
 Languages
 </div>
 
-${getListHTML(
+${list(
 'tech-lang-list',
 'Technical Languages'
 )}
 
-${getListHTML(
+${list(
 'normal-lang-list',
 'Normal Languages'
 )}
@@ -2129,23 +2406,23 @@ ${getListHTML(
 </div>
 
 
-${getExperienceHTML()}
+${experience()}
 
-${getStrengthHTML()}
+${strengths()}
 
 
-<div class="resume-section keep-together">
+<div class="r-section">
 
-<div class="section-header">
+<div class="r-title">
 Skills
 </div>
 
-${getListHTML(
+${list(
 'tech-skill-list',
 'Technical Skills'
 )}
 
-${getListHTML(
+${list(
 'soft-skill-list',
 'Soft Skills'
 )}
@@ -2154,24 +2431,24 @@ ${getListHTML(
 
 
 ${
-document.getElementById('declaration').value.trim()
+document
+.getElementById('declaration')
+.value.trim()
 ?
 `
+<div class="r-section">
 
-<div class="resume-section keep-together">
-
-<div class="section-header">
+<div class="r-title">
 Declaration
 </div>
 
 <p>
-${escapeHTML(
+${esc(
 document.getElementById('declaration').value
 )}
 </p>
 
 </div>
-
 `
 :''
 }
@@ -2185,7 +2462,12 @@ document.getElementById('declaration').value
 
 function generateResume(){
 
-if(!document.getElementById('name').value.trim()){
+if(
+!document
+.getElementById('name')
+.value
+.trim()
+){
 
 alert('Please Enter Name');
 
@@ -2193,12 +2475,12 @@ return;
 
 }
 
-renderResume();
+render();
 
-document.getElementById('input-form')
+document.getElementById('builder')
 .style.display='none';
 
-document.getElementById('preview-area')
+document.getElementById('previewArea')
 .style.display='block';
 
 window.scrollTo(0,0);
@@ -2210,156 +2492,134 @@ window.scrollTo(0,0);
 
 function backToForm(){
 
-document.getElementById('preview-area')
+document.getElementById('previewArea')
 .style.display='none';
 
-document.getElementById('input-form')
+document.getElementById('builder')
 .style.display='block';
 
 }
 
 
-/* PDF */
+/* COMPRESSED PDF */
 
 async function downloadPDF(){
 
+render();
+
 const {jsPDF}=window.jspdf;
 
-const element=
-document.getElementById('resume');
+const el=document.getElementById('resume');
 
-
-/*
-Generate a high-quality canvas.
-The PDF is automatically divided into
-A4 pages instead of shrinking the whole
-resume into one page.
-*/
+const scale=
+document.getElementById('resumeFormat').value==='onepage'
+?1.3
+:1.05;
 
 const canvas=
 await html2canvas(
-element,
+el,
 {
-scale:2,
+scale:scale,
 useCORS:true,
-backgroundColor:'#ffffff',
+backgroundColor:'#fff',
 logging:false
 }
 );
 
-
-const imgData=
-canvas.toDataURL('image/png');
-
+const img=
+canvas.toDataURL(
+'image/jpeg',
+0.68
+);
 
 const pdf=
 new jsPDF(
-'p',
-'mm',
-'a4'
+{
+orientation:'p',
+unit:'mm',
+format:'a4',
+compress:true
+}
 );
 
-
-const pageWidth=
+const pw=
 pdf.internal.pageSize.getWidth();
 
-const pageHeight=
+const ph=
 pdf.internal.pageSize.getHeight();
 
+const ih=
+canvas.height*pw/canvas.width;
 
-const imageWidth=pageWidth;
+let page=0;
 
-const imageHeight=
-canvas.height*
-pageWidth/
-canvas.width;
+while(page*ph<ih){
 
-
-let heightLeft=imageHeight;
-
-let position=0;
-
+if(page)pdf.addPage();
 
 pdf.addImage(
-imgData,
-'PNG',
+img,
+'JPEG',
 0,
-position,
-imageWidth,
-imageHeight
+-page*ph,
+pw,
+ih,
+undefined,
+'FAST'
 );
 
-heightLeft-=pageHeight;
-
-
-while(heightLeft>0){
-
-position=
-heightLeft-imageHeight;
-
-pdf.addPage();
-
-pdf.addImage(
-imgData,
-'PNG',
-0,
-position,
-imageWidth,
-imageHeight
-);
-
-heightLeft-=pageHeight;
+page++;
 
 }
 
-
-let fileName=
-document.getElementById('name')
+let n=
+(
+document
+.getElementById('name')
 .value
-.trim()
-.replace(/[^a-z0-9]+/gi,'_');
+.trim()||'Resume'
+)
+.replace(
+/[^a-z0-9]+/gi,
+'_'
+);
 
-
-if(
-document.getElementById('resumeFormat').value
-==='onepage'
-){
-
-fileName+=
-'_Interview_Ready_Resume';
-
-}else{
-
-fileName+=
-'_Professional_ATS_Resume';
-
-}
-
-
-pdf.save(fileName+'.pdf');
+pdf.save(
+n+
+(
+document
+.getElementById('resumeFormat')
+.value==='onepage'
+?
+'_Interview_Ready_Resume.pdf'
+:
+'_Professional_ATS_Resume.pdf'
+)
+);
 
 }
 
 
-/* ================= ATS ENGINE ================= */
+/* ATS ENGINE */
 
-function runATSOnText(text){
+function ats(text){
 
-let lower=text.toLowerCase();
+let l=text.toLowerCase();
 
 let score=100;
 
-let strengths=[];
+let good=[];
 
-let improvements=[];
-
+let bad=[];
 
 let words=
-text.trim()
+text
+.trim()
 .split(/\s+/)
 .filter(Boolean);
 
-let wordCount=words.length;
+let wc=words.length;
 
 
 /* EMAIL */
@@ -2370,7 +2630,7 @@ let email=
 
 if(email){
 
-strengths.push(
+good.push(
 'Professional email detected'
 );
 
@@ -2378,8 +2638,8 @@ strengths.push(
 
 score-=10;
 
-improvements.push(
-'Add a professional email address'
+bad.push(
+'Add a professional email'
 );
 
 }
@@ -2393,7 +2653,7 @@ let phone=
 
 if(phone){
 
-strengths.push(
+good.push(
 'Contact number detected'
 );
 
@@ -2401,7 +2661,7 @@ strengths.push(
 
 score-=8;
 
-improvements.push(
+bad.push(
 'Add a valid contact number'
 );
 
@@ -2411,11 +2671,11 @@ improvements.push(
 /* SUMMARY */
 
 if(
-lower.includes('profile summary')||
-lower.includes('summary')
+l.includes('profile summary')||
+l.includes('summary')
 ){
 
-strengths.push(
+good.push(
 'Profile Summary detected'
 );
 
@@ -2423,7 +2683,7 @@ strengths.push(
 
 score-=8;
 
-improvements.push(
+bad.push(
 'Add a professional Profile Summary'
 );
 
@@ -2433,21 +2693,21 @@ improvements.push(
 /* EDUCATION */
 
 if(
-lower.includes('education')||
-lower.includes('qualification')||
-lower.includes('university')
+l.includes('education')||
+l.includes('qualification')||
+l.includes('university')
 ){
 
-strengths.push(
-'Education section detected'
+good.push(
+'Education detected'
 );
 
 }else{
 
 score-=8;
 
-improvements.push(
-'Add Education / Qualification details'
+bad.push(
+'Add Education / Qualification'
 );
 
 }
@@ -2456,17 +2716,16 @@ improvements.push(
 /* EXPERIENCE */
 
 if(
-lower.includes('experience')||
-lower.includes('employment')
+l.includes('experience')
 ){
 
-strengths.push(
-'Experience section detected'
+good.push(
+'Experience detected'
 );
 
 }else{
 
-improvements.push(
+bad.push(
 'Add Experience if applicable'
 );
 
@@ -2475,9 +2734,11 @@ improvements.push(
 
 /* SKILLS */
 
-if(lower.includes('skills')){
+if(
+l.includes('skills')
+){
 
-strengths.push(
+good.push(
 'Skills section detected'
 );
 
@@ -2485,7 +2746,7 @@ strengths.push(
 
 score-=10;
 
-improvements.push(
+bad.push(
 'Add Technical Skills'
 );
 
@@ -2494,9 +2755,11 @@ improvements.push(
 
 /* PROJECTS */
 
-if(lower.includes('project')){
+if(
+l.includes('project')
+){
 
-strengths.push(
+good.push(
 'Projects detected'
 );
 
@@ -2504,18 +2767,20 @@ strengths.push(
 
 score-=4;
 
-improvements.push(
+bad.push(
 'Add relevant projects'
 );
 
 }
 
 
-/* STRENGTH */
+/* STRENGTHS */
 
-if(lower.includes('strength')){
+if(
+l.includes('strength')
+){
 
-strengths.push(
+good.push(
 'Professional Strengths detected'
 );
 
@@ -2524,38 +2789,28 @@ strengths.push(
 
 /* LINKEDIN */
 
-if(lower.includes('linkedin')){
+if(
+l.includes('linkedin')
+){
 
-strengths.push(
-'LinkedIn profile detected'
+good.push(
+'LinkedIn detected'
 );
 
 }else{
 
 score-=3;
 
-improvements.push(
+bad.push(
 'Add LinkedIn profile'
 );
 
 }
 
 
-/* GITHUB */
-
-if(lower.includes('github')){
-
-strengths.push(
-'GitHub / Portfolio detected'
-);
-
-}
-
-
-/* ACTION WORDS */
+/* ACTION VERBS */
 
 let actions=[
-
 'developed',
 'designed',
 'managed',
@@ -2571,18 +2826,16 @@ let actions=[
 'delivered',
 'maintained',
 'coordinated'
-
 ];
 
-let foundActions=
+let found=
 actions.filter(
-x=>lower.includes(x)
+x=>l.includes(x)
 );
 
+if(found.length>=4){
 
-if(foundActions.length>=4){
-
-strengths.push(
+good.push(
 'Strong action verbs detected'
 );
 
@@ -2590,8 +2843,8 @@ strengths.push(
 
 score-=5;
 
-improvements.push(
-'Use action verbs such as Developed, Managed, Led and Achieved'
+bad.push(
+'Use stronger action verbs'
 );
 
 }
@@ -2599,8 +2852,7 @@ improvements.push(
 
 /* KEYWORDS */
 
-let keywords=[
-
+let keys=[
 'leadership',
 'teamwork',
 'communication',
@@ -2610,26 +2862,24 @@ let keywords=[
 'project',
 'achievement',
 'team'
-
 ];
 
-let foundKeywords=
-keywords.filter(
-x=>lower.includes(x)
+let fk=
+keys.filter(
+x=>l.includes(x)
 );
 
+if(fk.length>=4){
 
-if(foundKeywords.length>=4){
-
-strengths.push(
-'Good professional keywords detected'
+good.push(
+'Good professional keywords'
 );
 
 }else{
 
 score-=5;
 
-improvements.push(
+bad.push(
 'Add job-specific keywords'
 );
 
@@ -2638,99 +2888,95 @@ improvements.push(
 
 /* WORD COUNT */
 
-if(wordCount<180){
+if(wc<180){
 
 score-=8;
 
-improvements.push(
-`Resume is short (${wordCount} words)`
+bad.push(
+'Resume is short ('+
+wc+
+' words)'
 );
 
-}else if(wordCount>800){
+}else if(wc>800){
 
 score-=5;
 
-improvements.push(
-`Resume is lengthy (${wordCount} words)`
+bad.push(
+'Resume is lengthy ('+
+wc+
+' words)'
 );
 
 }else{
 
-strengths.push(
-`Good resume length (${wordCount} words)`
+good.push(
+'Good resume length ('+
+wc+
+' words)'
 );
 
 }
 
 
-/* EDUCATION DATA */
+/* ACADEMIC DATA */
 
 if(
-lower.includes('passing year')||
-lower.includes('percentage')||
-lower.includes('cgpa')
+l.includes('passing year')||
+l.includes('percentage')||
+l.includes('cgpa')
 ){
 
-strengths.push(
-'Education academic details detected'
+good.push(
+'Education academic data detected'
 );
 
 }
 
 
-/* SCORE */
-
 score=
-Math.max(0,Math.min(100,score));
+Math.max(
+0,
+Math.min(100,score)
+);
 
-
-let level='';
-
-if(score>=90){
-
-level='Excellent';
-
-}else if(score>=80){
-
-level='Very Good';
-
-}else if(score>=70){
-
-level='Good';
-
-}else if(score>=60){
-
-level='Needs Improvement';
-
-}else{
-
-level='Weak';
-
-}
+let level=
+score>=90
+?'Excellent'
+:
+score>=80
+?'Very Good'
+:
+score>=70
+?'Good'
+:
+score>=60
+?'Needs Improvement'
+:
+'Weak';
 
 
 return `
 
-<div class="ats-main">
+<div class="ats-box">
 
-<div class="ats-score-box">
+<div class="score">
 
 <div>
-ATS COMPATIBILITY SCORE
+ATS COMPATIBILITY
 </div>
 
-<div class="ats-score">
+<div class="score-num">
 ${score}%
 </div>
 
-<div class="ats-level">
+<b>
 ${level}
-</div>
+</b>
 
-<div class="ats-meter">
+<div class="meter">
 
 <div
-class="ats-meter-fill"
 style="width:${score}%">
 </div>
 
@@ -2744,19 +2990,19 @@ style="width:${score}%">
 <div class="ats-card">
 
 <b class="good">
-✓ RESUME STRENGTHS
+✓ STRENGTHS
 </b>
 
 <ul>
 
 ${
-strengths.length
-?
-strengths
-.map(x=>`<li>${x}</li>`)
+good
+.map(
+x=>'<li>'+x+'</li>'
+)
 .join('')
-:
-'<li>No major strengths detected</li>'
+||
+'<li>None detected</li>'
 }
 
 </ul>
@@ -2773,13 +3019,13 @@ strengths
 <ul>
 
 ${
-improvements.length
-?
-improvements
-.map(x=>`<li>${x}</li>`)
+bad
+.map(
+x=>'<li>'+x+'</li>'
+)
 .join('')
-:
-'<li>Resume is ATS Ready!</li>'
+||
+'<li>Resume is ATS Ready</li>'
 }
 
 </ul>
@@ -2789,78 +3035,68 @@ improvements
 </div>
 
 
-<div class="ats-card" style="margin-top:12px">
+<div
+class="ats-card"
+style="margin-top:10px">
 
 <b>
-<i class="fa-solid fa-chart-column"></i>
-ATS REPORT
+DETAILED REPORT
 </b>
 
 <table class="ats-table">
 
 <tr>
-<td><b>Word Count</b></td>
-<td>${wordCount}</td>
+<td>Word Count</td>
+<td>${wc}</td>
 </tr>
 
 <tr>
-<td><b>Action Verbs</b></td>
-<td>${foundActions.length}</td>
+<td>Action Verbs</td>
+<td>${found.length}</td>
 </tr>
 
 <tr>
-<td><b>Keywords Detected</b></td>
-<td>${foundKeywords.length}</td>
+<td>Keywords</td>
+<td>${fk.length}</td>
 </tr>
 
 <tr>
-<td><b>Email</b></td>
-<td>${email?'✓ Detected':'✗ Missing'}</td>
+<td>Email</td>
+<td>
+${email?'✓ Detected':'✗ Missing'}
+</td>
 </tr>
 
 <tr>
-<td><b>Phone</b></td>
-<td>${phone?'✓ Detected':'✗ Missing'}</td>
+<td>Phone</td>
+<td>
+${phone?'✓ Detected':'✗ Missing'}
+</td>
 </tr>
 
 <tr>
-<td><b>LinkedIn</b></td>
-<td>${lower.includes('linkedin')?'✓ Detected':'✗ Missing'}</td>
+<td>LinkedIn</td>
+<td>
+${l.includes('linkedin')?'✓ Detected':'✗ Missing'}
+</td>
 </tr>
 
 <tr>
-<td><b>GitHub</b></td>
-<td>${lower.includes('github')?'✓ Detected':'Not Detected'}</td>
-</tr>
-
-<tr>
-<td><b>Education Academic Data</b></td>
+<td>Academic Data</td>
 <td>
 ${
-lower.includes('passing year')||
-lower.includes('percentage')||
-lower.includes('cgpa')
-?'✓ Detected':'Not Detected'
+l.includes('passing year')||
+l.includes('percentage')||
+l.includes('cgpa')
+?
+'✓ Detected'
+:
+'Not Detected'
 }
 </td>
 </tr>
 
 </table>
-
-</div>
-
-
-<div
-style="
-margin-top:12px;
-padding:12px;
-background:#eee;
-font-size:11px;
-">
-
-<b>ATS TIP:</b>
-Always customise your resume keywords according to
-the actual job description. Keep all information truthful.
 
 </div>
 
@@ -2875,55 +3111,49 @@ the actual job description. Keep all information truthful.
 
 function runATSTest(){
 
-renderResume();
-
-let text=
-document.getElementById('resume')
-.innerText;
+render();
 
 document.getElementById('ats-result')
 .innerHTML=
-runATSOnText(text);
+ats(
+document
+.getElementById('resume')
+.innerText
+);
 
 }
 
 
-/* FILE ATS */
+/* PDF / DOCX CHECKER */
 
-async function handleFileUpload(event){
+async function handleFileUpload(e){
 
-let file=event.target.files[0];
+let f=e.target.files[0];
 
-if(!file)return;
+if(!f)return;
 
-
-document.getElementById('ats-upload-result')
-.innerHTML=`
-
-<p>
-<i class="fa-solid fa-spinner fa-spin"></i>
-Reading and analysing your resume...
-</p>
-
-`;
-
+document.getElementById(
+'ats-upload-result'
+).innerHTML=
+'<p><i class="fa-solid fa-spinner fa-spin"></i> Reading file...</p>';
 
 try{
 
 let text='';
 
 
+/* PDF */
+
 if(
-file.name.toLowerCase().endsWith('.pdf')
+f.name
+.toLowerCase()
+.endsWith('.pdf')
 ){
 
 let pdf=
-await pdfjsLib
-.getDocument(
-URL.createObjectURL(file)
-)
-.promise;
-
+await pdfjsLib.getDocument(
+URL.createObjectURL(f)
+).promise;
 
 for(
 let i=1;
@@ -2931,15 +3161,15 @@ i<=pdf.numPages;
 i++
 ){
 
-let page=
+let p=
 await pdf.getPage(i);
 
-let content=
-await page.getTextContent();
+let c=
+await p.getTextContent();
 
 text+=
-content.items
-.map(item=>item.str)
+c.items
+.map(x=>x.str)
 .join(' ');
 
 }
@@ -2947,58 +3177,40 @@ content.items
 }
 
 
-else if(
-file.name.toLowerCase().endsWith('.docx')
-){
+/* DOCX */
 
-let result=
-await mammoth.extractRawText({
+else{
+
+let r=
+await mammoth.extractRawText(
+{
 arrayBuffer:
-await file.arrayBuffer()
-});
+await f.arrayBuffer()
+}
+);
 
-text=result.value;
+text=r.value;
 
 }
 
 
-if(!text.trim()){
-
-document.getElementById('ats-upload-result')
-.innerHTML=`
-
-<p class="bad">
-Could not extract readable text from this file.
-Please upload a text-based PDF or DOCX.
-</p>
-
-`;
-
-return;
+document.getElementById(
+'ats-upload-result'
+).innerHTML=
+text.trim()
+?
+ats(text)
+:
+'<p class="bad">Could not extract readable text.</p>';
 
 }
 
+catch(err){
 
-document.getElementById('ats-upload-result')
-.innerHTML=
-runATSOnText(text);
-
-
-}catch(error){
-
-console.error(error);
-
-document.getElementById('ats-upload-result')
-.innerHTML=`
-
-<p class="bad">
-
-Unable to read this file.
-Please check the PDF/DOCX and try again.
-
-</p>
-
-`;
+document.getElementById(
+'ats-upload-result'
+).innerHTML=
+'<p class="bad">Unable to read this file.</p>';
 
 }
 
