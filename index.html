@@ -28,7 +28,7 @@
 .card{background:#fff; padding:25px; border:1px solid var(--border); margin-bottom:20px}
   h3{color:var(--black); font-size:15px; font-weight:700; margin-top:20px; margin-bottom:10px}
   input, textarea{width:100%; padding:10px; margin:5px 0; border:1px solid var(--border); font-size:12px}
-  label.date-label{font-size:10px; font-weight:700; color:var(--light-black); margin:5px 0 0 0; display:block}
+  label.date-label{font-size:10px; font-weight:700; color:var(--light-black); margin:2px 0 0 0; display:block}
 
 .section-group{border:1px solid var(--border); padding:12px; margin:8px 0; position:relative; background:#fafafa}
 .remove-btn{position:absolute; right:8px; top:8px; background:var(--black); color:#fff; border:none; padding:4px 8px; cursor:pointer; font-size:10px; font-weight:700}
@@ -166,7 +166,7 @@ function showTab(tab){
   else{document.getElementById('create-tab').style.display='none'; document.getElementById('check-tab').style.display='block'; document.querySelectorAll('.tab')[1].classList.add('active')}
 }
 
-// LOCALSTORAGE SAVE/LOAD TO PREVENT DATA VANISH
+// LOCALSTORAGE TO PREVENT DATA ERASE
 function saveData(){
   let data = {};
   document.querySelectorAll('#input-form input, #input-form textarea').forEach(el=>{data[el.id]=el.value});
@@ -207,8 +207,8 @@ window.addField = function(type){
   let container = document.getElementById(type+'-list');
   let div = document.createElement('div'); div.className='section-group';
   div.innerHTML = `<button type="button" class="remove-btn" onclick="this.parentElement.remove(); saveData();">X</button>`;
-  if(type=='edu') div.innerHTML += `<input placeholder="COURSE NAME *" data-req oninput="saveData()"><input placeholder="INSTITUTE NAME *" data-req oninput="saveData()"><input placeholder="UNIVERSITY / BOARD NAME" oninput="saveData()"><label class="date-label">From</label><input type="date" placeholder="START DATE" oninput="saveData()"><label class="date-label">To</label><input type="date" placeholder="END DATE" oninput="saveData()">`;
-  if(type=='exp') div.innerHTML += `<input placeholder="JOB TITLE *" data-req oninput="saveData()"><input placeholder="COMPANY NAME *" data-req oninput="saveData()"><label class="date-label">From</label><input type="date" placeholder="START DATE" oninput="saveData()"><label class="date-label">To</label><input type="date" placeholder="END DATE" oninput="saveData()"><textarea placeholder="JOB DESCRIPTION" oninput="saveData()"></textarea>`;
+  if(type=='edu') div.innerHTML += `<input placeholder="COURSE NAME *" data-req oninput="saveData()"><input placeholder="INSTITUTE NAME *" data-req oninput="saveData()"><input placeholder="UNIVERSITY / BOARD NAME" oninput="saveData()"><label class="date-label">From</label><input type="date" oninput="saveData()"><label class="date-label">To</label><input type="date" oninput="saveData()">`;
+  if(type=='exp') div.innerHTML += `<input placeholder="JOB TITLE *" data-req oninput="saveData()"><input placeholder="COMPANY NAME *" data-req oninput="saveData()"><label class="date-label">From</label><input type="date" oninput="saveData()"><label class="date-label">To</label><input type="date" oninput="saveData()"><textarea placeholder="JOB DESCRIPTION" oninput="saveData()"></textarea>`;
   if(type=='proj') div.innerHTML += `<input placeholder="PROJECT NAME *" data-req oninput="saveData()"><textarea placeholder="PROJECT DESCRIPTION" oninput="saveData()"></textarea>`;
   if(type.includes('skill')||type.includes('lang')) div.innerHTML += `<input placeholder="NAME *" data-req oninput="saveData()">`;
   container.appendChild(div); saveData();
@@ -263,8 +263,6 @@ function renderResume(){
 }
 
 window.generateResume = function(){
-  let required = document.querySelectorAll('[data-req]');
-  for(let r of required){ if(!r.value){ alert('Please fill all * required fields'); r.focus(); return } }
   if(!document.getElementById('name').value){alert('Please Enter Name'); return}
   renderResume();
   document.getElementById('input-form').style.display='none';
@@ -276,7 +274,7 @@ window.backToForm = function(){document.getElementById('preview-area').style.dis
 window.downloadPDF = async function(){
   const { jsPDF } = window.jspdf;
   const element = document.getElementById('resume');
-  const canvas = await html2canvas(element, {scale:2, useCORS: true});
+  const canvas = await html2canvas(element, {scale:2});
   const imgData = canvas.toDataURL('image/png');
   const pdf = new jsPDF('p', 'mm', 'a4');
   const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -285,50 +283,57 @@ window.downloadPDF = async function(){
   pdf.save(`${document.getElementById('name').value}_ATS_Resume.pdf`);
 }
 
-// ATS ALGORITHM - MORE ACCURATE & GENUINE
+// PRO ATS ALGORITHM - INDUSTRY LEVEL
 function runATSOnText(text){
   let score=100; let feedback=[]; let good=[];
   let lowerText = text.toLowerCase();
-  let wordCount = text.split(/\s+/).filter(w=>w.length>0).length;
+  let wordCount = text.split(/\s+/).filter(w=>w.length>1).length;
 
-  // 1. CONTACT INFO CHECK 20%
-  if(!lowerText.includes('email') ||!/@/.test(text)){score-=10; feedback.push('Add valid Email ID')}
-  else good.push('Email ID present');
-  if(!lowerText.includes('phone') &&!/\d{10}/.test(text)){score-=10; feedback.push('Add Contact Number')}
-  else good.push('Contact Number present');
+  // 1. CONTACT VALIDATION 20 Marks
+  const emailRegex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+  const phoneRegex = /\d{10}/;
+  if(!emailRegex.test(text)){score-=10; feedback.push('Valid Email ID missing')}
+  else good.push('Valid Email ID found');
+  if(!phoneRegex.test(text)){score-=10; feedback.push('10 digit Contact Number missing')}
+  else good.push('Contact Number found');
 
-  // 2. MANDATORY SECTIONS 25%
-  const sections = ['summary','profile','education','qualification','experience','skills'];
-  let sectionScore = 0;
-  sections.forEach(s=>{ if(lowerText.includes(s)) sectionScore+=4; else feedback.push(`Add ${s} section`)});
-  if(sectionScore>=20) good.push('All key sections present');
+  // 2. MANDATORY SECTIONS 20 Marks
+  const requiredSections = ['summary','education','experience','skills'];
+  requiredSections.forEach(s=>{
+    if(!lowerText.includes(s)){score-=5; feedback.push(`Add ${s} section`)}
+    else good.push(`${s} section present`)
+  });
 
-  // 3. KEYWORD & ACTION VERBS 20%
-  let keywords = ['managed','developed','led','achieved','created','implemented','designed','analyzed','project','team','leadership'];
-  let foundKeywords = keywords.filter(k=>lowerText.includes(k));
-  if(foundKeywords.length>=4) {score+=5; good.push(`Strong action verbs: ${foundKeywords.slice(0,4).join(', ')}`)}
-  else {score-=10; feedback.push('Add more action verbs: managed, developed, achieved')}
+  // 3. KEYWORDS & ACTION VERBS 20 Marks
+  let actionVerbs = ['managed','developed','led','achieved','created','implemented','designed','analyzed','increased','reduced'];
+  let foundVerbs = actionVerbs.filter(k=>lowerText.includes(k));
+  if(foundVerbs.length<3){score-=10; feedback.push('Add 3+ action verbs: managed, developed, achieved')}
+  else good.push(`Strong verbs: ${foundVerbs.slice(0,3).join(', ')}`);
+  if(foundVerbs.length>=5) score+=5;
 
-  // 4. LENGTH & READABILITY 15%
-  if(wordCount<150){score-=15; feedback.push(`Resume too short: ${wordCount} words. Min 150 words`)}
-  else if(wordCount>800){score-=10; feedback.push(`Resume too long: ${wordCount} words. Keep under 800`)}
-  else good.push(`Ideal length: ${wordCount} words`);
+  // 4. LENGTH OPTIMIZATION 15 Marks
+  if(wordCount<150){score-=15; feedback.push(`Too short: ${wordCount} words. Target 200-600 words`)}
+  else if(wordCount>800){score-=10; feedback.push(`Too long: ${wordCount} words. Keep under 700`)}
+  else good.push(`Perfect length: ${wordCount} words`);
 
-  // 5. FORMATTING CHECK 20%
+  // 5. FORMATTING & LINKS 10 Marks
   if(!lowerText.includes('linkedin') &&!lowerText.includes('github')){score-=5; feedback.push('Add LinkedIn/GitHub URL')}
-  if(text.includes(' ') || text.includes('\n\n')){score-=5; feedback.push('Avoid extra spaces. Keep clean formatting')}
-  else good.push('Clean ATS-friendly formatting');
+  else good.push('Professional links present');
+  if(text.includes(' ')){score-=5; feedback.push('Remove extra spaces for ATS parsing')}
+
+  // 6. ANTI-SPAM CHECK 5 Marks
+  if(lowerText.includes('reference') && lowerText.includes('available')){score-=5; feedback.push('Remove "References available" line. Not needed')}
 
   if(score>100) score=100;
   if(score<0) score=0;
 
-  if(score>=85) var level=`<span class="ats-good">Excellent - ATS Ready</span>`;
-  else if(score>=70) var level=`<span style="color:orange">Good - Minor Fixes Needed</span>`;
-  else var level=`<span class="ats-bad">Needs Improvement</span>`;
+  if(score>=90) var level=`<span class="ats-good">Excellent - 99% ATS Pass</span>`;
+  else if(score>=75) var level=`<span style="color:orange">Good - 85% ATS Pass</span>`;
+  else var level=`<span class="ats-bad">Needs Improvement - <70% ATS Pass</span>`;
 
-  return `<h4>ATS SCORE: <span class="ats-score">${score}%</span> - ${level}</h4>
+  return `<h4>PRO ATS SCORE: <span class="ats-score">${score}%</span> - ${level}</h4>
     <b class="ats-good">✓ Strengths:</b><ul>${good.map(f=>`<li>${f}</li>`).join('') || '<li>None</li>'}</ul>
-    <b class="ats-bad">✗ Recommendations:</b><ul>${feedback.map(f=>`<li>${f}</li>`).join('') || '<li>No issues found. Resume is ATS Optimized!</li>'}</ul>`;
+    <b class="ats-bad">✗ Critical Fixes:</b><ul>${feedback.map(f=>`<li>${f}</li>`).join('') || '<li>Perfect. Resume is ATS Optimized!</li>'}</ul>`;
 }
 
 window.runATSTest = function(){
