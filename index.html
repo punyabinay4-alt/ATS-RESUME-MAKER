@@ -13,445 +13,604 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
-
-<link
-href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css"
-rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet"/>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
 
 <style>
 
 :root{
-  --black:#000;
-  --light-black:#3a3a3a;
-  --bg:#f5f5f5;
-  --border:#ccc;
+--black:#000;
+--dark:#222;
+--light-black:#3a3a3a;
+--bg:#f5f5f5;
+--border:#d0d0d0;
+--white:#fff;
+--success:#087a32;
+--danger:#c40000;
 }
 
 *{
-  box-sizing:border-box;
-  font-family:'Arial','Calibri',sans-serif;
+box-sizing:border-box;
+font-family:Arial,Calibri,sans-serif;
 }
 
 body{
-  background:var(--bg);
-  margin:0;
-  padding:0;
-  color:#000;
+margin:0;
+background:var(--bg);
+color:#000;
 }
 
 header{
-  background:var(--black);
-  color:#fff;
-  padding:20px;
-  text-align:center;
+background:#000;
+color:#fff;
+padding:22px 15px;
+text-align:center;
 }
 
 header h1{
-  margin:0;
-  font-size:22px;
-  font-weight:700;
-  text-transform:uppercase;
+margin:0;
+font-size:23px;
+font-weight:800;
+letter-spacing:.5px;
 }
 
 header p{
-  margin:5px 0 0;
-  font-size:12px;
+margin:6px 0 0;
+font-size:12px;
+opacity:.9;
 }
 
 .tabs{
-  display:flex;
-  background:var(--light-black);
+display:flex;
+background:#333;
 }
 
 .tab{
-  flex:1;
-  padding:14px;
-  text-align:center;
-  color:#fff;
-  cursor:pointer;
-  font-weight:700;
-  border:none;
-  background:transparent;
+flex:1;
+padding:15px 8px;
+border:0;
+background:transparent;
+color:#fff;
+font-weight:700;
+cursor:pointer;
 }
 
 .tab.active{
-  background:var(--black);
+background:#000;
 }
 
 .container{
-  max-width:1000px;
-  margin:20px auto;
-  padding:0 15px;
+max-width:1050px;
+margin:20px auto;
+padding:0 15px;
 }
 
 .card{
-  background:#fff;
-  padding:25px;
-  border:1px solid var(--border);
-  margin-bottom:20px;
+background:#fff;
+border:1px solid #ccc;
+padding:25px;
+margin-bottom:20px;
+box-shadow:0 2px 8px rgba(0,0,0,.04);
 }
 
 h3{
-  color:var(--black);
-  font-size:15px;
-  font-weight:700;
-  margin-top:20px;
-  margin-bottom:10px;
+font-size:15px;
+margin:20px 0 10px;
+font-weight:800;
+}
+
+.section-title{
+display:flex;
+align-items:center;
+gap:8px;
+border-bottom:2px solid #000;
+padding-bottom:6px;
 }
 
 input,
 textarea,
 select{
-  width:100%;
-  padding:10px;
-  margin:5px 0;
-  border:1px solid var(--border);
-  font-size:12px;
+width:100%;
+padding:10px;
+border:1px solid #ccc;
+margin:5px 0;
+font-size:12px;
+background:#fff;
 }
 
-.section-group{
-  border:1px solid var(--border);
-  padding:12px;
-  margin:8px 0;
-  position:relative;
-  background:#fafafa;
-}
-
-.remove-btn{
-  position:absolute;
-  right:8px;
-  top:8px;
-  background:var(--black);
-  color:#fff;
-  border:none;
-  padding:4px 8px;
-  cursor:pointer;
-  font-size:10px;
-  font-weight:700;
+textarea{
+resize:vertical;
 }
 
 .btn{
-  border:none;
-  padding:12px;
-  cursor:pointer;
-  width:100%;
-  margin-top:10px;
-  font-size:13px;
-  font-weight:700;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
+width:100%;
+border:0;
+padding:12px;
+margin-top:10px;
+cursor:pointer;
+font-size:13px;
+font-weight:700;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
 }
 
 .btn-primary{
-  background:var(--black);
-  color:#fff;
+background:#000;
+color:#fff;
 }
 
 .btn-success{
-  background:var(--light-black);
-  color:#fff;
+background:#3a3a3a;
+color:#fff;
 }
 
 .btn-ats{
-  background:#222;
-  color:#fff;
+background:#111;
+color:#fff;
+}
+
+.section-group{
+position:relative;
+background:#fafafa;
+border:1px solid #ccc;
+padding:14px;
+margin:9px 0;
+}
+
+.remove-btn{
+position:absolute;
+right:8px;
+top:8px;
+background:#000;
+color:#fff;
+border:0;
+padding:4px 9px;
+font-size:10px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.field-label{
+font-size:10px;
+font-weight:bold;
+display:block;
+margin-top:5px;
+}
+
+.photo-box{
+width:110px;
+height:110px;
+border:2px dashed #000;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+background:#f0f0f0;
+font-size:10px;
+font-weight:bold;
+}
+
+.photo-box img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* TEMPLATE SELECTOR */
+
+.template-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+margin-top:10px;
+}
+
+.template-card{
+border:2px solid #ccc;
+background:#fff;
+padding:12px;
+cursor:pointer;
+transition:.2s;
+}
+
+.template-card:hover{
+border-color:#000;
+}
+
+.template-card.active{
+border-color:#000;
+box-shadow:0 0 0 2px #000;
+}
+
+.template-mini{
+height:115px;
+border:1px solid #aaa;
+padding:7px;
+background:#fff;
+overflow:hidden;
+font-size:6px;
+}
+
+.mini-name{
+font-size:11px;
+font-weight:bold;
+border-bottom:1px solid #000;
+padding-bottom:3px;
+margin-bottom:4px;
+}
+
+.mini-section{
+background:#000;
+color:#fff;
+padding:2px 3px;
+margin:4px 0;
+font-weight:bold;
+}
+
+.template-name{
+font-weight:bold;
+font-size:12px;
+margin-top:8px;
+}
+
+.template-desc{
+font-size:9px;
+color:#555;
+margin-top:3px;
 }
 
 /* RESUME */
 
+#preview-area{
+display:none;
+}
+
 .resume{
-  width:210mm;
-  min-height:297mm;
-  background:#fff;
-  padding:12mm;
-  margin:auto;
-  font-size:10pt;
-  line-height:1.4;
-  color:#000;
-}
-
-.resume.one-page{
-  padding:8mm;
-  font-size:8.5pt;
-  line-height:1.22;
-}
-
-.resume.one-page .resume-header{
-  padding-bottom:6px;
-  margin-bottom:6px;
-}
-
-.resume.one-page .resume-header h1{
-  font-size:17pt !important;
-}
-
-.resume.one-page .section-header{
-  font-size:9.5pt;
-  padding:4px 8px;
-  margin:7px 0 4px;
-}
-
-.resume.one-page .section-subheader{
-  font-size:8.5pt;
-  margin:4px 0 2px;
-}
-
-.resume.one-page .resume-table{
-  font-size:7.5pt;
-  margin-bottom:5px;
-}
-
-.resume.one-page .resume-table th,
-.resume.one-page .resume-table td{
-  padding:2px 3px;
-}
-
-.resume.one-page p{
-  margin:3px 0;
+width:210mm;
+min-height:297mm;
+background:#fff;
+margin:auto;
+padding:12mm;
+color:#000;
+font-size:9.5pt;
+line-height:1.35;
 }
 
 .resume-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  border-bottom:2px solid var(--black);
-  padding-bottom:10px;
-  margin-bottom:10px;
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+border-bottom:2px solid #000;
+padding-bottom:9px;
+margin-bottom:9px;
 }
 
 .resume-photo{
-  width:90px;
-  height:90px;
-  border:1px solid var(--black);
-  object-fit:cover;
+width:90px;
+height:90px;
+object-fit:cover;
+border:1px solid #000;
 }
 
-.photo-box{
-  width:110px;
-  height:110px;
-  border:2px dashed var(--black);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  margin-top:5px;
-  font-size:10px;
-  background:#f0f0f0;
-  font-weight:600;
+.resume h1{
+margin:0;
+font-size:20pt;
 }
 
-.photo-box img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.resume p{
+margin:4px 0;
+}
+
+.resume a{
+color:#000;
+text-decoration:underline;
+font-weight:bold;
 }
 
 .section-header{
-  background:var(--black);
-  color:#fff;
-  padding:5px 10px;
-  font-size:11pt;
-  font-weight:700;
-  text-transform:uppercase;
-  margin:12px 0 6px 0;
-
-  page-break-inside:avoid;
-  break-inside:avoid;
+background:#000;
+color:#fff;
+font-weight:bold;
+font-size:10.5pt;
+text-transform:uppercase;
+padding:5px 9px;
+margin:10px 0 6px;
 }
 
 .section-subheader{
-  color:var(--light-black);
-  font-size:10pt;
-  font-weight:700;
-  margin:8px 0 4px 0;
-
-  page-break-inside:avoid;
-  break-inside:avoid;
-}
-
-.resume-table{
-  width:100%;
-  border-collapse:collapse;
-  margin:5px 0 10px 0;
-  font-size:9.5pt;
-
-  page-break-inside:avoid;
-  break-inside:avoid-page;
-}
-
-.resume-table th{
-  background:var(--light-black);
-  color:#fff;
-  padding:5px;
-  text-align:left;
-  font-weight:700;
-  border:1px solid var(--black);
-}
-
-.resume-table td{
-  padding:4px;
-  border:1px solid var(--border);
-  vertical-align:top;
-}
-
-.resume-table tr{
-  page-break-inside:avoid;
-  break-inside:avoid;
+font-size:9pt;
+font-weight:bold;
+color:#333;
+margin-top:6px;
 }
 
 .resume-section,
 .keep-together{
-  page-break-inside:avoid;
-  break-inside:avoid-page;
+page-break-inside:avoid !important;
+break-inside:avoid-page !important;
 }
 
-.resume-section > .section-header{
-  page-break-after:avoid;
-  break-after:avoid;
+.section-header{
+page-break-after:avoid !important;
+break-after:avoid-page !important;
 }
 
-.resume a{
-  color:#000;
-  text-decoration:underline;
-  font-weight:600;
+.resume-table{
+width:100%;
+border-collapse:collapse;
+font-size:8.5pt;
+margin:5px 0 10px;
+page-break-inside:avoid !important;
+break-inside:avoid-page !important;
 }
 
-footer{
-  background:var(--black);
-  color:#fff;
-  text-align:center;
-  padding:12px;
-  font-size:10px;
-  margin-top:20px;
+.resume-table th{
+background:#3a3a3a;
+color:#fff;
+padding:5px;
+border:1px solid #000;
+text-align:left;
 }
 
-#preview-area,
-#ats-upload-area{
-  display:none;
+.resume-table td{
+border:1px solid #ccc;
+padding:5px;
+vertical-align:top;
 }
 
-.modal{
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:#000a;
-  z-index:999;
-  justify-content:center;
-  align-items:center;
+.resume-table tr{
+page-break-inside:avoid !important;
+break-inside:avoid !important;
 }
 
-.modal-content{
-  background:#fff;
-  padding:15px;
-  width:95%;
-  max-width:900px;
-  max-height:90vh;
-  overflow:auto;
+.skill-list{
+margin:4px 0;
 }
 
-#ats-result{
-  background:#f9f9f9;
-  padding:15px;
-  margin-top:10px;
-  border:2px solid var(--black);
+/* TEMPLATE 2 */
+
+.resume.template-executive .resume-header{
+border-bottom:5px solid #000;
+}
+
+.resume.template-executive .section-header{
+background:#fff;
+color:#000;
+border-bottom:2px solid #000;
+padding-left:0;
+}
+
+.resume.template-executive .resume-table th{
+background:#000;
+}
+
+/* TEMPLATE 3 */
+
+.resume.template-modern .resume-header{
+border-bottom:0;
+background:#000;
+color:#fff;
+padding:12px;
+}
+
+.resume.template-modern .resume-header a{
+color:#fff;
+}
+
+.resume.template-modern .section-header{
+background:#333;
+border-left:5px solid #000;
+}
+
+/* ONE PAGE */
+
+.resume.one-page{
+padding:7mm;
+font-size:8pt;
+line-height:1.18;
+}
+
+.resume.one-page .resume-header{
+padding-bottom:5px;
+margin-bottom:5px;
+}
+
+.resume.one-page h1{
+font-size:17pt;
+}
+
+.resume.one-page .section-header{
+font-size:9pt;
+padding:3px 7px;
+margin:6px 0 3px;
+}
+
+.resume.one-page .resume-table{
+font-size:7pt;
+margin-bottom:4px;
+}
+
+.resume.one-page .resume-table th,
+.resume.one-page .resume-table td{
+padding:2px 3px;
+}
+
+.resume.one-page p{
+margin:2px 0;
+}
+
+/* ATS */
+
+#ats-result,
+#ats-upload-result{
+margin-top:12px;
+}
+
+.ats-main{
+border:2px solid #000;
+padding:15px;
+background:#fafafa;
+}
+
+.ats-score-box{
+text-align:center;
+border:2px solid #000;
+padding:15px;
+background:#fff;
 }
 
 .ats-score{
-  font-size:32px;
-  font-weight:700;
-  color:var(--black);
+font-size:38px;
+font-weight:900;
 }
 
-.ats-good{
-  color:green;
-}
-
-.ats-bad{
-  color:red;
-}
-
-.upload-box{
-  border:2px dashed var(--black);
-  padding:40px;
-  text-align:center;
-  cursor:pointer;
-  background:#fafafa;
-}
-
-.ats-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.ats-card{
-  border:1px solid #ccc;
-  padding:12px;
-  background:#fff;
+.ats-level{
+font-weight:bold;
+font-size:15px;
 }
 
 .ats-meter{
-  height:12px;
-  background:#ddd;
-  margin-top:10px;
-  overflow:hidden;
+height:12px;
+background:#ddd;
+margin-top:10px;
 }
 
 .ats-meter-fill{
-  height:100%;
-  background:#000;
+height:100%;
+background:#000;
+}
+
+.ats-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:12px;
+}
+
+.ats-card{
+background:#fff;
+border:1px solid #ccc;
+padding:12px;
+}
+
+.good{
+color:#087a32;
+}
+
+.bad{
+color:#c40000;
+}
+
+.ats-table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+
+.ats-table td{
+border:1px solid #ccc;
+padding:7px;
+font-size:12px;
+}
+
+.upload-box{
+border:2px dashed #000;
+padding:45px 15px;
+text-align:center;
+cursor:pointer;
+background:#fafafa;
+}
+
+.upload-box i{
+font-size:42px;
+}
+
+/* MODAL */
+
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.7);
+z-index:999;
+align-items:center;
+justify-content:center;
+}
+
+.modal-content{
+background:#fff;
+padding:15px;
+width:95%;
+max-width:500px;
+max-height:90vh;
+overflow:auto;
+}
+
+/* FOOTER */
+
+footer{
+background:#000;
+color:#fff;
+text-align:center;
+padding:13px;
+font-size:10px;
+margin-top:20px;
 }
 
 @media(max-width:700px){
 
-  .resume{
-    width:100%;
-    min-height:auto;
-    padding:15px;
-  }
+.container{
+padding:0 8px;
+}
 
-  .resume-header{
-    flex-direction:column;
-  }
+.card{
+padding:15px;
+}
 
-  .resume-photo{
-    margin-top:10px;
-  }
+.template-grid{
+grid-template-columns:1fr;
+}
 
-  .ats-grid{
-    grid-template-columns:1fr;
-  }
+.resume{
+width:100%;
+min-height:auto;
+padding:12px;
+}
 
-  .card{
-    padding:15px;
-  }
+.resume-header{
+flex-direction:column;
+}
+
+.resume-photo{
+margin-top:8px;
+}
+
+.ats-grid{
+grid-template-columns:1fr;
+}
+
 }
 
 @media print{
 
-  body{
-    background:#fff;
-  }
+header,
+.tabs,
+footer,
+.btn{
+display:none !important;
+}
 
-  header,
-  .tabs,
-  footer,
-  .btn{
-    display:none !important;
-  }
+body{
+background:#fff;
+}
 
-  .resume{
-    margin:0;
-  }
+.resume{
+margin:0;
+}
 
 }
 
@@ -468,7 +627,7 @@ ATS RESUME PLATFORM
 </h1>
 
 <p>
-Black & White | ATS Score | PDF/DOCX Checker
+Professional Resume Builder | ATS Score | PDF / DOCX Checker
 </p>
 
 </header>
@@ -476,20 +635,14 @@ Black & White | ATS Score | PDF/DOCX Checker
 
 <div class="tabs">
 
-<button class="tab active"
-onclick="showTab('create')">
-
+<button class="tab active" onclick="showTab('create')">
 <i class="fa-solid fa-pen"></i>
 CREATE RESUME
-
 </button>
 
-<button class="tab"
-onclick="showTab('check')">
-
-<i class="fa-solid fa-upload"></i>
+<button class="tab" onclick="showTab('check')">
+<i class="fa-solid fa-robot"></i>
 CHECK ATS SCORE
-
 </button>
 
 </div>
@@ -498,19 +651,165 @@ CHECK ATS SCORE
 <div class="container">
 
 
-<!-- CREATE RESUME -->
+<!-- ================= CREATE ================= -->
 
 <div class="card" id="create-tab">
 
-
 <div id="input-form">
 
-<h3>RESUME FORMAT</h3>
+
+<h3 class="section-title">
+<i class="fa-solid fa-palette"></i>
+RESUME TEMPLATE
+</h3>
+
+<div class="template-grid">
+
+<div class="template-card active"
+id="template-standard"
+onclick="selectTemplate('standard')">
+
+<div class="template-mini">
+
+<div class="mini-name">
+YOUR NAME
+</div>
+
+CONTACT | EMAIL | LINKEDIN
+
+<div class="mini-section">
+PROFILE SUMMARY
+</div>
+
+Professional summary goes here...
+
+<div class="mini-section">
+EDUCATION
+</div>
+
+Education table
+
+<div class="mini-section">
+EXPERIENCE
+</div>
+
+Experience details
+
+</div>
+
+<div class="template-name">
+Standard ATS
+</div>
+
+<div class="template-desc">
+Clean & ATS friendly
+</div>
+
+</div>
+
+
+<div class="template-card"
+id="template-executive"
+onclick="selectTemplate('executive')">
+
+<div class="template-mini">
+
+<div class="mini-name">
+YOUR NAME
+</div>
+
+PROFESSIONAL INFORMATION
+
+<div class="mini-section">
+PROFILE
+</div>
+
+Professional candidate
+
+<div class="mini-section">
+EXPERIENCE
+</div>
+
+Career history
+
+<div class="mini-section">
+SKILLS
+</div>
+
+Technical | Leadership
+
+</div>
+
+<div class="template-name">
+Executive Pro
+</div>
+
+<div class="template-desc">
+Premium interview style
+</div>
+
+</div>
+
+
+<div class="template-card"
+id="template-modern"
+onclick="selectTemplate('modern')">
+
+<div class="template-mini">
+
+<div class="mini-name">
+YOUR NAME
+</div>
+
+CONTACT INFORMATION
+
+<div class="mini-section">
+SUMMARY
+</div>
+
+Career profile
+
+<div class="mini-section">
+PROJECTS
+</div>
+
+Major projects
+
+<div class="mini-section">
+SKILLS
+</div>
+
+Professional skills
+
+</div>
+
+<div class="template-name">
+Modern Professional
+</div>
+
+<div class="template-desc">
+Modern black & white design
+</div>
+
+</div>
+
+</div>
+
+
+<input type="hidden"
+id="selectedTemplate"
+value="standard">
+
+
+<h3 class="section-title">
+<i class="fa-solid fa-compress"></i>
+PAGE FORMAT
+</h3>
 
 <select id="resumeFormat">
 
 <option value="standard">
-Standard ATS Resume
+Standard Multi-Page ATS Resume
 </option>
 
 <option value="onepage">
@@ -520,7 +819,13 @@ Standard ATS Resume
 </select>
 
 
-<h3>1. PERSONAL DETAILS</h3>
+<!-- PERSONAL -->
+
+<h3 class="section-title">
+<i class="fa-solid fa-user"></i>
+1. PERSONAL DETAILS
+</h3>
+
 
 <div style="display:flex;gap:15px">
 
@@ -528,8 +833,7 @@ Standard ATS Resume
 
 <input
 id="name"
-placeholder="FULL NAME *"
-required>
+placeholder="FULL NAME *">
 
 <input
 id="dob"
@@ -538,8 +842,8 @@ title="Date of Birth">
 
 <input
 id="email"
-placeholder="EMAIL ID"
-type="email">
+type="email"
+placeholder="EMAIL ID">
 
 <input
 id="mobile"
@@ -589,16 +893,26 @@ id="website"
 placeholder="GITHUB / PORTFOLIO URL">
 
 
-<h3>2. PROFILE SUMMARY</h3>
+<!-- SUMMARY -->
+
+<h3 class="section-title">
+<i class="fa-solid fa-user-tie"></i>
+2. PROFILE SUMMARY
+</h3>
 
 <textarea
 id="summary"
 rows="4"
-placeholder="Write manually... No AI Suggestion">
+placeholder="Write your professional profile summary manually...">
 </textarea>
 
 
-<h3>3. QUALIFICATION</h3>
+<!-- EDUCATION -->
+
+<h3 class="section-title">
+<i class="fa-solid fa-graduation-cap"></i>
+3. EDUCATION / QUALIFICATION
+</h3>
 
 <div id="edu-list"></div>
 
@@ -613,7 +927,12 @@ Add Qualification
 </button>
 
 
-<h3>4. PROJECTS</h3>
+<!-- PROJECTS -->
+
+<h3 class="section-title">
+<i class="fa-solid fa-diagram-project"></i>
+4. PROJECTS
+</h3>
 
 <div id="proj-list"></div>
 
@@ -628,10 +947,16 @@ Add Project
 </button>
 
 
-<h3>5. LANGUAGES</h3>
+<!-- LANGUAGES -->
+
+<h3 class="section-title">
+<i class="fa-solid fa-language"></i>
+5. LANGUAGES
+</h3>
+
 
 <b class="section-subheader">
-Technical Languages:
+Technical Languages
 </b>
 
 <div id="tech-lang-list"></div>
@@ -642,13 +967,13 @@ class="btn btn-success"
 onclick="addField('tech-lang')">
 
 <i class="fa-solid fa-plus"></i>
-Add
+Add Technical Language
 
 </button>
 
 
 <b class="section-subheader">
-Normal Languages:
+Normal Languages
 </b>
 
 <div id="normal-lang-list"></div>
@@ -659,12 +984,17 @@ class="btn btn-success"
 onclick="addField('normal-lang')">
 
 <i class="fa-solid fa-plus"></i>
-Add
+Add Normal Language
 
 </button>
 
 
-<h3>6. EXPERIENCE</h3>
+<!-- EXPERIENCE -->
+
+<h3 class="section-title">
+<i class="fa-solid fa-briefcase"></i>
+6. EXPERIENCE
+</h3>
 
 <div id="exp-list"></div>
 
@@ -679,10 +1009,41 @@ Add Experience
 </button>
 
 
-<h3>7. SKILLS</h3>
+<!-- STRENGTH -->
+
+<h3 class="section-title">
+<i class="fa-solid fa-bolt"></i>
+7. STRENGTHS
+</h3>
+
+<p style="font-size:11px;color:#555">
+Add unlimited professional strengths. Example:
+Leadership, Team Management, Problem Solving, Communication.
+</p>
+
+<div id="strength-list"></div>
+
+<button
+type="button"
+class="btn btn-success"
+onclick="addField('strength')">
+
+<i class="fa-solid fa-plus"></i>
+Add Strength
+
+</button>
+
+
+<!-- SKILLS -->
+
+<h3 class="section-title">
+<i class="fa-solid fa-gears"></i>
+8. SKILLS
+</h3>
+
 
 <b class="section-subheader">
-Technical Skills:
+Technical Skills
 </b>
 
 <div id="tech-skill-list"></div>
@@ -693,13 +1054,13 @@ class="btn btn-success"
 onclick="addField('tech-skill')">
 
 <i class="fa-solid fa-plus"></i>
-Add
+Add Technical Skill
 
 </button>
 
 
 <b class="section-subheader">
-Soft Skills:
+Soft Skills
 </b>
 
 <div id="soft-skill-list"></div>
@@ -710,17 +1071,22 @@ class="btn btn-success"
 onclick="addField('soft-skill')">
 
 <i class="fa-solid fa-plus"></i>
-Add
+Add Soft Skill
 
 </button>
 
 
-<h3>8. DECLARATION</h3>
+<!-- DECLARATION -->
+
+<h3 class="section-title">
+<i class="fa-solid fa-file-signature"></i>
+9. DECLARATION
+</h3>
 
 <textarea
 id="declaration"
 rows="3"
-placeholder="I hereby declare that... Manual only">
+placeholder="I hereby declare that...">
 </textarea>
 
 
@@ -734,7 +1100,6 @@ RUN PROFESSIONAL ATS TEST
 
 </button>
 
-
 <div id="ats-result"></div>
 
 
@@ -743,8 +1108,8 @@ type="button"
 class="btn btn-primary"
 onclick="generateResume()">
 
-<i class="fa-solid fa-file-pdf"></i>
-GENERATE & DOWNLOAD PDF
+<i class="fa-solid fa-eye"></i>
+GENERATE & PREVIEW RESUME
 
 </button>
 
@@ -755,9 +1120,13 @@ GENERATE & DOWNLOAD PDF
 
 <div id="preview-area">
 
-<h3>FINAL PREVIEW</h3>
+<h3>
+FINAL PROFESSIONAL PREVIEW
+</h3>
 
-<div id="resume" class="resume"></div>
+<div id="resume"
+class="resume">
+</div>
 
 
 <button
@@ -765,8 +1134,8 @@ type="button"
 class="btn btn-primary"
 onclick="downloadPDF()">
 
-<i class="fa-solid fa-download"></i>
-Download PDF
+<i class="fa-solid fa-file-pdf"></i>
+DOWNLOAD PROFESSIONAL PDF
 
 </button>
 
@@ -777,7 +1146,7 @@ class="btn btn-success"
 onclick="backToForm()">
 
 <i class="fa-solid fa-arrow-left"></i>
-Back to Edit
+BACK TO EDIT
 
 </button>
 
@@ -786,15 +1155,16 @@ Back to Edit
 </div>
 
 
-<!-- ATS UPLOAD -->
+<!-- ================= ATS CHECK ================= -->
 
 <div
 class="card"
 id="check-tab"
 style="display:none">
 
-<h3>
-Upload Your Resume PDF or DOCX
+<h3 class="section-title">
+<i class="fa-solid fa-file-circle-check"></i>
+UPLOAD RESUME FOR ATS CHECK
 </h3>
 
 
@@ -802,15 +1172,16 @@ Upload Your Resume PDF or DOCX
 class="upload-box"
 onclick="document.getElementById('file-upload').click()">
 
-<i
-class="fa-solid fa-cloud-arrow-up"
-style="font-size:40px">
-</i>
+<i class="fa-solid fa-cloud-arrow-up"></i>
 
 <p>
 <b>
 Click to Upload PDF / DOCX
 </b>
+</p>
+
+<p style="font-size:10px">
+Your file will be analysed locally in your browser.
 </p>
 
 <input
@@ -827,18 +1198,17 @@ onchange="handleFileUpload(event)">
 
 </div>
 
+
 </div>
 
 
-<!-- CROP MODAL -->
+<!-- CROP -->
 
 <div
 class="modal"
 id="crop-modal">
 
-<div
-class="modal-content"
-style="max-width:500px">
+<div class="modal-content">
 
 <h3>
 Crop Your Photograph
@@ -873,8 +1243,7 @@ Cancel
 
 <footer>
 
-© CREATED AND DEVELOPED BY
-PUNYA BINAY SWAIN.
+© CREATED AND DEVELOPED BY PUNYA BINAY SWAIN.
 ALL RIGHTS RESERVED.
 
 </footer>
@@ -883,15 +1252,14 @@ ALL RIGHTS RESERVED.
 <script>
 
 let photoData='';
-let cropper;
+let cropper=null;
 
 
 /* TAB */
 
 function showTab(tab){
 
-document
-.querySelectorAll('.tab')
+document.querySelectorAll('.tab')
 .forEach(t=>t.classList.remove('active'));
 
 if(tab==='create'){
@@ -902,8 +1270,7 @@ document.getElementById('create-tab')
 document.getElementById('check-tab')
 .style.display='none';
 
-document
-.querySelectorAll('.tab')[0]
+document.querySelectorAll('.tab')[0]
 .classList.add('active');
 
 }else{
@@ -914,8 +1281,7 @@ document.getElementById('create-tab')
 document.getElementById('check-tab')
 .style.display='block';
 
-document
-.querySelectorAll('.tab')[1]
+document.querySelectorAll('.tab')[1]
 .classList.add('active');
 
 }
@@ -923,9 +1289,29 @@ document
 }
 
 
+/* TEMPLATE */
+
+function selectTemplate(template){
+
+document.getElementById('selectedTemplate')
+.value=template;
+
+document.querySelectorAll('.template-card')
+.forEach(card=>{
+card.classList.remove('active');
+});
+
+document.getElementById(
+'template-'+template
+).classList.add('active');
+
+}
+
+
 /* PHOTO */
 
-document.getElementById('photo').onchange=e=>{
+document.getElementById('photo')
+.addEventListener('change',function(e){
 
 let file=e.target.files[0];
 
@@ -933,41 +1319,40 @@ if(!file)return;
 
 let reader=new FileReader();
 
-reader.onload=()=>{
+reader.onload=function(){
 
-document.getElementById('cropper-img')
-.src=reader.result;
+let image=document.getElementById('cropper-img');
+
+image.src=reader.result;
 
 document.getElementById('crop-modal')
 .style.display='flex';
 
-if(cropper)
+if(cropper){
 cropper.destroy();
-
-cropper=new Cropper(
-document.getElementById('cropper-img'),
-{
-aspectRatio:1,
-viewMode:1
 }
-);
+
+cropper=new Cropper(image,{
+aspectRatio:1,
+viewMode:1,
+autoCropArea:1
+});
 
 };
 
 reader.readAsDataURL(file);
 
-};
+});
 
 
-window.cropImage=function(){
+function cropImage(){
 
 if(!cropper)return;
 
 photoData=
-cropper
-.getCroppedCanvas({
-width:200,
-height:200
+cropper.getCroppedCanvas({
+width:300,
+height:300
 })
 .toDataURL('image/jpeg',0.9);
 
@@ -977,10 +1362,10 @@ document.getElementById('photo-box')
 
 closeCrop();
 
-};
+}
 
 
-window.closeCrop=function(){
+function closeCrop(){
 
 document.getElementById('crop-modal')
 .style.display='none';
@@ -992,17 +1377,16 @@ cropper=null;
 
 }
 
-};
+}
 
 
 /* DATE */
 
 function formatDate(dateStr){
 
-if(!dateStr)
-return '-';
+if(!dateStr)return '-';
 
-const d=new Date(dateStr);
+let d=new Date(dateStr);
 
 return d.toLocaleDateString(
 'en-GB',
@@ -1015,10 +1399,11 @@ year:'numeric'
 }
 
 
+/* DURATION */
+
 function calcDuration(start,end){
 
-if(!start||!end)
-return '-';
+if(!start||!end)return '-';
 
 let s=new Date(start);
 let e=new Date(end);
@@ -1038,20 +1423,18 @@ return years>0
 }
 
 
-/* ADD FIELDS */
+/* ADD FIELD */
 
-window.addField=function(type){
+function addField(type){
 
 let container=
 document.getElementById(type+'-list');
 
-let div=
-document.createElement('div');
+let div=document.createElement('div');
 
 div.className='section-group';
 
-div.innerHTML=
-`
+div.innerHTML=`
 <button
 type="button"
 class="remove-btn"
@@ -1061,66 +1444,51 @@ X
 `;
 
 
-/* EDUCATION
-   ORIGINAL DATE SYSTEM KEPT
-*/
+/* EDUCATION */
 
 if(type==='edu'){
 
 div.innerHTML+=`
 
+<label class="field-label">
+COURSE NAME
+</label>
+
 <input
 placeholder="COURSE NAME *"
 data-req>
+
+<label class="field-label">
+INSTITUTE NAME
+</label>
 
 <input
 placeholder="INSTITUTE NAME *"
 data-req>
 
-<input
-placeholder="UNIVERSITY / BOARD NAME">
+<label class="field-label">
+UNIVERSITY NAME
+</label>
 
 <input
-type="date"
-title="Education Start Date">
+placeholder="UNIVERSITY NAME">
+
+<label class="field-label">
+PASSING YEAR
+</label>
 
 <input
-type="date"
-title="Education End Date">
+type="number"
+placeholder="PASSING YEAR"
+min="1900"
+max="2100">
 
-`;
-
-}
-
-
-/* EXPERIENCE */
-
-if(type==='exp'){
-
-div.innerHTML+=`
+<label class="field-label">
+PERCENTAGE / CGPA
+</label>
 
 <input
-placeholder="JOB TITLE *"
-data-req>
-
-<input
-placeholder="COMPANY NAME *"
-data-req>
-
-<input
-type="date"
-title="Employment Start Date">
-
-<input
-type="date"
-title="Employment End Date">
-
-<input
-placeholder="STRENGTH (Leadership, Teamwork, Problem Solving...)">
-
-<textarea
-placeholder="JOB DESCRIPTION">
-</textarea>
+placeholder="PERCENTAGE / CGPA">
 
 `;
 
@@ -1146,7 +1514,69 @@ placeholder="PROJECT DESCRIPTION">
 }
 
 
-/* SKILLS/LANGUAGES */
+/* EXPERIENCE */
+
+if(type==='exp'){
+
+div.innerHTML+=`
+
+<label class="field-label">
+JOB TITLE
+</label>
+
+<input
+placeholder="JOB TITLE *"
+data-req>
+
+<label class="field-label">
+COMPANY NAME
+</label>
+
+<input
+placeholder="COMPANY NAME *"
+data-req>
+
+<label class="field-label">
+START DATE
+</label>
+
+<input
+type="date"
+title="Employment Start Date">
+
+<label class="field-label">
+END DATE
+</label>
+
+<input
+type="date"
+title="Employment End Date">
+
+<textarea
+placeholder="JOB DESCRIPTION">
+</textarea>
+
+`;
+
+}
+
+
+/* STRENGTH */
+
+if(type==='strength'){
+
+div.innerHTML+=`
+
+<input
+placeholder="STRENGTH *"
+data-req>
+
+`;
+
+}
+
+
+/* SKILLS & LANGUAGES */
 
 if(
 type.includes('skill')||
@@ -1165,52 +1595,48 @@ data-req>
 
 container.appendChild(div);
 
-};
+}
 
 
 /* EDUCATION TABLE */
 
-function getTableEdu(){
+function getEducationHTML(){
 
-let items=
-[
-...document
-.getElementById('edu-list')
-.children
+let items=[
+...document.getElementById('edu-list').children
 ];
 
-if(items.length===0)
-return '';
+if(!items.length)return '';
 
-let rows=
-items.map(d=>{
+let rows=items.map(d=>{
 
-let i=
-[
+let i=[
 ...d.querySelectorAll('input')
 ];
-
-let dur=
-calcDuration(
-i[3].value,
-i[4].value
-);
 
 return `
 
 <tr>
 
-<td>${i[0].value}</td>
+<td>
+${escapeHTML(i[0].value)}
+</td>
 
-<td>${i[1].value}</td>
+<td>
+${escapeHTML(i[1].value)}
+</td>
 
-<td>${i[2].value}</td>
+<td>
+${escapeHTML(i[2].value)}
+</td>
 
-<td>${formatDate(i[3].value)}</td>
+<td>
+${escapeHTML(i[3].value)}
+</td>
 
-<td>${formatDate(i[4].value)}</td>
-
-<td>${dur}</td>
+<td>
+${escapeHTML(i[4].value)}
+</td>
 
 </tr>
 
@@ -1224,7 +1650,7 @@ return `
 <div class="resume-section keep-together">
 
 <div class="section-header">
-Qualification
+Education / Qualification
 </div>
 
 <table class="resume-table">
@@ -1235,17 +1661,18 @@ Qualification
 
 <th>Course Name</th>
 <th>Institute Name</th>
-<th>University/Board</th>
-<th>Start Date</th>
-<th>End Date</th>
-<th>Duration</th>
+<th>University Name</th>
+<th>Passing Year</th>
+<th>Percentage / CGPA</th>
 
 </tr>
 
 </thead>
 
 <tbody>
+
 ${rows}
+
 </tbody>
 
 </table>
@@ -1259,27 +1686,21 @@ ${rows}
 
 /* EXPERIENCE TABLE */
 
-function getTableExp(){
+function getExperienceHTML(){
 
-let items=
-[
-...document
-.getElementById('exp-list')
-.children
+let items=[
+...document.getElementById('exp-list').children
 ];
 
-if(items.length===0)
-return '';
+if(!items.length)return '';
 
-let rows=
-items.map(d=>{
+let rows=items.map(d=>{
 
-let i=
-[
+let i=[
 ...d.querySelectorAll('input,textarea')
 ];
 
-let dur=
+let duration=
 calcDuration(
 i[2].value,
 i[3].value
@@ -1290,20 +1711,28 @@ return `
 <tr>
 
 <td>
-<b>${i[0].value}</b>
+<b>${escapeHTML(i[0].value)}</b>
 </td>
 
-<td>${i[1].value}</td>
+<td>
+${escapeHTML(i[1].value)}
+</td>
 
-<td>${formatDate(i[2].value)}</td>
+<td>
+${formatDate(i[2].value)}
+</td>
 
-<td>${formatDate(i[3].value)}</td>
+<td>
+${formatDate(i[3].value)}
+</td>
 
-<td>${dur}</td>
+<td>
+${duration}
+</td>
 
-<td>${i[4].value}</td>
-
-<td>${i[5].value}</td>
+<td>
+${escapeHTML(i[4].value)}
+</td>
 
 </tr>
 
@@ -1331,7 +1760,6 @@ Experience
 <th>From</th>
 <th>To</th>
 <th>Duration</th>
-<th>Strength</th>
 <th>Description</th>
 
 </tr>
@@ -1339,7 +1767,9 @@ Experience
 </thead>
 
 <tbody>
+
 ${rows}
+
 </tbody>
 
 </table>
@@ -1351,95 +1781,39 @@ ${rows}
 }
 
 
-/* SKILLS */
-
-function getSkillList(id,title){
-
-let items=
-[
-...document
-.getElementById(id)
-.children
-]
-.map(d=>
-d.querySelector('input').value
-)
-.filter(Boolean);
-
-if(items.length===0)
-return '';
-
-return `
-
-<div class="section-subheader">
-${title}
-</div>
-
-<p>
-${items.join(' | ')}
-</p>
-
-`;
-
-}
-
-
-/* URL */
-
-function makeURL(url){
-
-if(!url)
-return '';
-
-return /^https?:\/\//i.test(url)
-?url
-:'https://'+url;
-
-}
-
-
 /* PROJECTS */
 
-function getProjects(){
+function getProjectsHTML(){
 
-let items=
-[
-...document
-.getElementById('proj-list')
-.children
+let items=[
+...document.getElementById('proj-list').children
 ];
 
-if(items.length===0)
-return '';
+if(!items.length)return '';
 
-let content=
-items.map(d=>{
+let html=items.map(d=>{
 
-let i=
-[
+let i=[
 ...d.querySelectorAll('input,textarea')
 ];
 
 return `
 
 <div
-style="margin-bottom:7px;page-break-inside:avoid;">
+style="
+margin-bottom:7px;
+page-break-inside:avoid;
+">
 
 <p>
 
 <b>
-Project Name:
+${escapeHTML(i[0].value)}
 </b>
-
-${i[0].value}
 
 <br>
 
-<b>
-Description:
-</b>
-
-${i[1].value}
+${escapeHTML(i[1].value)}
 
 </p>
 
@@ -1458,7 +1832,7 @@ return `
 Projects
 </div>
 
-${content}
+${html}
 
 </div>
 
@@ -1467,34 +1841,135 @@ ${content}
 }
 
 
-/* RENDER RESUME */
+/* LIST */
+
+function getListHTML(id,title){
+
+let items=[
+...document.getElementById(id).children
+]
+.map(d=>
+d.querySelector('input').value.trim()
+)
+.filter(Boolean);
+
+if(!items.length)return '';
+
+return `
+
+<div class="section-subheader">
+${title}
+</div>
+
+<p class="skill-list">
+${items.map(escapeHTML).join(' | ')}
+</p>
+
+`;
+
+}
+
+
+/* STRENGTHS */
+
+function getStrengthHTML(){
+
+let items=[
+...document.getElementById('strength-list').children
+]
+.map(d=>
+d.querySelector('input').value.trim()
+)
+.filter(Boolean);
+
+if(!items.length)return '';
+
+return `
+
+<div class="resume-section keep-together">
+
+<div class="section-header">
+Strengths
+</div>
+
+<p>
+
+${items.map(x=>
+`<b>${escapeHTML(x)}</b>`
+).join(' | ')}
+
+</p>
+
+</div>
+
+`;
+
+}
+
+
+/* ESCAPE */
+
+function escapeHTML(value){
+
+return String(value||'')
+.replace(/&/g,'&amp;')
+.replace(/</g,'&lt;')
+.replace(/>/g,'&gt;')
+.replace(/"/g,'&quot;')
+.replace(/'/g,'&#039;');
+
+}
+
+
+/* URL */
+
+function makeURL(url){
+
+if(!url)return '';
+
+return /^https?:\/\//i.test(url)
+?url
+:'https://'+url;
+
+}
+
+
+/* RENDER */
 
 function renderResume(){
-
-let linkedin=
-document.getElementById('linkedin')
-.value.trim();
-
-let github=
-document.getElementById('website')
-.value.trim();
-
-let format=
-document.getElementById('resumeFormat')
-.value;
 
 let resume=
 document.getElementById('resume');
 
-resume.className=
-format==='onepage'
-?'resume one-page'
-:'resume';
+let template=
+document.getElementById('selectedTemplate').value;
+
+let format=
+document.getElementById('resumeFormat').value;
+
+resume.className='resume';
+
+if(format==='onepage'){
+resume.classList.add('one-page');
+}
+
+if(template==='executive'){
+resume.classList.add('template-executive');
+}
+
+if(template==='modern'){
+resume.classList.add('template-modern');
+}
 
 
-let dob=
-document.getElementById('dob')
-.value;
+let name=
+document.getElementById('name').value;
+
+let linkedin=
+document.getElementById('linkedin').value.trim();
+
+let github=
+document.getElementById('website').value.trim();
 
 
 resume.innerHTML=`
@@ -1503,42 +1978,39 @@ resume.innerHTML=`
 
 <div style="flex:1">
 
-<h1
-style="margin:0;font-size:18pt">
-
-${document.getElementById('name').value}
-
+<h1>
+${escapeHTML(name)}
 </h1>
 
-
 <p>
-
-<b>
-Date of Birth:
-</b>
-
-${formatDate(dob)}
-
+<b>Date of Birth:</b>
+${formatDate(
+document.getElementById('dob').value
+)}
 </p>
-
 
 <p>
 
 <b>Email:</b>
-${document.getElementById('email').value}
+${escapeHTML(
+document.getElementById('email').value
+)}
 
-|
+&nbsp; | &nbsp;
 
 <b>Phone:</b>
-${document.getElementById('mobile').value}
+${escapeHTML(
+document.getElementById('mobile').value
+)}
 
 </p>
-
 
 <p>
 
 <b>Address:</b>
-${document.getElementById('address').value}
+${escapeHTML(
+document.getElementById('address').value
+)}
 
 </p>
 
@@ -1556,7 +2028,7 @@ linkedin
 href="${makeURL(linkedin)}"
 target="_blank">
 
-${linkedin}
+${escapeHTML(linkedin)}
 
 </a>
 
@@ -1574,15 +2046,13 @@ github
 
 <p>
 
-<b>
-GitHub / Portfolio:
-</b>
+<b>GitHub / Portfolio:</b>
 
 <a
 href="${makeURL(github)}"
 target="_blank">
 
-${github}
+${escapeHTML(github)}
 
 </a>
 
@@ -1599,9 +2069,11 @@ ${
 photoData
 ?
 `
+
 <img
 src="${photoData}"
 class="resume-photo">
+
 `
 :''
 }
@@ -1610,8 +2082,7 @@ class="resume-photo">
 
 
 ${
-document.getElementById('summary')
-.value
+document.getElementById('summary').value.trim()
 ?
 `
 
@@ -1622,7 +2093,9 @@ Profile Summary
 </div>
 
 <p>
-${document.getElementById('summary').value}
+${escapeHTML(
+document.getElementById('summary').value
+)}
 </p>
 
 </div>
@@ -1632,9 +2105,9 @@ ${document.getElementById('summary').value}
 }
 
 
-${getTableEdu()}
+${getEducationHTML()}
 
-${getProjects()}
+${getProjectsHTML()}
 
 
 <div class="resume-section keep-together">
@@ -1643,12 +2116,12 @@ ${getProjects()}
 Languages
 </div>
 
-${getSkillList(
+${getListHTML(
 'tech-lang-list',
 'Technical Languages'
 )}
 
-${getSkillList(
+${getListHTML(
 'normal-lang-list',
 'Normal Languages'
 )}
@@ -1656,7 +2129,9 @@ ${getSkillList(
 </div>
 
 
-${getTableExp()}
+${getExperienceHTML()}
+
+${getStrengthHTML()}
 
 
 <div class="resume-section keep-together">
@@ -1665,12 +2140,12 @@ ${getTableExp()}
 Skills
 </div>
 
-${getSkillList(
+${getListHTML(
 'tech-skill-list',
 'Technical Skills'
 )}
 
-${getSkillList(
+${getListHTML(
 'soft-skill-list',
 'Soft Skills'
 )}
@@ -1679,8 +2154,7 @@ ${getSkillList(
 
 
 ${
-document.getElementById('declaration')
-.value
+document.getElementById('declaration').value.trim()
 ?
 `
 
@@ -1691,7 +2165,9 @@ Declaration
 </div>
 
 <p>
-${document.getElementById('declaration').value}
+${escapeHTML(
+document.getElementById('declaration').value
+)}
 </p>
 
 </div>
@@ -1707,13 +2183,9 @@ ${document.getElementById('declaration').value}
 
 /* GENERATE */
 
-window.generateResume=function(){
+function generateResume(){
 
-if(
-!document
-.getElementById('name')
-.value
-){
+if(!document.getElementById('name').value.trim()){
 
 alert('Please Enter Name');
 
@@ -1731,12 +2203,12 @@ document.getElementById('preview-area')
 
 window.scrollTo(0,0);
 
-};
+}
 
 
 /* BACK */
 
-window.backToForm=function(){
+function backToForm(){
 
 document.getElementById('preview-area')
 .style.display='none';
@@ -1744,29 +2216,24 @@ document.getElementById('preview-area')
 document.getElementById('input-form')
 .style.display='block';
 
-};
+}
 
 
 /* PDF */
 
-window.downloadPDF=async function(){
+async function downloadPDF(){
 
-const{
-jsPDF
-}=window.jspdf;
+const {jsPDF}=window.jspdf;
 
 const element=
 document.getElementById('resume');
 
-const format=
-document.getElementById('resumeFormat')
-.value;
-
 
 /*
-  Render each A4 page separately.
-  This prevents one long image from being
-  squeezed into a single PDF page.
+Generate a high-quality canvas.
+The PDF is automatically divided into
+A4 pages instead of shrinking the whole
+resume into one page.
 */
 
 const canvas=
@@ -1782,9 +2249,7 @@ logging:false
 
 
 const imgData=
-canvas.toDataURL(
-'image/png'
-);
+canvas.toDataURL('image/png');
 
 
 const pdf=
@@ -1795,24 +2260,22 @@ new jsPDF(
 );
 
 
-const pdfWidth=
+const pageWidth=
 pdf.internal.pageSize.getWidth();
 
-const pdfHeight=
+const pageHeight=
 pdf.internal.pageSize.getHeight();
 
 
-const imgWidth=
-pdfWidth;
+const imageWidth=pageWidth;
 
-const imgHeight=
+const imageHeight=
 canvas.height*
-pdfWidth/
+pageWidth/
 canvas.width;
 
 
-let heightLeft=
-imgHeight;
+let heightLeft=imageHeight;
 
 let position=0;
 
@@ -1822,17 +2285,17 @@ imgData,
 'PNG',
 0,
 position,
-imgWidth,
-imgHeight
+imageWidth,
+imageHeight
 );
 
-heightLeft-=pdfHeight;
+heightLeft-=pageHeight;
 
 
 while(heightLeft>0){
 
 position=
-heightLeft-imgHeight;
+heightLeft-imageHeight;
 
 pdf.addPage();
 
@@ -1841,76 +2304,74 @@ imgData,
 'PNG',
 0,
 position,
-imgWidth,
-imgHeight
+imageWidth,
+imageHeight
 );
 
-heightLeft-=pdfHeight;
+heightLeft-=pageHeight;
 
 }
 
 
 let fileName=
-document
-.getElementById('name')
+document.getElementById('name')
 .value
 .trim()
 .replace(/[^a-z0-9]+/gi,'_');
 
 
-if(format==='onepage'){
+if(
+document.getElementById('resumeFormat').value
+==='onepage'
+){
 
 fileName+=
-'_Professional_1_Page_Resume';
+'_Interview_Ready_Resume';
 
 }else{
 
 fileName+=
-'_ATS_Resume';
+'_Professional_ATS_Resume';
 
 }
 
 
-pdf.save(
-fileName+'.pdf'
-);
+pdf.save(fileName+'.pdf');
 
-};
+}
 
 
-/* PROFESSIONAL ATS */
+/* ================= ATS ENGINE ================= */
 
 function runATSOnText(text){
 
-let lowerText=
-text.toLowerCase();
+let lower=text.toLowerCase();
 
 let score=100;
 
 let strengths=[];
+
 let improvements=[];
 
 
 let words=
-text
-.trim()
+text.trim()
 .split(/\s+/)
 .filter(Boolean);
 
-let wordCount=
-words.length;
+let wordCount=words.length;
 
 
 /* EMAIL */
 
-let hasEmail=
+let email=
 /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i
 .test(text);
 
-if(hasEmail){
+if(email){
 
 strengths.push(
-'Professional email address detected'
+'Professional email detected'
 );
 
 }else{
@@ -1926,11 +2387,11 @@ improvements.push(
 
 /* PHONE */
 
-let hasPhone=
+let phone=
 /(\+91[\s-]?)?[6-9]\d{9}/
 .test(text);
 
-if(hasPhone){
+if(phone){
 
 strengths.push(
 'Contact number detected'
@@ -1950,13 +2411,12 @@ improvements.push(
 /* SUMMARY */
 
 if(
-lowerText.includes('profile summary')||
-lowerText.includes('professional summary')||
-lowerText.includes('summary')
+lower.includes('profile summary')||
+lower.includes('summary')
 ){
 
 strengths.push(
-'Profile Summary section detected'
+'Profile Summary detected'
 );
 
 }else{
@@ -1973,13 +2433,13 @@ improvements.push(
 /* EDUCATION */
 
 if(
-lowerText.includes('qualification')||
-lowerText.includes('education')||
-lowerText.includes('academic')
+lower.includes('education')||
+lower.includes('qualification')||
+lower.includes('university')
 ){
 
 strengths.push(
-'Education / Qualification section detected'
+'Education section detected'
 );
 
 }else{
@@ -1996,9 +2456,8 @@ improvements.push(
 /* EXPERIENCE */
 
 if(
-lowerText.includes('experience')||
-lowerText.includes('employment')||
-lowerText.includes('work experience')
+lower.includes('experience')||
+lower.includes('employment')
 ){
 
 strengths.push(
@@ -2007,10 +2466,8 @@ strengths.push(
 
 }else{
 
-score-=8;
-
 improvements.push(
-'Add Experience section if applicable'
+'Add Experience if applicable'
 );
 
 }
@@ -2018,10 +2475,7 @@ improvements.push(
 
 /* SKILLS */
 
-if(
-lowerText.includes('technical skills')||
-lowerText.includes('skills')
-){
+if(lower.includes('skills')){
 
 strengths.push(
 'Skills section detected'
@@ -2032,7 +2486,7 @@ strengths.push(
 score-=10;
 
 improvements.push(
-'Add Technical Skills relevant to the job'
+'Add Technical Skills'
 );
 
 }
@@ -2040,15 +2494,15 @@ improvements.push(
 
 /* PROJECTS */
 
-if(lowerText.includes('project')){
+if(lower.includes('project')){
 
 strengths.push(
-'Projects section detected'
+'Projects detected'
 );
 
 }else{
 
-score-=5;
+score-=4;
 
 improvements.push(
 'Add relevant projects'
@@ -2057,9 +2511,20 @@ improvements.push(
 }
 
 
+/* STRENGTH */
+
+if(lower.includes('strength')){
+
+strengths.push(
+'Professional Strengths detected'
+);
+
+}
+
+
 /* LINKEDIN */
 
-if(lowerText.includes('linkedin')){
+if(lower.includes('linkedin')){
 
 strengths.push(
 'LinkedIn profile detected'
@@ -2078,7 +2543,7 @@ improvements.push(
 
 /* GITHUB */
 
-if(lowerText.includes('github')){
+if(lower.includes('github')){
 
 strengths.push(
 'GitHub / Portfolio detected'
@@ -2089,7 +2554,7 @@ strengths.push(
 
 /* ACTION WORDS */
 
-const actionWords=[
+let actions=[
 
 'developed',
 'designed',
@@ -2109,17 +2574,16 @@ const actionWords=[
 
 ];
 
-
-const foundActions=
-actionWords.filter(
-word=>lowerText.includes(word)
+let foundActions=
+actions.filter(
+x=>lower.includes(x)
 );
 
 
 if(foundActions.length>=4){
 
 strengths.push(
-`Strong action verbs detected: ${foundActions.slice(0,6).join(', ')}`
+'Strong action verbs detected'
 );
 
 }else{
@@ -2127,7 +2591,46 @@ strengths.push(
 score-=5;
 
 improvements.push(
-'Use strong action verbs such as Developed, Managed, Led and Achieved'
+'Use action verbs such as Developed, Managed, Led and Achieved'
+);
+
+}
+
+
+/* KEYWORDS */
+
+let keywords=[
+
+'leadership',
+'teamwork',
+'communication',
+'management',
+'problem solving',
+'development',
+'project',
+'achievement',
+'team'
+
+];
+
+let foundKeywords=
+keywords.filter(
+x=>lower.includes(x)
+);
+
+
+if(foundKeywords.length>=4){
+
+strengths.push(
+'Good professional keywords detected'
+);
+
+}else{
+
+score-=5;
+
+improvements.push(
+'Add job-specific keywords'
 );
 
 }
@@ -2140,7 +2643,7 @@ if(wordCount<180){
 score-=8;
 
 improvements.push(
-`Resume is short (${wordCount} words). Add meaningful details.`
+`Resume is short (${wordCount} words)`
 );
 
 }else if(wordCount>800){
@@ -2148,69 +2651,28 @@ improvements.push(
 score-=5;
 
 improvements.push(
-`Resume is lengthy (${wordCount} words). Remove unnecessary content.`
+`Resume is lengthy (${wordCount} words)`
 );
 
 }else{
 
 strengths.push(
-`Good resume length: ${wordCount} words`
+`Good resume length (${wordCount} words)`
 );
 
 }
 
 
-/* KEYWORDS */
-
-const keywords=[
-
-'team',
-'leadership',
-'problem solving',
-'communication',
-'management',
-'development',
-'project',
-'achievement'
-
-];
-
-
-const foundKeywords=
-keywords.filter(
-k=>lowerText.includes(k)
-);
-
-
-if(foundKeywords.length>=4){
-
-strengths.push(
-`Relevant keywords detected: ${foundKeywords.join(', ')}`
-);
-
-}else{
-
-score-=5;
-
-improvements.push(
-'Add job-specific keywords from the job description'
-);
-
-}
-
-
-/* DATE STRUCTURE */
+/* EDUCATION DATA */
 
 if(
-lowerText.includes('date of birth')||
-lowerText.includes('start date')||
-lowerText.includes('end date')||
-lowerText.includes('from')||
-lowerText.includes('to')
+lower.includes('passing year')||
+lower.includes('percentage')||
+lower.includes('cgpa')
 ){
 
 strengths.push(
-'Date information detected'
+'Education academic details detected'
 );
 
 }
@@ -2219,26 +2681,18 @@ strengths.push(
 /* SCORE */
 
 score=
-Math.max(
-0,
-Math.min(100,score)
-);
+Math.max(0,Math.min(100,score));
 
 
-let level;
-
-let levelClass='';
-
+let level='';
 
 if(score>=90){
 
 level='Excellent';
-levelClass='ats-good';
 
 }else if(score>=80){
 
 level='Very Good';
-levelClass='ats-good';
 
 }else if(score>=70){
 
@@ -2251,64 +2705,33 @@ level='Needs Improvement';
 }else{
 
 level='Weak';
-levelClass='ats-bad';
 
 }
 
 
-/* RETURN DASHBOARD */
-
 return `
 
-<div class="ats-dashboard">
+<div class="ats-main">
 
-<h3>
-<i class="fa-solid fa-robot"></i>
-ATS RESUME ANALYSIS
-</h3>
+<div class="ats-score-box">
 
-
-<div
-style="
-text-align:center;
-padding:18px;
-border:2px solid #000;
-margin-bottom:15px;
-">
-
-<div
-style="
-font-size:12px;
-font-weight:bold;
-">
-
+<div>
 ATS COMPATIBILITY SCORE
-
 </div>
-
 
 <div class="ats-score">
-
 ${score}%
-
 </div>
 
-
-<div
-class="${levelClass}"
-style="font-weight:bold">
-
+<div class="ats-level">
 ${level}
-
 </div>
-
 
 <div class="ats-meter">
 
 <div
 class="ats-meter-fill"
 style="width:${score}%">
-
 </div>
 
 </div>
@@ -2318,13 +2741,10 @@ style="width:${score}%">
 
 <div class="ats-grid">
 
-
 <div class="ats-card">
 
-<b class="ats-good">
-
+<b class="good">
 ✓ RESUME STRENGTHS
-
 </b>
 
 <ul>
@@ -2346,10 +2766,8 @@ strengths
 
 <div class="ats-card">
 
-<b class="ats-bad">
-
-✗ AREAS TO IMPROVE
-
+<b class="bad">
+✗ IMPROVEMENTS
 </b>
 
 <ul>
@@ -2368,23 +2786,17 @@ improvements
 
 </div>
 
-
 </div>
 
 
-<div
-class="ats-card"
-style="margin-top:10px">
+<div class="ats-card" style="margin-top:12px">
 
 <b>
 <i class="fa-solid fa-chart-column"></i>
-ATS CHECK SUMMARY
+ATS REPORT
 </b>
 
-
-<table
-class="resume-table"
-style="margin-top:10px">
+<table class="ats-table">
 
 <tr>
 <td><b>Word Count</b></td>
@@ -2403,22 +2815,34 @@ style="margin-top:10px">
 
 <tr>
 <td><b>Email</b></td>
-<td>${hasEmail?'✓ Detected':'✗ Missing'}</td>
+<td>${email?'✓ Detected':'✗ Missing'}</td>
 </tr>
 
 <tr>
 <td><b>Phone</b></td>
-<td>${hasPhone?'✓ Detected':'✗ Missing'}</td>
+<td>${phone?'✓ Detected':'✗ Missing'}</td>
 </tr>
 
 <tr>
 <td><b>LinkedIn</b></td>
-<td>${lowerText.includes('linkedin')?'✓ Detected':'✗ Missing'}</td>
+<td>${lower.includes('linkedin')?'✓ Detected':'✗ Missing'}</td>
 </tr>
 
 <tr>
 <td><b>GitHub</b></td>
-<td>${lowerText.includes('github')?'✓ Detected':'Not Detected'}</td>
+<td>${lower.includes('github')?'✓ Detected':'Not Detected'}</td>
+</tr>
+
+<tr>
+<td><b>Education Academic Data</b></td>
+<td>
+${
+lower.includes('passing year')||
+lower.includes('percentage')||
+lower.includes('cgpa')
+?'✓ Detected':'Not Detected'
+}
+</td>
 </tr>
 
 </table>
@@ -2428,20 +2852,17 @@ style="margin-top:10px">
 
 <div
 style="
-margin-top:10px;
+margin-top:12px;
 padding:12px;
-background:#f1f1f1;
+background:#eee;
+font-size:11px;
 ">
 
-<b>
-ATS TIP:
-</b>
-
-Use keywords and skills from the actual job description,
-while keeping the resume truthful and readable.
+<b>ATS TIP:</b>
+Always customise your resume keywords according to
+the actual job description. Keep all information truthful.
 
 </div>
-
 
 </div>
 
@@ -2450,45 +2871,40 @@ while keeping the resume truthful and readable.
 }
 
 
-/* RUN ATS */
+/* ATS TEST */
 
-window.runATSTest=function(){
+function runATSTest(){
 
 renderResume();
 
 let text=
-document
-.getElementById('resume')
+document.getElementById('resume')
 .innerText;
 
-document
-.getElementById('ats-result')
+document.getElementById('ats-result')
 .innerHTML=
 runATSOnText(text);
 
-};
+}
 
 
-/* FILE UPLOAD */
+/* FILE ATS */
 
-window.handleFileUpload=
-async function(event){
+async function handleFileUpload(event){
 
-let file=
-event.target.files[0];
+let file=event.target.files[0];
 
-if(!file)
-return;
+if(!file)return;
 
 
-document
-.getElementById('ats-upload-result')
-.innerHTML=
-`
+document.getElementById('ats-upload-result')
+.innerHTML=`
+
 <p>
 <i class="fa-solid fa-spinner fa-spin"></i>
-Reading file... Please wait
+Reading and analysing your resume...
 </p>
+
 `;
 
 
@@ -2497,15 +2913,11 @@ try{
 let text='';
 
 
-/* PDF */
-
 if(
-file.name
-.toLowerCase()
-.endsWith('.pdf')
+file.name.toLowerCase().endsWith('.pdf')
 ){
 
-const pdf=
+let pdf=
 await pdfjsLib
 .getDocument(
 URL.createObjectURL(file)
@@ -2519,10 +2931,10 @@ i<=pdf.numPages;
 i++
 ){
 
-const page=
+let page=
 await pdf.getPage(i);
 
-const content=
+let content=
 await page.getTextContent();
 
 text+=
@@ -2535,40 +2947,31 @@ content.items
 }
 
 
-/* DOCX */
-
-if(
-file.name
-.toLowerCase()
-.endsWith('.docx')
+else if(
+file.name.toLowerCase().endsWith('.docx')
 ){
 
-const result=
-await mammoth.extractRawText(
-{
+let result=
+await mammoth.extractRawText({
 arrayBuffer:
 await file.arrayBuffer()
-}
-);
+});
 
-text=
-result.value;
+text=result.value;
 
 }
 
-
-/* CHECK EMPTY */
 
 if(!text.trim()){
 
-document
-.getElementById('ats-upload-result')
-.innerHTML=
-`
-<p class="ats-bad">
+document.getElementById('ats-upload-result')
+.innerHTML=`
+
+<p class="bad">
 Could not extract readable text from this file.
 Please upload a text-based PDF or DOCX.
 </p>
+
 `;
 
 return;
@@ -2576,10 +2979,7 @@ return;
 }
 
 
-/* RESULT */
-
-document
-.getElementById('ats-upload-result')
+document.getElementById('ats-upload-result')
 .innerHTML=
 runATSOnText(text);
 
@@ -2588,19 +2988,21 @@ runATSOnText(text);
 
 console.error(error);
 
-document
-.getElementById('ats-upload-result')
-.innerHTML=
-`
-<p class="ats-bad">
+document.getElementById('ats-upload-result')
+.innerHTML=`
+
+<p class="bad">
+
 Unable to read this file.
 Please check the PDF/DOCX and try again.
+
 </p>
+
 `;
 
 }
 
-};
+}
 
 </script>
 
