@@ -20,47 +20,49 @@
   header h1{margin:0; font-size:22px; font-weight:700; text-transform:uppercase}
   header p{margin:5px 0 0; font-size:12px}
 
- .tabs{display:flex; background:var(--light-black)}
- .tab{flex:1; padding:14px; text-align:center; color:#fff; cursor:pointer; font-weight:700; border:none; background:transparent}
- .tab.active{background:var(--black)}
+.tabs{display:flex; background:var(--light-black)}
+.tab{flex:1; padding:14px; text-align:center; color:#fff; cursor:pointer; font-weight:700; border:none; background:transparent}
+.tab.active{background:var(--black)}
 
- .container{max-width:1000px; margin:20px auto; padding:0 15px}
- .card{background:#fff; padding:25px; border:1px solid var(--border); margin-bottom:20px}
+.container{max-width:1000px; margin:20px auto; padding:0 15px}
+.card{background:#fff; padding:25px; border:1px solid var(--border); margin-bottom:20px}
   h3{color:var(--black); font-size:15px; font-weight:700; margin-top:20px; margin-bottom:10px}
   input, textarea{width:100%; padding:10px; margin:5px 0; border:1px solid var(--border); font-size:12px}
-  
- .section-group{border:1px solid var(--border); padding:12px; margin:8px 0; position:relative; background:#fafafa}
- .remove-btn{position:absolute; right:8px; top:8px; background:var(--black); color:#fff; border:none; padding:4px 8px; cursor:pointer; font-size:10px; font-weight:700}
- .btn{border:none; padding:12px; cursor:pointer; width:100%; margin-top:10px; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:8px}
- .btn-primary{background:var(--black); color:#fff}
- .btn-success{background:var(--light-black); color:#fff}
- .btn-ats{background:#222; color:#fff}
+  label.date-label{font-size:10px; font-weight:700; color:var(--light-black); margin-top:-3px; display:block}
+
+.section-group{border:1px solid var(--border); padding:12px; margin:8px 0; position:relative; background:#fafafa}
+.remove-btn{position:absolute; right:8px; top:8px; background:var(--black); color:#fff; border:none; padding:4px 8px; cursor:pointer; font-size:10px; font-weight:700}
+.btn{border:none; padding:12px; cursor:pointer; width:100%; margin-top:10px; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:8px}
+.btn-primary{background:var(--black); color:#fff}
+.btn-success{background:var(--light-black); color:#fff}
+.btn-ats{background:#222; color:#fff}
 
   /* RESUME STYLE */
- .resume{width:210mm; min-height:297mm; background:#fff; padding:12mm; margin:auto; font-size:10pt; line-height:1.4; color:#000}
- .resume-header{display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid var(--black); padding-bottom:10px; margin-bottom:10px}
- .resume-photo{width:90px; height:90px; border:1px solid var(--black); object-fit:cover}
- .photo-box{width:110px; height:110px; border:2px dashed var(--black); display:flex; align-items:center; justify-content:center; overflow:hidden; margin-top:5px; font-size:10px; background:#f0f0f0; font-weight:600}
- .photo-box img{width:100%; height:100%; object-fit:cover}
+.resume{width:210mm; min-height:297mm; background:#fff; padding:12mm; margin:auto; font-size:10pt; line-height:1.4; color:#000}
+.resume-header{display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid var(--black); padding-bottom:10px; margin-bottom:10px}
+.resume-photo{width:90px; height:90px; border:1px solid var(--black); object-fit:cover}
+.photo-box{width:110px; height:110px; border:2px dashed var(--black); display:flex; align-items:center; justify-content:center; overflow:hidden; margin-top:5px; font-size:10px; background:#f0f0f0; font-weight:600}
+.photo-box img{width:100%; height:100%; object-fit:cover}
 
   /* HEADER BLACK BOX */
- .section-header{background:var(--black); color:#fff; padding:5px 10px; font-size:11pt; font-weight:700; text-transform:uppercase; margin:12px 0 6px 0; page-break-inside: avoid;}
+.section-header{background:var(--black); color:#fff; padding:5px 10px; font-size:11pt; font-weight:700; text-transform:uppercase; margin:12px 0 6px 0; page-break-inside: avoid;}
   /* SUB HEADER LIGHT BLACK NO BOX */
- .section-subheader{color:var(--light-black); font-size:10pt; font-weight:700; margin:8px 0 4px 0; page-break-inside: avoid;}
+.section-subheader{color:var(--light-black); font-size:10pt; font-weight:700; margin:8px 0 4px 0; page-break-inside: avoid;}
+.resume a{color:#000; text-decoration:underline}
 
- .resume-table{width:100%; border-collapse:collapse; margin:5px 0 10px 0; font-size:9.5pt; page-break-inside: avoid;}
- .resume-table th{background:var(--light-black); color:#fff; padding:5px; text-align:left; font-weight:700; border:1px solid var(--black)}
- .resume-table td{padding:4px; border:1px solid var(--border); vertical-align:top}
+.resume-table{width:100%; border-collapse:collapse; margin:5px 0 10px 0; font-size:9.5pt; page-break-inside: avoid;}
+.resume-table th{background:var(--light-black); color:#fff; padding:5px; text-align:left; font-weight:700; border:1px solid var(--black)}
+.resume-table td{padding:4px; border:1px solid var(--border); vertical-align:top}
 
   footer{background:var(--black); color:#fff; text-align:center; padding:12px; font-size:10px; margin-top:20px}
- .resume-section{page-break-inside: avoid;}
+.resume-section{page-break-inside: avoid;}
   #preview-area, #ats-upload-area{display:none}
- .modal{display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000a; z-index:999; justify-content:center; align-items:center}
- .modal-content{background:#fff; padding:15px; width:95%; max-width:900px; max-height:90vh; overflow:auto}
+.modal{display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000a; z-index:999; justify-content:center; align-items:center}
+.modal-content{background:#fff; padding:15px; width:95%; max-width:900px; max-height:90vh; overflow:auto}
   #ats-result{background:#f9f9f9; padding:15px; margin-top:10px; border:2px solid var(--black)}
- .ats-score{font-size:28px; font-weight:700; color:var(--black)}
- .ats-good{color:green}.ats-bad{color:red}
- .upload-box{border:2px dashed var(--black); padding:40px; text-align:center; cursor:pointer; background:#fafafa}
+.ats-score{font-size:28px; font-weight:700; color:var(--black)}
+.ats-good{color:green}.ats-bad{color:red}
+.upload-box{border:2px dashed var(--black); padding:40px; text-align:center; cursor:pointer; background:#fafafa}
 </style>
 </head>
 <body>
@@ -81,10 +83,10 @@
     <h3>1. PERSONAL DETAILS</h3>
     <div style="display:flex; gap:15px">
       <div style="flex:1">
-        <input id="name" placeholder="FULL NAME *" required>
-        <input id="dob" type="date">
-        <input id="email" placeholder="EMAIL ID" type="email">
-        <input id="mobile" placeholder="CONTACT NUMBER">
+        <input id="name" placeholder="FULL NAME *" required oninput="saveData()">
+        <input id="dob" type="date" oninput="saveData()">
+        <input id="email" placeholder="EMAIL ID" type="email" oninput="saveData()">
+        <input id="mobile" placeholder="CONTACT NUMBER" oninput="saveData()">
       </div>
       <div style="width:120px">
         <label><b>PHOTO</b></label>
@@ -92,12 +94,12 @@
         <div class="photo-box" id="photo-box">No Photo</div>
       </div>
     </div>
-    <textarea id="address" rows="2" placeholder="ADDRESS"></textarea>
-    <input id="linkedin" placeholder="LINKEDIN URL">
-    <input id="website" placeholder="GITHUB / PORTFOLIO URL">
+    <textarea id="address" rows="2" placeholder="ADDRESS" oninput="saveData()"></textarea>
+    <input id="linkedin" placeholder="LINKEDIN URL" oninput="saveData()">
+    <input id="website" placeholder="GITHUB / PORTFOLIO URL" oninput="saveData()">
 
     <h3>2. PROFILE SUMMARY</h3>
-    <textarea id="summary" rows="4" placeholder="Write manually... No AI Suggestion"></textarea>
+    <textarea id="summary" rows="4" placeholder="Write manually... No AI Suggestion" oninput="saveData()"></textarea>
 
     <h3>3. QUALIFICATION</h3><div id="edu-list"></div><button type="button" class="btn btn-success" onclick="addField('edu')"><i class="fa-solid fa-plus"></i> Add Qualification</button>
 
@@ -114,7 +116,7 @@
     <b class="section-subheader">Soft Skills:</b><div id="soft-skill-list"></div><button type="button" class="btn btn-success" onclick="addField('soft-skill')"><i class="fa-solid fa-plus"></i> Add</button>
 
     <h3>8. DECLARATION</h3>
-    <textarea id="declaration" rows="3" placeholder="I hereby declare that... Manual only"></textarea>
+    <textarea id="declaration" rows="3" placeholder="I hereby declare that... Manual only" oninput="saveData()"></textarea>
 
     <button type="button" class="btn btn-ats" onclick="runATSTest()"><i class="fa-solid fa-robot"></i> RUN ATS TEST</button>
     <div id="ats-result"></div>
@@ -164,13 +166,28 @@ function showTab(tab){
   else{document.getElementById('create-tab').style.display='none'; document.getElementById('check-tab').style.display='block'; document.querySelectorAll('.tab')[1].classList.add('active')}
 }
 
+// LOCALSTORAGE SAVE/LOAD
+function saveData(){
+  let data = {};
+  document.querySelectorAll('#input-form input, #input-form textarea').forEach(el=>{data[el.id]=el.value});
+  localStorage.setItem('atsResumeData', JSON.stringify(data));
+  localStorage.setItem('atsResumePhoto', photoData);
+}
+function loadData(){
+  let data = JSON.parse(localStorage.getItem('atsResumeData')||'{}');
+  Object.keys(data).forEach(id=>{if(document.getElementById(id)) document.getElementById(id).value=data[id]});
+  photoData = localStorage.getItem('atsResumePhoto')||'';
+  if(photoData) document.getElementById('photo-box').innerHTML = `<img src="${photoData}">`;
+}
+window.onload = loadData;
+
 document.getElementById('photo').onchange = e=>{
   let file = e.target.files[0]; if(!file) return;
   let reader = new FileReader();
   reader.onload = ()=>{document.getElementById('cropper-img').src = reader.result; document.getElementById('crop-modal').style.display='flex'; if(cropper) cropper.destroy(); cropper = new Cropper(document.getElementById('cropper-img'), {aspectRatio:1, viewMode:1});}
   reader.readAsDataURL(file);
 }
-window.cropImage = function(){photoData = cropper.getCroppedCanvas({width:200, height:200}).toDataURL('image/jpeg', 0.9); document.getElementById('photo-box').innerHTML = `<img src="${photoData}">`; closeCrop();}
+window.cropImage = function(){photoData = cropper.getCroppedCanvas({width:200, height:200}).toDataURL('image/jpeg', 0.9); document.getElementById('photo-box').innerHTML = `<img src="${photoData}">`; saveData(); closeCrop();}
 window.closeCrop = function(){document.getElementById('crop-modal').style.display='none'; if(cropper) cropper.destroy()}
 
 function formatDate(dateStr){if(!dateStr) return '-'; const d = new Date(dateStr); return d.toLocaleDateString('en-GB', {month:'short', year:'numeric'});}
@@ -179,11 +196,11 @@ function calcDuration(start, end){if(!start||!end) return '-'; let s=new Date(st
 window.addField = function(type){
   let container = document.getElementById(type+'-list');
   let div = document.createElement('div'); div.className='section-group';
-  div.innerHTML = `<button type="button" class="remove-btn" onclick="this.parentElement.remove()">X</button>`;
-  if(type=='edu') div.innerHTML += `<input placeholder="COURSE NAME *" data-req><input placeholder="INSTITUTE NAME *" data-req><input placeholder="UNIVERSITY / BOARD NAME"><input type="date" placeholder="START DATE"><input type="date" placeholder="END DATE">`;
-  if(type=='exp') div.innerHTML += `<input placeholder="JOB TITLE *" data-req><input placeholder="COMPANY NAME *" data-req><input type="date" placeholder="START DATE"><input type="date" placeholder="END DATE"><textarea placeholder="JOB DESCRIPTION"></textarea>`;
-  if(type=='proj') div.innerHTML += `<input placeholder="PROJECT NAME *" data-req><textarea placeholder="PROJECT DESCRIPTION"></textarea>`;
-  if(type.includes('skill')||type.includes('lang')) div.innerHTML += `<input placeholder="NAME *" data-req>`;
+  div.innerHTML = `<button type="button" class="remove-btn" onclick="this.parentElement.remove(); saveData();">X</button>`;
+  if(type=='edu') div.innerHTML += `<input placeholder="COURSE NAME *" data-req oninput="saveData()"><input placeholder="INSTITUTE NAME *" data-req oninput="saveData()"><input placeholder="UNIVERSITY / BOARD NAME" oninput="saveData()"><label class="date-label">From</label><input type="date" placeholder="START DATE" oninput="saveData()"><label class="date-label">To</label><input type="date" placeholder="END DATE" oninput="saveData()">`;
+  if(type=='exp') div.innerHTML += `<input placeholder="JOB TITLE *" data-req oninput="saveData()"><input placeholder="COMPANY NAME *" data-req oninput="saveData()"><label class="date-label">From</label><input type="date" placeholder="START DATE" oninput="saveData()"><label class="date-label">To</label><input type="date" placeholder="END DATE" oninput="saveData()"><textarea placeholder="JOB DESCRIPTION" oninput="saveData()"></textarea>`;
+  if(type=='proj') div.innerHTML += `<input placeholder="PROJECT NAME *" data-req oninput="saveData()"><textarea placeholder="PROJECT DESCRIPTION" oninput="saveData()"></textarea>`;
+  if(type.includes('skill')||type.includes('lang')) div.innerHTML += `<input placeholder="NAME *" data-req oninput="saveData()">`;
   container.appendChild(div);
 }
 
@@ -220,8 +237,8 @@ function renderResume(){
         <p><b>Date of Birth:</b> ${formatDate(document.getElementById('dob').value)}</p>
         <p><b>Email:</b> ${document.getElementById('email').value} | <b>Phone:</b> ${document.getElementById('mobile').value}</p>
         <p><b>Address:</b> ${document.getElementById('address').value}</p>
-        ${linkedin?`<p><b>LinkedIn:</b> ${linkedin}</p>`:''}
-        ${github?`<p><b>GitHub/Portfolio:</b> ${github}</p>`:''}
+        ${linkedin?`<p><b>LinkedIn:</b> <a href="${linkedin}" target="_blank">${linkedin}</a></p>`:''}
+        ${github?`<p><b>GitHub/Portfolio:</b> <a href="${github}" target="_blank">${github}</a></p>`:''}
       </div>
       ${photoData?`<img src="${photoData}" class="resume-photo">`:''}
     </div>
@@ -236,6 +253,8 @@ function renderResume(){
 }
 
 window.generateResume = function(){
+  let required = document.querySelectorAll('[data-req]');
+  for(let r of required){ if(!r.value){ alert('Please fill all * required fields'); r.focus(); return } }
   if(!document.getElementById('name').value){alert('Please Enter Name'); return}
   renderResume();
   document.getElementById('input-form').style.display='none';
@@ -247,12 +266,23 @@ window.backToForm = function(){document.getElementById('preview-area').style.dis
 window.downloadPDF = async function(){
   const { jsPDF } = window.jspdf;
   const element = document.getElementById('resume');
-  const canvas = await html2canvas(element, {scale:2});
+  const canvas = await html2canvas(element, {scale:2, useCORS: true});
   const imgData = canvas.toDataURL('image/png');
   const pdf = new jsPDF('p', 'mm', 'a4');
   const pdfWidth = pdf.internal.pageSize.getWidth();
   const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-  pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+  let heightLeft = pdfHeight;
+  let position = 0;
+
+  pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
+  heightLeft -= pdf.internal.pageSize.getHeight();
+
+  while(heightLeft > 0) {
+    position = heightLeft - pdfHeight;
+    pdf.addPage();
+    pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
+    heightLeft -= pdf.internal.pageSize.getHeight();
+  }
   pdf.save(`${document.getElementById('name').value}_ATS_Resume.pdf`);
 }
 
@@ -297,7 +327,7 @@ window.handleFileUpload = async function(event){
   let file = event.target.files[0]; if(!file) return;
   document.getElementById('ats-upload-result').innerHTML = '<p>Reading file... Please wait</p>';
   let text = '';
-  
+
   if(file.name.endsWith('.pdf')){
     const pdf = await pdfjsLib.getDocument(URL.createObjectURL(file)).promise;
     for(let i=1; i<=pdf.numPages; i++){
