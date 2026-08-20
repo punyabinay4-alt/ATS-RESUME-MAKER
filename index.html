@@ -3,2239 +3,1735 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Job Friendly Resume Maker with ATS Test and professional PDF export">
+<meta name="description" content="Job Friendly Resume Maker with ATS Test and compressed PDF export">
 <title>JOB FRIENDLY RESUME MAKER</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
 
-<!-- Required for uploaded PDF/DOCX ATS testing -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
 
 <style>
-
 :root{
-    --blue:#1769e0;
-    --blue2:#0b47a1;
-    --blue3:#2196f3;
-    --blue-light:#eef6ff;
-    --dark:#071a33;
-    --dark2:#0d2d55;
-    --text:#172033;
-    --gray:#64748b;
-    --line:#dce6f2;
-    --bg:#f4f7fb;
-    --white:#fff;
-    --green:#07833f;
-    --red:#b42318;
-    --orange:#d97706;
-    --shadow:0 10px 30px rgba(11,71,161,.08);
+ --blue:#1565d8;
+ --blue2:#0b47a1;
+ --blue3:#1976d2;
+ --light:#f3f7fc;
+ --dark:#071a33;
+ --text:#111827;
+ --gray:#64748b;
+ --line:#d9e3ef;
+ --green:#087a38;
+ --red:#b40000;
+ --white:#fff;
 }
 
 *{
-    box-sizing:border-box;
-    font-family:Arial,Calibri,sans-serif;
+ box-sizing:border-box;
+ font-family:Arial,Calibri,sans-serif;
 }
 
 html{
-    scroll-behavior:smooth;
+ scroll-behavior:smooth;
 }
 
 body{
-    margin:0;
-    background:
-        radial-gradient(circle at top right,#e7f2ff 0,#f4f7fb 35%,#f4f7fb 100%);
-    color:var(--text);
+ margin:0;
+ background:var(--light);
+ color:var(--text);
 }
 
 button,input,textarea,select{
-    font:inherit;
+ font:inherit;
 }
 
 button{
-    -webkit-tap-highlight-color:transparent;
+ cursor:pointer;
 }
 
 .hidden{
-    display:none!important;
+ display:none!important;
 }
 
-/* ================= HEADER ================= */
+/* ================= HOME ================= */
 
-header{
-    background:
-        radial-gradient(circle at 20% 10%,#348ff5 0,transparent 35%),
-        linear-gradient(135deg,#061f4a,#0b47a1,#2196f3);
-    color:#fff;
-    padding:30px 18px 26px;
-    text-align:center;
-    box-shadow:0 8px 30px rgba(11,71,161,.22);
+.home{
+ min-height:100vh;
+ background:
+ linear-gradient(135deg,#061d3b,#0b4fa3,#2196f3);
+ color:white;
+ padding-bottom:40px;
 }
 
-.header-icon{
-    width:52px;
-    height:52px;
-    margin:0 auto 10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:16px;
-    background:#ffffff1c;
-    border:1px solid #ffffff35;
-    backdrop-filter:blur(8px);
-    font-size:23px;
+.home-header{
+ text-align:center;
+ padding:55px 20px 35px;
 }
 
-header h1{
-    margin:0;
-    font-size:25px;
-    letter-spacing:.5px;
+.home-icon{
+ width:80px;
+ height:80px;
+ margin:auto;
+ border-radius:22px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:#ffffff20;
+ border:1px solid #ffffff35;
+ font-size:38px;
 }
 
-header p{
-    margin:9px 0 0;
-    font-size:11px;
-    color:#eaf3ff;
+.home-header h1{
+ font-size:30px;
+ margin:22px 0 8px;
 }
 
-.pro-badge{
-    display:inline-block;
-    background:#fff;
-    color:var(--blue2);
-    padding:5px 10px;
-    border-radius:20px;
-    font-size:9px;
-    font-weight:900;
-    margin-left:5px;
-    vertical-align:middle;
+.home-header p{
+ margin:0;
+ color:#dbeafe;
+ font-size:14px;
 }
 
-/* ================= LAYOUT ================= */
+.home-badge{
+ display:inline-block;
+ background:white;
+ color:#0b47a1;
+ border-radius:20px;
+ padding:5px 11px;
+ font-size:10px;
+ font-weight:900;
+ margin-left:5px;
+}
+
+.home-cards{
+ max-width:850px;
+ margin:auto;
+ padding:20px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:20px;
+}
+
+.home-card{
+ background:#ffffff15;
+ border:1px solid #ffffff30;
+ border-radius:22px;
+ padding:28px;
+ backdrop-filter:blur(10px);
+ transition:.25s;
+}
+
+.home-card:hover{
+ transform:translateY(-4px);
+ background:#ffffff20;
+}
+
+.home-card-icon{
+ width:60px;
+ height:60px;
+ border-radius:16px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:#ffffff18;
+ font-size:27px;
+ margin-bottom:20px;
+}
+
+.home-card h2{
+ margin:0 0 8px;
+ font-size:21px;
+}
+
+.home-card p{
+ color:#dbeafe;
+ font-size:12px;
+ line-height:1.6;
+ min-height:55px;
+}
+
+.home-btn{
+ width:100%;
+ border:0;
+ border-radius:12px;
+ padding:14px;
+ font-size:12px;
+ font-weight:900;
+ background:white;
+ color:#0b47a1;
+}
+
+.home-footer{
+ text-align:center;
+ margin-top:20px;
+ color:#dbeafe;
+ font-size:10px;
+}
+
+/* ================= APP ================= */
+
+.app{
+ display:none;
+}
+
+.app-header{
+ background:linear-gradient(135deg,#062e72,#1565d8,#2196f3);
+ color:white;
+ text-align:center;
+ padding:25px 18px;
+}
+
+.app-header h1{
+ margin:0;
+ font-size:23px;
+}
+
+.app-header p{
+ margin:7px 0 0;
+ font-size:11px;
+ color:#eaf3ff;
+}
+
+.back-home{
+ position:absolute;
+ left:15px;
+ top:15px;
+ background:#ffffff20;
+ color:#fff;
+ border:1px solid #ffffff40;
+ padding:9px 12px;
+ border-radius:9px;
+ font-size:10px;
+ font-weight:800;
+}
 
 .layout{
-    max-width:1280px;
-    margin:0 auto;
-    padding:20px;
-    display:grid;
-    grid-template-columns:235px 1fr;
-    gap:20px;
+ max-width:1250px;
+ margin:auto;
+ padding:18px;
 }
-
-.sidebar{
-    position:sticky;
-    top:15px;
-    height:max-content;
-    background:
-        radial-gradient(circle at top right,#1769e0 0,transparent 38%),
-        linear-gradient(180deg,#061a35,#0b4fa3);
-    color:#fff;
-    border-radius:18px;
-    padding:12px;
-    box-shadow:0 15px 35px rgba(7,42,90,.18);
-    overflow:hidden;
-}
-
-.brand{
-    padding:14px 12px;
-    border-bottom:1px solid #ffffff26;
-    margin-bottom:9px;
-}
-
-.brand-icon{
-    width:36px;
-    height:36px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#ffffff18;
-    border:1px solid #ffffff28;
-    border-radius:10px;
-    margin-bottom:9px;
-}
-
-.brand b{
-    font-size:14px;
-    display:block;
-}
-
-.brand small{
-    display:block;
-    color:#c9dcf7;
-    margin-top:5px;
-    line-height:1.4;
-}
-
-.nav{
-    width:100%;
-    border:0;
-    background:transparent;
-    color:#dbeafe;
-    text-align:left;
-    padding:12px;
-    border-radius:10px;
-    cursor:pointer;
-    font-weight:800;
-    font-size:11px;
-    margin:3px 0;
-    transition:.2s;
-}
-
-.nav i{
-    width:20px;
-    margin-right:4px;
-}
-
-.nav:hover{
-    background:#ffffff12;
-    color:#fff;
-}
-
-.nav.active{
-    background:#fff;
-    color:var(--blue2);
-    box-shadow:0 5px 15px #0002;
-}
-
-.main{
-    min-width:0;
-}
-
-/* ================= TOPBAR ================= */
 
 .topbar{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding:14px 16px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    margin-bottom:16px;
-    box-shadow:var(--shadow);
-}
-
-.topbar-left{
-    display:flex;
-    align-items:center;
-    gap:11px;
-}
-
-.topbar-icon{
-    width:40px;
-    height:40px;
-    border-radius:11px;
-    background:var(--blue-light);
-    color:var(--blue);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.topbar b{
-    font-size:13px;
-}
-
-.topbar small{
-    display:block;
-    margin-top:4px;
-    color:#7b8797;
-    font-size:9px;
+ background:white;
+ border:1px solid var(--line);
+ border-radius:14px;
+ padding:14px 16px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:15px;
+ box-shadow:0 4px 15px #0b47a10b;
 }
 
 .status{
-    font-size:10px;
-    color:var(--green);
-    font-weight:900;
-    background:#eaf8f0;
-    padding:7px 10px;
-    border-radius:20px;
+ color:var(--green);
+ font-size:10px;
+ font-weight:900;
 }
-
-.status i{
-    font-size:8px;
-    margin-right:4px;
-}
-
-/* ================= CARDS ================= */
 
 .card{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding:20px;
-    margin-bottom:16px;
-    box-shadow:var(--shadow);
+ background:white;
+ border:1px solid var(--line);
+ border-radius:14px;
+ padding:20px;
+ margin-bottom:15px;
+ box-shadow:0 5px 18px #0b47a10b;
 }
 
 .card-title{
-    display:flex;
-    align-items:center;
-    gap:9px;
-    font-size:14px;
-    font-weight:900;
-    margin-bottom:15px;
-    border-bottom:2px solid var(--blue);
-    padding-bottom:9px;
-    color:var(--dark);
+ display:flex;
+ align-items:center;
+ gap:9px;
+ font-size:14px;
+ font-weight:900;
+ border-bottom:2px solid var(--blue);
+ padding-bottom:8px;
+ margin-bottom:13px;
+ color:var(--dark);
 }
 
 .card-title i{
-    color:var(--blue);
+ color:var(--blue);
 }
-
-/* ================= FORMS ================= */
 
 .grid2{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.grid3{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:12px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
 }
 
 label{
-    font-size:9px;
-    font-weight:900;
-    display:block;
-    margin:7px 0 4px;
-    text-transform:uppercase;
-    color:#334155;
+ display:block;
+ font-size:9px;
+ font-weight:900;
+ margin:6px 0 3px;
+ text-transform:uppercase;
+ color:#334155;
 }
 
 input,
 textarea,
 select{
-    width:100%;
-    border:1px solid #cbd8e8;
-    border-radius:10px;
-    padding:11px;
-    background:#fff;
-    font-size:11px;
-    outline:none;
-    transition:.2s;
-}
-
-input:hover,
-textarea:hover,
-select:hover{
-    border-color:#9db8d8;
+ width:100%;
+ border:1px solid #cbd8e8;
+ border-radius:8px;
+ padding:10px;
+ background:white;
+ font-size:11px;
+ outline:none;
 }
 
 input:focus,
 textarea:focus,
 select:focus{
-    border-color:var(--blue);
-    box-shadow:0 0 0 4px #1565d812;
+ border-color:var(--blue);
+ box-shadow:0 0 0 3px #1565d815;
 }
 
 textarea{
-    min-height:78px;
-    resize:vertical;
+ min-height:78px;
+ resize:vertical;
 }
 
-/* ================= BUTTONS ================= */
-
 .btn{
-    border:0;
-    border-radius:10px;
-    padding:11px 14px;
-    cursor:pointer;
-    font-size:11px;
-    font-weight:900;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:7px;
-    transition:.2s;
+ border:0;
+ border-radius:8px;
+ padding:11px 14px;
+ font-size:11px;
+ font-weight:900;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ gap:7px;
+ transition:.2s;
 }
 
 .btn:hover{
-    transform:translateY(-1px);
-}
-
-.btn:active{
-    transform:translateY(0);
+ transform:translateY(-1px);
 }
 
 .btn-blue{
-    background:linear-gradient(135deg,#0b47a1,#1976d2);
-    color:#fff;
-    box-shadow:0 7px 18px #0b47a126;
+ background:linear-gradient(135deg,#0b47a1,#1976d2);
+ color:white;
 }
 
 .btn-white{
-    background:#fff;
-    color:var(--blue2);
-    border:1px solid #bfd0e5;
-}
-
-.btn-gray{
-    background:#0d4f9e;
-    color:#fff;
-}
-
-.btn-red{
-    background:#b40000;
-    color:#fff;
+ background:white;
+ color:var(--blue2);
+ border:1px solid #bfd0e5;
 }
 
 .full{
-    width:100%;
-    margin-top:9px;
+ width:100%;
+ margin-top:9px;
 }
-
-.row-between{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:8px;
-}
-
-/* ================= GROUP ================= */
 
 .group{
-    position:relative;
-    border:1px solid #d7e3f0;
-    background:linear-gradient(180deg,#fbfdff,#f7faff);
-    border-radius:11px;
-    padding:13px;
-    margin:10px 0;
+ position:relative;
+ border:1px solid #d7e3f0;
+ background:#f8fbff;
+ border-radius:10px;
+ padding:13px;
+ margin:9px 0;
 }
 
 .remove{
-    position:absolute;
-    right:8px;
-    top:8px;
-    background:#b40000;
-    color:#fff;
-    border:0;
-    border-radius:6px;
-    padding:5px 8px;
-    font-size:9px;
-    cursor:pointer;
-}
-
-/* ================= PHOTO ================= */
-
-.photo-box{
-    width:105px;
-    height:105px;
-    border:2px dashed var(--blue);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-    background:var(--blue-light);
-    color:var(--blue2);
-    font-size:9px;
-    font-weight:800;
-    border-radius:12px;
-}
-
-.photo-box img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+ position:absolute;
+ right:8px;
+ top:8px;
+ background:#b40000;
+ color:white;
+ border:0;
+ border-radius:5px;
+ padding:4px 8px;
+ font-size:9px;
 }
 
 .photo-area{
-    display:flex;
-    gap:15px;
-    align-items:flex-start;
-}
-
-/* ================= TEMPLATE ================= */
-
-.template-help{
-    font-size:11px;
-    color:var(--gray);
-    margin-top:-5px;
-    margin-bottom:15px;
-}
-
-.template-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:13px;
-}
-
-.template{
-    border:2px solid #d6e2f0;
-    border-radius:13px;
-    padding:10px;
-    cursor:pointer;
-    background:#fff;
-    transition:.2s;
-}
-
-.template:hover{
-    border-color:var(--blue3);
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px #1976d222;
-}
-
-.template.active{
-    border-color:var(--blue3);
-    box-shadow:0 0 0 2px #1976d233,0 8px 20px #1976d222;
-}
-
-.template.active::after{
-    content:"✓ SELECTED";
-    display:block;
-    background:var(--blue3);
-    color:#fff;
-    padding:5px;
-    margin-top:8px;
-    border-radius:6px;
-    text-align:center;
-    font-size:9px;
-    font-weight:900;
-}
-
-.thumb{
-    height:145px;
-    border:1px solid #b8c7d9;
-    padding:8px;
-    overflow:hidden;
-    font-size:6px;
-    background:#fff;
-}
-
-.thumb-name{
-    font-size:12px;
-    font-weight:900;
-    border-bottom:2px solid #000;
-    padding-bottom:4px;
-}
-
-.thumb-head{
-    background:#0b47a1;
-    color:#fff;
-    padding:3px;
-    margin:5px 0;
-    font-weight:bold;
-}
-
-.template strong{
-    font-size:11px;
-    display:block;
-    margin-top:8px;
-}
-
-.template span{
-    font-size:9px;
-    color:#666;
-}
-
-/* ================= PREVIEW ================= */
-
-#previewArea{
-    display:none;
-}
-
-.resume-wrap{
-    background:#e6edf6;
-    padding:15px;
-    border-radius:12px;
-    overflow:auto;
-}
-
-.resume{
-    width:210mm;
-    min-height:297mm;
-    background:#fff;
-    margin:auto;
-    padding:12mm;
-    color:#000;
-    font-size:9.5pt;
-    line-height:1.35;
-}
-
-.resume h1{
-    font-size:21pt;
-    margin:0 0 5px;
-}
-
-.resume p{
-    margin:4px 0;
-}
-
-.resume a{
-    color:#000;
-    text-decoration:underline;
-    font-weight:bold;
-}
-
-.r-head{
-    display:flex;
-    justify-content:space-between;
-    gap:15px;
-    border-bottom:2px solid #000;
-    padding-bottom:9px;
-    margin-bottom:9px;
-}
-
-.r-photo{
-    width:88px;
-    height:88px;
-    object-fit:cover;
-    border:1px solid #000;
-}
-
-.r-section{
-    page-break-inside:avoid;
-    break-inside:avoid-page;
-}
-
-.r-title{
-    background:#0b47a1;
-    color:#fff;
-    padding:5px 9px;
-    font-weight:900;
-    font-size:10.5pt;
-    text-transform:uppercase;
-    margin:10px 0 6px;
-    page-break-after:avoid;
-}
-
-.r-sub{
-    font-weight:900;
-    color:#333;
-    font-size:9pt;
-    margin-top:6px;
-}
-
-.r-table{
-    width:100%;
-    border-collapse:collapse;
-    font-size:8.3pt;
-    page-break-inside:avoid;
-}
-
-.r-table th{
-    background:#0d4f9e;
-    color:#fff;
-    border:1px solid #000;
-    padding:5px;
-    text-align:left;
-}
-
-.r-table td{
-    border:1px solid #ccc;
-    padding:5px;
-    vertical-align:top;
-}
-
-.r-table tr{
-    page-break-inside:avoid;
-}
-
-/* ================= EXECUTIVE ================= */
-
-.resume.executive .r-head{
-    border-bottom:5px solid #0b47a1;
-}
-
-.resume.executive .r-title{
-    background:#fff;
-    color:#000;
-    border-bottom:2px solid #0b47a1;
-    padding-left:0;
-}
-
-/* ================= MODERN ================= */
-
-.resume.modern .r-head{
-    background:#0b47a1;
-    color:#fff;
-    padding:12px;
-    border:0;
-}
-
-.resume.modern a{
-    color:#fff;
-}
-
-.resume.modern .r-title{
-    background:#0d4f9e;
-    border-left:5px solid #1565d8;
-}
-
-/* ================= SLATE ================= */
-
-.resume.slate{
-    padding:0;
-    display:grid;
-    grid-template-columns:34% 66%;
-    min-height:297mm;
-    font-size:9pt;
-    line-height:1.3;
-}
-
-.resume.slate .slate-left{
-    background:#123e70;
-    color:#fff;
-    padding:11mm 7mm;
-    min-height:297mm;
-}
-
-.resume.slate .slate-right{
-    background:#fff;
-    padding:11mm 10mm;
-}
-
-.resume.slate .slate-photo{
-    width:88px;
-    height:88px;
-    border-radius:50%;
-    object-fit:cover;
-    border:3px solid #fff;
-    display:block;
-    margin:0 auto 16px;
-}
-
-.resume.slate .slate-name{
-    text-align:center;
-    font-size:20pt;
-    font-weight:900;
-    line-height:1.05;
-    margin:0 0 5px;
-}
-
-.resume.slate .slate-role{
-    text-align:center;
-    font-size:9pt;
-    margin-bottom:22px;
-}
-
-.resume.slate .slate-side-title{
-    font-size:10.5pt;
-    font-weight:900;
-    border-bottom:1px solid #ffffff77;
-    padding-bottom:5px;
-    margin:17px 0 7px;
-}
-
-.resume.slate .slate-side p{
-    margin:4px 0;
-    word-break:break-word;
-}
-
-.resume.slate .slate-side a{
-    color:#fff;
-}
-
-.resume.slate .slate-right .r-title{
-    background:transparent;
-    color:#111;
-    border:0;
-    border-bottom:2px solid #123e70;
-    padding:0 0 5px;
-    margin:0 0 8px;
-    font-size:13pt;
-}
-
-.resume.slate .slate-right .r-section{
-    margin-bottom:15px;
-}
-
-.resume.slate .slate-right .r-table th{
-    background:#123e70;
-}
-
-/* ================= ONE PAGE ================= */
-
-.resume.onepage{
-    padding:7mm;
-    font-size:8pt;
-    line-height:1.15;
-}
-
-.resume.onepage h1{
-    font-size:17pt;
-}
-
-.resume.onepage .r-title{
-    font-size:9pt;
-    padding:3px 7px;
-    margin:6px 0 3px;
-}
-
-.resume.onepage .r-table{
-    font-size:7pt;
-}
-
-.resume.onepage .r-table th,
-.resume.onepage .r-table td{
-    padding:2px 3px;
-}
-
-/* ================= ATS ================= */
-
-.ats-box{
-    border:1px solid #cfe0f3;
-    border-radius:14px;
-    padding:15px;
-    background:linear-gradient(145deg,#f8fbff,#eef6ff);
-}
-
-.ats-intro{
-    background:#fff;
-    border:1px solid #dbe6f2;
-    border-radius:12px;
-    padding:14px;
-    margin-bottom:12px;
-}
-
-.ats-intro-head{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.ats-intro-icon{
-    width:42px;
-    height:42px;
-    border-radius:12px;
-    background:var(--blue-light);
-    color:var(--blue);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:18px;
-}
-
-.ats-intro h3{
-    margin:0;
-    font-size:13px;
-}
-
-.ats-intro p{
-    margin:5px 0 0;
-    color:#64748b;
-    font-size:10px;
-    line-height:1.5;
-}
-
-.ats-features{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-    margin-top:12px;
-}
-
-.ats-feature{
-    background:#f8fbff;
-    border:1px solid #dce8f5;
-    border-radius:9px;
-    padding:9px;
-    font-size:9px;
-    color:#40516a;
-}
-
-.ats-feature i{
-    color:var(--blue);
-    margin-right:4px;
-}
-
-.score{
-    text-align:center;
-    background:#fff;
-    border:1px solid #d8e3ef;
-    border-radius:12px;
-    padding:17px;
-}
-
-.score-label{
-    font-size:9px;
-    color:#64748b;
-    font-weight:900;
-    letter-spacing:.5px;
-}
-
-.score-num{
-    font-size:42px;
-    font-weight:900;
-    color:var(--blue2);
-    margin-top:2px;
-}
-
-.meter{
-    height:12px;
-    background:#dbe5f0;
-    border-radius:10px;
-    overflow:hidden;
-    margin-top:9px;
-}
-
-.meter>div{
-    height:100%;
-    background:linear-gradient(90deg,#0b47a1,#2196f3);
-    border-radius:10px;
-    transition:width .5s;
-}
-
-.ats-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin-top:10px;
-}
-
-.ats-card{
-    background:#fff;
-    border:1px solid #d8e3ef;
-    border-radius:10px;
-    padding:12px;
-    font-size:11px;
-}
-
-.good{
-    color:var(--green);
-}
-
-.bad{
-    color:var(--red);
-}
-
-.ats-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:10px;
-}
-
-.ats-table td{
-    border:1px solid #d8e3ef;
-    padding:7px;
-}
-
-.ats-table td:first-child{
-    font-weight:800;
-    color:#475569;
-}
-
-.ats-upload{
-    margin-top:12px;
-    background:#fff;
-    border:1px solid #d8e3ef;
-    border-radius:12px;
-    padding:14px;
-}
-
-.upload{
-    border:2px dashed #6fa6e8;
-    border-radius:12px;
-    padding:30px 18px;
-    text-align:center;
-    cursor:pointer;
-    background:#f5faff;
-    color:var(--blue2);
-    transition:.2s;
-}
-
-.upload:hover{
-    background:#edf6ff;
-    border-color:var(--blue);
-}
-
-.upload i{
-    font-size:35px;
-}
-
-.upload h3{
-    margin:9px 0 5px;
-    font-size:14px;
-}
-
-.upload p{
-    font-size:10px;
-    color:#64748b;
-    margin:0;
-}
-
-/* ================= STEPS ================= */
+ display:flex;
+ gap:15px;
+ align-items:flex-start;
+}
+
+.photo-box{
+ width:105px;
+ height:105px;
+ border:2px dashed var(--blue);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ overflow:hidden;
+ background:#eaf3ff;
+ color:var(--blue2);
+ font-size:9px;
+ font-weight:800;
+ border-radius:8px;
+}
+
+.photo-box img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+}
+
+/* STEPS */
 
 .steps{
-    display:flex;
-    gap:8px;
-    margin-bottom:16px;
+ display:flex;
+ gap:8px;
+ margin-bottom:15px;
 }
 
 .step{
-    flex:1;
-    padding:10px;
-    border-radius:10px;
-    background:#e3ebf6;
-    color:#64748b;
-    text-align:center;
-    font-size:9px;
-    font-weight:900;
+ flex:1;
+ padding:10px;
+ border-radius:8px;
+ background:#e2eaf5;
+ color:#64748b;
+ text-align:center;
+ font-size:9px;
+ font-weight:900;
 }
 
 .step.active{
-    background:linear-gradient(135deg,#0b47a1,#1976d2);
-    color:#fff;
-    box-shadow:0 5px 15px #0b47a126;
+ background:var(--blue);
+ color:white;
 }
 
-/* ================= MODAL ================= */
+/* TEMPLATES */
+
+.template-grid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:12px;
+}
+
+.template{
+ border:2px solid #d6e2f0;
+ border-radius:12px;
+ padding:10px;
+ cursor:pointer;
+ background:white;
+ transition:.2s;
+}
+
+.template:hover{
+ border-color:var(--blue3);
+ transform:translateY(-2px);
+}
+
+.template.active{
+ border-color:var(--blue3);
+ box-shadow:0 0 0 2px #1976d233;
+}
+
+.template.active::after{
+ content:"✓ SELECTED";
+ display:block;
+ background:var(--blue3);
+ color:white;
+ padding:5px;
+ margin-top:8px;
+ border-radius:6px;
+ text-align:center;
+ font-size:9px;
+ font-weight:900;
+}
+
+.thumb{
+ height:145px;
+ border:1px solid #b8c7d9;
+ padding:8px;
+ overflow:hidden;
+ font-size:6px;
+ background:white;
+}
+
+.thumb-name{
+ font-size:12px;
+ font-weight:900;
+ border-bottom:2px solid #000;
+ padding-bottom:4px;
+}
+
+.thumb-head{
+ background:#0b47a1;
+ color:white;
+ padding:3px;
+ margin:5px 0;
+ font-weight:bold;
+}
+
+.template strong{
+ font-size:11px;
+ display:block;
+ margin-top:8px;
+}
+
+.template span{
+ font-size:9px;
+ color:#666;
+}
+
+/* RESUME */
+
+.resume-wrap{
+ background:#e6edf6;
+ padding:15px;
+ border-radius:10px;
+ overflow:auto;
+}
+
+.resume{
+ width:210mm;
+ min-height:297mm;
+ background:white;
+ margin:auto;
+ padding:12mm;
+ color:#000;
+ font-size:9.5pt;
+ line-height:1.35;
+}
+
+.resume h1{
+ font-size:21pt;
+ margin:0 0 5px;
+}
+
+.resume p{
+ margin:4px 0;
+}
+
+.resume a{
+ color:#000;
+ text-decoration:underline;
+ font-weight:bold;
+}
+
+.r-head{
+ display:flex;
+ justify-content:space-between;
+ gap:15px;
+ border-bottom:2px solid #000;
+ padding-bottom:9px;
+ margin-bottom:9px;
+}
+
+.r-photo{
+ width:88px;
+ height:88px;
+ object-fit:cover;
+ border:1px solid #000;
+}
+
+.r-section{
+ page-break-inside:avoid;
+ break-inside:avoid-page;
+}
+
+.r-title{
+ background:#0b47a1;
+ color:white;
+ padding:5px 9px;
+ font-weight:900;
+ font-size:10.5pt;
+ text-transform:uppercase;
+ margin:10px 0 6px;
+}
+
+.r-table{
+ width:100%;
+ border-collapse:collapse;
+ font-size:8.3pt;
+ page-break-inside:avoid;
+}
+
+.r-table th{
+ background:#0d4f9e;
+ color:white;
+ border:1px solid #000;
+ padding:5px;
+ text-align:left;
+}
+
+.r-table td{
+ border:1px solid #ccc;
+ padding:5px;
+ vertical-align:top;
+}
+
+.resume.executive .r-head{
+ border-bottom:5px solid #0b47a1;
+}
+
+.resume.executive .r-title{
+ background:white;
+ color:#000;
+ border-bottom:2px solid #0b47a1;
+ padding-left:0;
+}
+
+.resume.modern .r-head{
+ background:#0b47a1;
+ color:white;
+ padding:12px;
+ border:0;
+}
+
+.resume.modern a{
+ color:white;
+}
+
+.resume.modern .r-title{
+ background:#0d4f9e;
+ border-left:5px solid #1565d8;
+}
+
+.resume.slate{
+ padding:0;
+ display:grid;
+ grid-template-columns:34% 66%;
+ min-height:297mm;
+ font-size:9pt;
+}
+
+.slate-left{
+ background:#123e70;
+ color:white;
+ padding:11mm 7mm;
+}
+
+.slate-right{
+ background:white;
+ padding:11mm 10mm;
+}
+
+.slate-photo{
+ width:88px;
+ height:88px;
+ border-radius:50%;
+ object-fit:cover;
+ border:3px solid white;
+ display:block;
+ margin:0 auto 16px;
+}
+
+.slate-name{
+ text-align:center;
+ font-size:20pt;
+ font-weight:900;
+ line-height:1.05;
+}
+
+.slate-role{
+ text-align:center;
+ font-size:9pt;
+ margin:6px 0 20px;
+}
+
+.slate-side-title{
+ font-size:10.5pt;
+ font-weight:900;
+ border-bottom:1px solid #ffffff77;
+ padding-bottom:5px;
+ margin:17px 0 7px;
+}
+
+.slate-left p{
+ word-break:break-word;
+}
+
+.slate-left a{
+ color:white;
+}
+
+.slate-right .r-title{
+ background:transparent;
+ color:#111;
+ border-bottom:2px solid #123e70;
+ padding:0 0 5px;
+}
+
+.onepage{
+ padding:7mm;
+ font-size:8pt;
+ line-height:1.15;
+}
+
+.onepage h1{
+ font-size:17pt;
+}
+
+.onepage .r-title{
+ font-size:9pt;
+ padding:3px 7px;
+ margin:6px 0 3px;
+}
+
+.onepage .r-table{
+ font-size:7pt;
+}
+
+.onepage .r-table th,
+.onepage .r-table td{
+ padding:2px 3px;
+}
+
+/* ATS */
+
+.ats-box{
+ border:2px solid #0b47a1;
+ border-radius:10px;
+ padding:14px;
+ background:#f8fbff;
+}
+
+.score{
+ text-align:center;
+ background:white;
+ border:1px solid #d8e3ef;
+ border-radius:10px;
+ padding:15px;
+}
+
+.score-num{
+ font-size:40px;
+ font-weight:900;
+ color:var(--blue2);
+}
+
+.meter{
+ height:12px;
+ background:#dbe5f0;
+ border-radius:10px;
+ overflow:hidden;
+ margin-top:9px;
+}
+
+.meter>div{
+ height:100%;
+ background:linear-gradient(90deg,#0b47a1,#2196f3);
+}
+
+.ats-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+ margin-top:10px;
+}
+
+.ats-card{
+ background:white;
+ border:1px solid #d8e3ef;
+ border-radius:9px;
+ padding:12px;
+ font-size:11px;
+}
+
+.good{
+ color:var(--green);
+}
+
+.bad{
+ color:var(--red);
+}
+
+.ats-table{
+ width:100%;
+ border-collapse:collapse;
+ margin-top:10px;
+}
+
+.ats-table td{
+ border:1px solid #d8e3ef;
+ padding:7px;
+}
+
+/* UPLOAD */
+
+.upload{
+ border:2px dashed var(--blue);
+ border-radius:10px;
+ padding:40px 20px;
+ text-align:center;
+ cursor:pointer;
+ background:#eaf3ff;
+ color:var(--blue2);
+}
+
+.upload i{
+ font-size:40px;
+}
+
+/* MODAL */
 
 .modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:#000b;
-    z-index:999;
-    align-items:center;
-    justify-content:center;
+ display:none;
+ position:fixed;
+ inset:0;
+ background:#000b;
+ z-index:999;
+ align-items:center;
+ justify-content:center;
 }
 
 .modal-content{
-    background:#fff;
-    padding:17px;
-    border-radius:14px;
-    width:95%;
-    max-width:520px;
-    max-height:90vh;
-    overflow:auto;
+ background:white;
+ padding:16px;
+ border-radius:12px;
+ width:95%;
+ max-width:520px;
+ max-height:90vh;
+ overflow:auto;
 }
 
-/* ================= FOOTER ================= */
+/* DOWNLOAD STATUS */
 
-footer{
-    background:#061c39;
-    color:#fff;
-    text-align:center;
-    padding:16px;
-    font-size:9px;
+.download-status{
+ background:#eef7ff;
+ border:1px solid #bcd8f5;
+ color:#0b47a1;
+ padding:12px;
+ border-radius:9px;
+ font-size:11px;
+ margin-top:10px;
+ text-align:center;
 }
 
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:1050px){
-
-    .template-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .ats-features{
-        grid-template-columns:repeat(2,1fr);
-    }
+.home-link{
+ color:#0b47a1;
+ text-decoration:none;
+ font-weight:900;
 }
 
-@media(max-width:850px){
+/* RESPONSIVE */
 
-    .layout{
-        grid-template-columns:1fr;
-        padding:14px;
-    }
+@media(max-width:900px){
 
-    .sidebar{
-        position:relative;
-        top:0;
-    }
+ .template-grid{
+  grid-template-columns:repeat(2,1fr);
+ }
 
-    .grid2,
-    .grid3{
-        grid-template-columns:1fr;
-    }
-
-    .resume{
-        width:100%;
-        padding:12px;
-    }
-
-    .r-head{
-        flex-direction:column;
-    }
-
-    .ats-grid{
-        grid-template-columns:1fr;
-    }
 }
 
 @media(max-width:650px){
 
-    header{
-        padding:24px 14px;
-    }
+ .home-header{
+  padding-top:35px;
+ }
 
-    header h1{
-        font-size:19px;
-    }
+ .home-header h1{
+  font-size:22px;
+ }
 
-    header p{
-        font-size:10px;
-    }
+ .home-cards{
+  grid-template-columns:1fr;
+ }
 
-    .layout{
-        padding:10px;
-    }
+ .grid2{
+  grid-template-columns:1fr;
+ }
 
-    .card{
-        padding:15px;
-        border-radius:14px;
-    }
+ .template-grid{
+  grid-template-columns:1fr;
+ }
 
-    .template-grid{
-        grid-template-columns:1fr;
-    }
+ .photo-area{
+  flex-direction:column;
+ }
 
-    .resume.slate{
-        grid-template-columns:1fr;
-    }
+ .steps{
+  flex-direction:column;
+ }
 
-    .resume.slate .slate-left{
-        min-height:auto;
-    }
+ .resume{
+  width:100%;
+  padding:12px;
+ }
 
-    .resume.slate .slate-right{
-        padding:8mm;
-    }
+ .resume.slate{
+  grid-template-columns:1fr;
+ }
 
-    .photo-area{
-        flex-direction:column;
-    }
+ .slate-left{
+  min-height:auto;
+ }
 
-    .steps{
-        flex-direction:column;
-    }
+ .ats-grid{
+  grid-template-columns:1fr;
+ }
 
-    .ats-features{
-        grid-template-columns:1fr 1fr;
-    }
+ .r-head{
+  flex-direction:column;
+ }
 
-    .topbar{
-        align-items:flex-start;
-    }
+ .back-home{
+  position:static;
+  margin-bottom:12px;
+ }
 
-    .status{
-        white-space:nowrap;
-    }
+ .app-header{
+  padding-top:15px;
+ }
 
-    .upload{
-        padding:25px 12px;
-    }
 }
 
-@media(max-width:420px){
-
-    .ats-features{
-        grid-template-columns:1fr;
-    }
-
-    .topbar-left{
-        align-items:flex-start;
-    }
-
-    .topbar-icon{
-        display:none;
-    }
-}
+/* PRINT */
 
 @media print{
 
-    header,
-    .sidebar,
-    .topbar,
-    .btn,
-    footer{
-        display:none!important;
-    }
+ body{
+  background:white;
+ }
 
-    body{
-        background:#fff;
-    }
+ .resume-wrap{
+  padding:0;
+ }
 
-    .layout{
-        display:block;
-        padding:0;
-    }
-
-    .resume-wrap{
-        padding:0;
-        background:#fff;
-    }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- =========================================================
+                         HOME PAGE
+========================================================= -->
 
-<header>
+<section id="homePage" class="home">
 
-    <div class="header-icon">
-        <i class="fa-solid fa-file-shield"></i>
+ <div class="home-header">
+
+  <div class="home-icon">
+   <i class="fa-solid fa-file-shield"></i>
+  </div>
+
+  <h1>
+   JOB FRIENDLY RESUME MAKER
+   <span class="home-badge">ATS</span>
+  </h1>
+
+  <p>
+   Professional Resume Builder • ATS Analysis • Interview Ready
+  </p>
+
+ </div>
+
+ <div class="home-cards">
+
+  <!-- CREATE RESUME -->
+
+  <div class="home-card">
+
+   <div class="home-card-icon">
+    <i class="fa-solid fa-file-pen"></i>
+   </div>
+
+   <h2>Create Resume</h2>
+
+   <p>
+    Build your professional resume, choose a template,
+    preview it, automatically test ATS compatibility
+    and download a compressed PDF.
+   </p>
+
+   <button class="home-btn" onclick="openCreateResume()">
+    <i class="fa-solid fa-plus"></i>
+    CREATE RESUME
+   </button>
+
+  </div>
+
+
+  <!-- ATS TEST -->
+
+  <div class="home-card">
+
+   <div class="home-card-icon">
+    <i class="fa-solid fa-robot"></i>
+   </div>
+
+   <h2>ATS Test</h2>
+
+   <p>
+    Already have a PDF or DOCX resume?
+    Upload it and check ATS score, keywords,
+    structure and improvements.
+   </p>
+
+   <button class="home-btn" onclick="openATSPage()">
+    <i class="fa-solid fa-magnifying-glass-chart"></i>
+    ATS TEST
+   </button>
+
+  </div>
+
+ </div>
+
+ <div class="home-footer">
+  © JOB FRIENDLY RESUME MAKER • Created & Developed by Punya Binay Swain
+ </div>
+
+</section>
+
+
+<!-- =========================================================
+                       CREATE RESUME APP
+========================================================= -->
+
+<section id="createApp" class="app">
+
+ <header class="app-header">
+
+  <button class="back-home" onclick="goHome()">
+   <i class="fa-solid fa-arrow-left"></i>
+   HOME
+  </button>
+
+  <h1>JOB FRIENDLY RESUME MAKER</h1>
+
+  <p>
+   Build • Choose Template • Preview • Auto ATS • Download
+  </p>
+
+ </header>
+
+
+ <main class="layout">
+
+  <div class="topbar">
+
+   <div>
+    <b>Resume Creation Workspace</b><br>
+    <span style="font-size:9px;color:#777">
+     Your resume will automatically receive an ATS test after generation.
+    </span>
+   </div>
+
+   <div class="status">
+    <i class="fa-solid fa-circle"></i>
+    READY
+   </div>
+
+  </div>
+
+
+  <div class="steps">
+
+   <div class="step active" id="step1">
+    1. BUILD
+   </div>
+
+   <div class="step" id="step2">
+    2. TEMPLATE
+   </div>
+
+   <div class="step" id="step3">
+    3. PREVIEW + ATS
+   </div>
+
+  </div>
+
+
+  <!-- ================= BUILDER ================= -->
+
+  <section id="builderSection">
+
+
+   <!-- PERSONAL -->
+
+   <div class="card">
+
+    <div class="card-title">
+     <i class="fa-solid fa-user"></i>
+     1. PERSONAL DETAILS
     </div>
 
-    <h1>
-        JOB FRIENDLY RESUME MAKER
-        <span class="pro-badge">ATS</span>
-    </h1>
+    <div class="photo-area">
 
-    <p>
-        Professional Resume Builder • ATS Analysis • Interview Ready
+     <div style="flex:1">
+
+      <div class="grid2">
+
+       <div>
+        <label>FULL NAME *</label>
+        <input id="name" placeholder="FULL NAME">
+       </div>
+
+       <div>
+        <label>DATE OF BIRTH</label>
+        <input id="dob" type="date">
+       </div>
+
+       <div>
+        <label>EMAIL ID</label>
+        <input id="email" type="email" placeholder="EMAIL ID">
+       </div>
+
+       <div>
+        <label>CONTACT NUMBER</label>
+        <input id="mobile" placeholder="CONTACT NUMBER">
+       </div>
+
+      </div>
+
+      <label>ADDRESS</label>
+      <textarea id="address" placeholder="ADDRESS"></textarea>
+
+      <label>LINKEDIN URL</label>
+      <input id="linkedin" placeholder="https://linkedin.com/in/yourname">
+
+      <label>GITHUB / PORTFOLIO URL</label>
+      <input id="website" placeholder="https://github.com/yourname">
+
+     </div>
+
+     <div style="width:110px">
+
+      <label>PHOTO</label>
+
+      <input type="file" id="photo" accept="image/*">
+
+      <div class="photo-box" id="photo-box">
+       NO PHOTO
+      </div>
+
+     </div>
+
+    </div>
+
+   </div>
+
+
+   <!-- SUMMARY -->
+
+   <div class="card">
+
+    <div class="card-title">
+     <i class="fa-solid fa-user-tie"></i>
+     2. PROFILE SUMMARY
+    </div>
+
+    <textarea id="summary"
+     placeholder="Write your professional profile summary..."></textarea>
+
+   </div>
+
+
+   <!-- EDUCATION -->
+
+   <div class="card">
+
+    <div class="card-title">
+     <i class="fa-solid fa-graduation-cap"></i>
+     3. EDUCATION / QUALIFICATION
+    </div>
+
+    <div id="edu-list"></div>
+
+    <button class="btn btn-blue full" onclick="addField('edu')">
+     <i class="fa-solid fa-plus"></i>
+     Add Qualification
+    </button>
+
+   </div>
+
+
+   <!-- PROJECTS -->
+
+   <div class="card">
+
+    <div class="card-title">
+     <i class="fa-solid fa-diagram-project"></i>
+     4. PROJECTS
+    </div>
+
+    <div id="proj-list"></div>
+
+    <button class="btn btn-blue full" onclick="addField('proj')">
+     <i class="fa-solid fa-plus"></i>
+     Add Project
+    </button>
+
+   </div>
+
+
+   <!-- LANGUAGES -->
+
+   <div class="card">
+
+    <div class="card-title">
+     <i class="fa-solid fa-language"></i>
+     5. LANGUAGES
+    </div>
+
+    <label>Technical Languages</label>
+    <div id="tech-lang-list"></div>
+
+    <button class="btn btn-blue full"
+     onclick="addField('tech-lang')">
+     + Add Technical Language
+    </button>
+
+    <label>Normal Languages</label>
+    <div id="normal-lang-list"></div>
+
+    <button class="btn btn-blue full"
+     onclick="addField('normal-lang')">
+     + Add Normal Language
+    </button>
+
+   </div>
+
+
+   <!-- EXPERIENCE -->
+
+   <div class="card">
+
+    <div class="card-title">
+     <i class="fa-solid fa-briefcase"></i>
+     6. EXPERIENCE
+    </div>
+
+    <div id="exp-list"></div>
+
+    <button class="btn btn-blue full" onclick="addField('exp')">
+     <i class="fa-solid fa-plus"></i>
+     Add Experience
+    </button>
+
+   </div>
+
+
+   <!-- STRENGTH -->
+
+   <div class="card">
+
+    <div class="card-title">
+     <i class="fa-solid fa-bolt"></i>
+     7. STRENGTHS
+    </div>
+
+    <div id="strength-list"></div>
+
+    <button class="btn btn-blue full"
+     onclick="addField('strength')">
+     <i class="fa-solid fa-plus"></i>
+     Add Strength
+    </button>
+
+   </div>
+
+
+   <!-- SKILLS -->
+
+   <div class="card">
+
+    <div class="card-title">
+     <i class="fa-solid fa-gears"></i>
+     8. SKILLS
+    </div>
+
+    <label>Technical Skills</label>
+
+    <div id="tech-skill-list"></div>
+
+    <button class="btn btn-blue full"
+     onclick="addField('tech-skill')">
+     + Add Technical Skill
+    </button>
+
+    <label>Soft Skills</label>
+
+    <div id="soft-skill-list"></div>
+
+    <button class="btn btn-blue full"
+     onclick="addField('soft-skill')">
+     + Add Soft Skill
+    </button>
+
+   </div>
+
+
+   <!-- DECLARATION -->
+
+   <div class="card">
+
+    <div class="card-title">
+     <i class="fa-solid fa-file-signature"></i>
+     9. DECLARATION
+    </div>
+
+    <textarea id="declaration"
+     placeholder="I hereby declare that..."></textarea>
+
+   </div>
+
+
+   <div class="card">
+
+    <button class="btn btn-blue full"
+     onclick="generateResume()">
+
+     <i class="fa-solid fa-arrow-right"></i>
+
+     CONTINUE TO CHOOSE TEMPLATE
+
+    </button>
+
+   </div>
+
+  </section>
+
+
+  <!-- ======================================================
+                         TEMPLATE
+  ======================================================= -->
+
+  <section id="templateSection" class="hidden">
+
+   <div class="card">
+
+    <div class="card-title">
+     <i class="fa-solid fa-layer-group"></i>
+     CHOOSE YOUR RESUME TEMPLATE
+    </div>
+
+    <p style="font-size:11px;color:#64748b">
+     Select the template first. Then continue to final preview.
     </p>
 
-</header>
+
+    <div class="template-grid">
 
 
-<div class="layout">
+     <div class="template active"
+      id="tpl-standard"
+      onclick="selectTemplate('standard')">
 
-<!-- ================= SIDEBAR ================= -->
+      <div class="thumb">
 
-<aside class="sidebar">
+       <div class="thumb-name">
+        YOUR NAME
+       </div>
 
-    <div class="brand">
+       EMAIL • PHONE • LINKEDIN
 
-        <div class="brand-icon">
-            <i class="fa-solid fa-file-lines"></i>
+       <div class="thumb-head">
+        PROFILE SUMMARY
+       </div>
+
+       Professional profile
+
+       <div class="thumb-head">
+        EDUCATION
+       </div>
+
+       Education details
+
+       <div class="thumb-head">
+        EXPERIENCE
+       </div>
+
+       Career history
+
+       <div class="thumb-head">
+        SKILLS
+       </div>
+
+       Technical • Soft
+
+      </div>
+
+      <strong>Standard ATS</strong>
+      <span>Clean ATS-focused layout</span>
+
+     </div>
+
+
+     <div class="template"
+      id="tpl-executive"
+      onclick="selectTemplate('executive')">
+
+      <div class="thumb">
+
+       <div class="thumb-name">
+        YOUR NAME
+       </div>
+
+       PROFESSIONAL CONTACT
+
+       <div class="thumb-head"
+        style="background:white;color:#000;border-bottom:2px solid #0b47a1">
+        PROFILE
+       </div>
+
+       Executive profile
+
+       <div class="thumb-head"
+        style="background:white;color:#000;border-bottom:2px solid #0b47a1">
+        EXPERIENCE
+       </div>
+
+       Career achievements
+
+       <div class="thumb-head"
+        style="background:white;color:#000;border-bottom:2px solid #0b47a1">
+        STRENGTHS
+       </div>
+
+       Leadership • Results
+
+      </div>
+
+      <strong>Executive Pro</strong>
+      <span>Professional executive design</span>
+
+     </div>
+
+
+     <div class="template"
+      id="tpl-slate"
+      onclick="selectTemplate('slate')">
+
+      <div class="thumb"
+       style="display:grid;grid-template-columns:35% 65%;padding:0">
+
+       <div style="background:#123e70;color:white;padding:7px">
+
+        <div style="
+         width:38px;height:38px;border-radius:50%;
+         border:2px solid white;margin:auto">
         </div>
 
-        <b>JOB FRIENDLY RESUME MAKER</b>
+        <div style="font-size:6px;font-weight:bold;margin-top:8px">
+         YOUR NAME
+        </div>
 
-        <small>
-            Created & Developed by Punya Binay Swain
-        </small>
+        <div style="font-size:5px;margin-top:18px">
+         CONTACT
+        </div>
+
+        <div style="font-size:5px;margin-top:18px">
+         SKILLS
+        </div>
+
+        <div style="font-size:5px;margin-top:18px">
+         LANGUAGES
+        </div>
+
+       </div>
+
+       <div style="padding:7px">
+
+        <div style="font-size:8px;font-weight:bold">
+         PROFILE
+        </div>
+
+        <div style="height:4px;background:#eee;margin:5px 0"></div>
+
+        <div style="font-size:8px;font-weight:bold;margin-top:13px">
+         EXPERIENCE
+        </div>
+
+        <div style="height:4px;background:#eee;margin:5px 0"></div>
+
+        <div style="font-size:8px;font-weight:bold;margin-top:13px">
+         EDUCATION
+        </div>
+
+       </div>
+
+      </div>
+
+      <strong>Slate Sidebar Pro</strong>
+      <span>Modern sidebar layout</span>
+
+     </div>
+
+
+     <div class="template"
+      id="tpl-modern"
+      onclick="selectTemplate('modern')">
+
+      <div class="thumb">
+
+       <div class="thumb-name"
+        style="background:#0b47a1;color:white;padding:5px">
+        YOUR NAME
+       </div>
+
+       CONTACT INFORMATION
+
+       <div class="thumb-head">
+        SUMMARY
+       </div>
+
+       Career profile
+
+       <div class="thumb-head">
+        PROJECTS
+       </div>
+
+       Major projects
+
+       <div class="thumb-head">
+        SKILLS
+       </div>
+
+       Professional skills
+
+      </div>
+
+      <strong>Modern Professional</strong>
+      <span>Bold modern layout</span>
+
+     </div>
 
     </div>
 
 
-    <button
-        class="nav active"
-        onclick="go('builder',this)">
+    <label style="margin-top:18px">
+     PDF FORMAT
+    </label>
 
-        <i class="fa-solid fa-pen"></i>
-        Resume Builder
+    <select id="resumeFormat">
+
+     <option value="standard">
+      Standard Multi-Page ATS Resume
+     </option>
+
+     <option value="onepage">
+      1-Page Professional Resume
+     </option>
+
+    </select>
+
+
+    <input type="hidden"
+     id="selectedTemplate"
+     value="standard">
+
+
+    <button class="btn btn-blue full"
+     onclick="continueToPreview()">
+
+     <i class="fa-solid fa-eye"></i>
+     OPEN FINAL PREVIEW
 
     </button>
 
 
-    <button
-        class="nav"
-        onclick="go('ats',this)">
+    <button class="btn btn-white full"
+     onclick="backToBuilder()">
 
-        <i class="fa-solid fa-robot"></i>
-        ATS Test
+     <i class="fa-solid fa-arrow-left"></i>
+     EDIT RESUME DATA
 
     </button>
 
-</aside>
+   </div>
+
+  </section>
 
 
-<main class="main">
+  <!-- ======================================================
+                         PREVIEW + AUTO ATS
+  ======================================================= -->
 
-<!-- ================= TOP BAR ================= -->
+  <section id="previewSection" class="hidden">
 
-<div class="topbar">
+   <div class="card">
 
-    <div class="topbar-left">
+    <div class="card-title">
 
-        <div class="topbar-icon">
-            <i class="fa-solid fa-file-circle-check"></i>
-        </div>
+     <i class="fa-solid fa-file-circle-check"></i>
 
-        <div>
-
-            <b>Professional Resume Workspace</b>
-
-            <small>
-                Create • Analyze • Choose Template • Preview
-            </small>
-
-        </div>
+     FINAL RESUME PREVIEW
 
     </div>
 
+    <div class="resume-wrap">
 
-    <div class="status">
-
-        <i class="fa-solid fa-circle"></i>
-
-        READY
+     <div id="resume" class="resume"></div>
 
     </div>
 
-</div>
+   </div>
 
 
-<!-- ================= BUILDER ================= -->
+   <!-- AUTO ATS -->
 
-<section id="builder">
+   <div class="card">
 
-<!-- STEPS -->
+    <div class="card-title">
 
-<div class="steps">
+     <i class="fa-solid fa-robot"></i>
 
-    <div
-        class="step active"
-        id="step1">
-
-        1. BUILD
+     AUTOMATIC ATS TEST
 
     </div>
 
+    <div id="autoATS">
 
-    <div
-        class="step"
-        id="step2">
-
-        2. TEMPLATE
-
-    </div>
-
-
-    <div
-        class="step"
-        id="step3">
-
-        3. PREVIEW
+     <div style="text-align:center;padding:25px">
+      <i class="fa-solid fa-spinner fa-spin"></i>
+      Running ATS analysis...
+     </div>
 
     </div>
 
-</div>
+   </div>
 
 
-<!-- ================= PERSONAL DETAILS ================= -->
+   <!-- DOWNLOAD -->
 
-<div class="card">
+   <div class="card">
 
-<div class="card-title">
+    <div class="card-title">
 
-    <i class="fa-solid fa-user"></i>
+     <i class="fa-solid fa-file-pdf"></i>
 
-    1. PERSONAL DETAILS
+     COMPRESSED PDF
 
-</div>
+    </div>
 
+    <div id="downloadStatus"
+     class="download-status">
 
-<div class="photo-area">
+     PDF will be compressed automatically
+     to keep the file below 1 MB.
 
-<div style="flex:1">
+    </div>
 
-<div class="grid2">
+    <button class="btn btn-blue full"
+     onclick="downloadPDF()">
 
-<div>
+     <i class="fa-solid fa-download"></i>
 
-<label>FULL NAME *</label>
+     DOWNLOAD PDF — TARGET &lt; 1 MB
 
-<input
-    id="name"
-    placeholder="FULL NAME">
+    </button>
 
-</div>
 
+    <button class="btn btn-white full"
+     onclick="changeTemplate()">
 
-<div>
+     <i class="fa-solid fa-layer-group"></i>
 
-<label>DATE OF BIRTH</label>
+     CHANGE TEMPLATE
 
-<input
-    id="dob"
-    type="date">
+    </button>
 
-</div>
+   </div>
 
+  </section>
 
-<div>
+ </main>
 
-<label>EMAIL ID</label>
+</section>
 
-<input
-    id="email"
-    type="email"
-    placeholder="EMAIL ID">
 
-</div>
+<!-- =========================================================
+                         ATS PAGE
+========================================================= -->
 
+<section id="atsApp" class="app">
 
-<div>
+ <header class="app-header">
 
-<label>CONTACT NUMBER</label>
+  <button class="back-home" onclick="goHome()">
+   <i class="fa-solid fa-arrow-left"></i>
+   HOME
+  </button>
 
-<input
-    id="mobile"
-    placeholder="CONTACT NUMBER">
+  <h1>ATS RESUME TEST</h1>
 
-</div>
+  <p>
+   Upload PDF or DOCX • Analyse Resume • Get ATS Report
+  </p>
 
-</div>
+ </header>
 
 
-<label>ADDRESS</label>
+ <main class="layout">
 
-<textarea
-    id="address"
-    placeholder="ADDRESS"></textarea>
+  <div class="card">
 
-
-<label>LINKEDIN URL</label>
-
-<input
-    id="linkedin"
-    placeholder="https://linkedin.com/in/yourname">
-
-
-<label>GITHUB / PORTFOLIO URL</label>
-
-<input
-    id="website"
-    placeholder="https://github.com/yourname">
-
-</div>
-
-
-<div style="width:110px">
-
-<label>PHOTO</label>
-
-<input
-    type="file"
-    id="photo"
-    accept="image/*">
-
-
-<div
-    class="photo-box"
-    id="photo-box">
-
-    NO PHOTO
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= SUMMARY ================= -->
-
-<div class="card">
-
-<div class="card-title">
-
-    <i class="fa-solid fa-user-tie"></i>
-
-    2. PROFILE SUMMARY
-
-</div>
-
-
-<textarea
-    id="summary"
-    rows="4"
-    placeholder="Write your professional profile summary..."></textarea>
-
-</div>
-
-
-<!-- ================= EDUCATION ================= -->
-
-<div class="card">
-
-<div class="card-title">
-
-    <i class="fa-solid fa-graduation-cap"></i>
-
-    3. EDUCATION / QUALIFICATION
-
-</div>
-
-
-<div id="edu-list"></div>
-
-
-<button
-    class="btn btn-gray full"
-    onclick="addField('edu')">
-
-    <i class="fa-solid fa-plus"></i>
-
-    Add Qualification
-
-</button>
-
-</div>
-
-
-<!-- ================= PROJECTS ================= -->
-
-<div class="card">
-
-<div class="card-title">
-
-    <i class="fa-solid fa-diagram-project"></i>
-
-    4. PROJECTS
-
-</div>
-
-
-<div id="proj-list"></div>
-
-
-<button
-    class="btn btn-gray full"
-    onclick="addField('proj')">
-
-    <i class="fa-solid fa-plus"></i>
-
-    Add Project
-
-</button>
-
-</div>
-
-
-<!-- ================= LANGUAGES ================= -->
-
-<div class="card">
-
-<div class="card-title">
-
-    <i class="fa-solid fa-language"></i>
-
-    5. LANGUAGES
-
-</div>
-
-
-<label>Technical Languages</label>
-
-<div id="tech-lang-list"></div>
-
-
-<button
-    class="btn btn-gray full"
-    onclick="addField('tech-lang')">
-
-    + Add Technical Language
-
-</button>
-
-
-<label>Normal Languages</label>
-
-<div id="normal-lang-list"></div>
-
-
-<button
-    class="btn btn-gray full"
-    onclick="addField('normal-lang')">
-
-    + Add Normal Language
-
-</button>
-
-</div>
-
-
-<!-- ================= EXPERIENCE ================= -->
-
-<div class="card">
-
-<div class="card-title">
-
-    <i class="fa-solid fa-briefcase"></i>
-
-    6. EXPERIENCE
-
-</div>
-
-
-<div id="exp-list"></div>
-
-
-<button
-    class="btn btn-gray full"
-    onclick="addField('exp')">
-
-    <i class="fa-solid fa-plus"></i>
-
-    Add Experience
-
-</button>
-
-</div>
-
-
-<!-- ================= STRENGTH ================= -->
-
-<div class="card">
-
-<div class="card-title">
-
-    <i class="fa-solid fa-bolt"></i>
-
-    7. STRENGTHS
-
-    <small style="font-size:9px;color:#777">
-
-        (UNLIMITED)
-
-    </small>
-
-</div>
-
-
-<div id="strength-list"></div>
-
-
-<button
-    class="btn btn-gray full"
-    onclick="addField('strength')">
-
-    <i class="fa-solid fa-plus"></i>
-
-    Add Strength
-
-</button>
-
-</div>
-
-
-<!-- ================= SKILLS ================= -->
-
-<div class="card">
-
-<div class="card-title">
-
-    <i class="fa-solid fa-gears"></i>
-
-    8. SKILLS
-
-</div>
-
-
-<label>Technical Skills</label>
-
-<div id="tech-skill-list"></div>
-
-
-<button
-    class="btn btn-gray full"
-    onclick="addField('tech-skill')">
-
-    + Add Technical Skill
-
-</button>
-
-
-<label>Soft Skills</label>
-
-<div id="soft-skill-list"></div>
-
-
-<button
-    class="btn btn-gray full"
-    onclick="addField('soft-skill')">
-
-    + Add Soft Skill
-
-</button>
-
-</div>
-
-
-<!-- ================= DECLARATION ================= -->
-
-<div class="card">
-
-<div class="card-title">
-
-    <i class="fa-solid fa-file-signature"></i>
-
-    9. DECLARATION
-
-</div>
-
-
-<textarea
-    id="declaration"
-    rows="3"
-    placeholder="I hereby declare that..."></textarea>
-
-</div>
-
-
-<!-- ================= ATS TEST ================= -->
-
-<div class="card" id="ats">
-
-<div class="card-title">
+   <div class="card-title">
 
     <i class="fa-solid fa-robot"></i>
 
-    PROFESSIONAL ATS TEST
+    ATS COMPATIBILITY TEST
 
-</div>
+   </div>
 
+   <div class="upload"
+    onclick="document.getElementById('file-upload').click()">
 
-<div class="ats-box">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
 
-<div class="ats-intro">
+    <h3>
+     UPLOAD RESUME
+    </h3>
 
-    <div class="ats-intro-head">
+    <p style="font-size:10px">
+     PDF or DOCX • Analysis happens locally in your browser
+    </p>
 
-        <div class="ats-intro-icon">
-            <i class="fa-solid fa-robot"></i>
-        </div>
+    <input
+     type="file"
+     id="file-upload"
+     accept=".pdf,.docx"
+     style="display:none"
+     onchange="handleFileUpload(event)">
 
-        <div>
+   </div>
 
-            <h3>
-                Test Any Resume
-            </h3>
+   <div id="ats-upload-result"></div>
 
-            <p>
-                Upload any PDF or DOCX resume and get an ATS compatibility analysis directly in your browser.
-            </p>
+  </div>
 
-        </div>
-
-    </div>
-
-
-    <div class="ats-features">
-
-        <div class="ats-feature">
-            <i class="fa-solid fa-gauge-high"></i>
-            ATS Score
-        </div>
-
-        <div class="ats-feature">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            Keyword Check
-        </div>
-
-        <div class="ats-feature">
-            <i class="fa-solid fa-file-word"></i>
-            Resume Structure
-        </div>
-
-        <div class="ats-feature">
-            <i class="fa-solid fa-lightbulb"></i>
-            Improvements
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- BUILDER ATS -->
-
-<button
-    class="btn btn-blue full"
-    onclick="runATSTest()">
-
-    <i class="fa-solid fa-wand-magic-sparkles"></i>
-
-    TEST MY BUILT RESUME
-
-</button>
-
-
-<!-- UPLOAD ATS -->
-
-<div class="ats-upload">
-
-    <div
-        class="upload"
-        onclick="document.getElementById('file-upload').click()">
-
-        <i class="fa-solid fa-cloud-arrow-up"></i>
-
-        <h3>
-            UPLOAD RESUME FOR ATS TEST
-        </h3>
-
-        <p>
-            PDF or DOCX • Resume is analyzed locally in your browser
-        </p>
-
-        <input
-            type="file"
-            id="file-upload"
-            accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-            style="display:none"
-            onchange="handleFileUpload(event)">
-
-    </div>
-
-
-    <div id="ats-upload-result"></div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= GENERATE ================= -->
-
-<div class="card">
-
-<button
-    class="btn btn-blue full"
-    onclick="generateResume()">
-
-    <i class="fa-solid fa-layer-group"></i>
-
-    GENERATE RESUME & CHOOSE TEMPLATE
-
-</button>
-
-</div>
+ </main>
 
 </section>
 
 
-<!-- ================= TEMPLATE CHOOSER ================= -->
+<!-- PHOTO CROPPER -->
 
-<section
-    id="templateChooser"
-    class="hidden">
+<div class="modal" id="crop-modal">
 
-<div class="card">
+ <div class="modal-content">
 
-<div class="card-title">
+  <h3>
+   <i class="fa-solid fa-crop"></i>
+   Crop Your Photograph
+  </h3>
 
-    <i class="fa-solid fa-layer-group"></i>
+  <img id="cropper-img"
+   style="max-width:100%">
 
-    CHOOSE YOUR RESUME TEMPLATE
+  <button class="btn btn-blue full"
+   onclick="cropImage()">
+   Crop & Save
+  </button>
 
-</div>
+  <button class="btn btn-white full"
+   onclick="closeCrop()">
+   Cancel
+  </button>
 
-
-<p class="template-help">
-
-    Select your professional resume design before opening the final preview.
-
-</p>
-
-
-<div class="template-grid">
-
-
-<!-- STANDARD -->
-
-<div
-    class="template active"
-    id="tpl-standard"
-    onclick="selectTemplate('standard')">
-
-<div class="thumb">
-
-<div class="thumb-name">
-    YOUR NAME
-</div>
-
-EMAIL • PHONE • LINKEDIN
-
-<div class="thumb-head">
-    PROFILE SUMMARY
-</div>
-
-Professional candidate profile
-
-<div class="thumb-head">
-    EDUCATION
-</div>
-
-Education details
-
-<div class="thumb-head">
-    EXPERIENCE
-</div>
-
-Career history
-
-<div class="thumb-head">
-    SKILLS
-</div>
-
-Technical • Soft
+ </div>
 
 </div>
-
-
-<strong>
-    Standard ATS
-</strong>
-
-<span>
-    Clean and ATS focused
-</span>
-
-</div>
-
-
-<!-- EXECUTIVE -->
-
-<div
-    class="template"
-    id="tpl-executive"
-    onclick="selectTemplate('executive')">
-
-<div class="thumb">
-
-<div class="thumb-name">
-    YOUR NAME
-</div>
-
-PROFESSIONAL CONTACT
-
-<div
-    class="thumb-head"
-    style="background:#fff;color:#000;border-bottom:2px solid #0b47a1">
-
-    PROFILE
-
-</div>
-
-Executive profile
-
-<div
-    class="thumb-head"
-    style="background:#fff;color:#000;border-bottom:2px solid #0b47a1">
-
-    EXPERIENCE
-
-</div>
-
-Career achievements
-
-<div
-    class="thumb-head"
-    style="background:#fff;color:#000;border-bottom:2px solid #0b47a1">
-
-    STRENGTHS
-
-</div>
-
-Leadership • Results
-
-</div>
-
-
-<strong>
-    Executive Pro
-</strong>
-
-<span>
-    Professional executive look
-</span>
-
-</div>
-
-
-<!-- SLATE -->
-
-<div
-    class="template"
-    id="tpl-slate"
-    onclick="selectTemplate('slate')">
-
-<div
-    class="thumb"
-    style="display:grid;grid-template-columns:35% 65%;padding:0">
-
-<div
-    style="background:#123e70;color:#fff;padding:7px">
-
-<div
-    style="
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    border:2px solid #fff;
-    margin:auto">
-</div>
-
-<div style="font-size:6px;font-weight:bold;margin-top:8px">
-YOUR NAME
-</div>
-
-<div style="font-size:5px;margin-top:12px">
-CONTACT
-</div>
-
-<div style="font-size:5px;margin-top:18px">
-SKILLS
-</div>
-
-<div style="font-size:5px;margin-top:18px">
-LANGUAGES
-</div>
-
-</div>
-
-
-<div style="padding:7px">
-
-<div style="font-size:8px;font-weight:bold">
-PROFILE
-</div>
-
-<div style="height:4px;background:#eee;margin:5px 0"></div>
-
-<div style="font-size:8px;font-weight:bold;margin-top:13px">
-WORK EXPERIENCE
-</div>
-
-<div style="height:4px;background:#eee;margin:5px 0"></div>
-
-<div style="height:4px;background:#eee;margin:4px 0"></div>
-
-<div style="font-size:8px;font-weight:bold;margin-top:13px">
-EDUCATION
-</div>
-
-</div>
-
-</div>
-
-
-<strong>
-    Slate Sidebar Pro
-</strong>
-
-<span>
-    Modern sidebar interview layout
-</span>
-
-</div>
-
-
-<!-- MODERN -->
-
-<div
-    class="template"
-    id="tpl-modern"
-    onclick="selectTemplate('modern')">
-
-<div class="thumb">
-
-<div
-    class="thumb-name"
-    style="background:#0b47a1;color:#fff;padding:5px">
-
-    YOUR NAME
-
-</div>
-
-CONTACT INFORMATION
-
-<div class="thumb-head">
-    SUMMARY
-</div>
-
-Career profile
-
-<div class="thumb-head">
-    PROJECTS
-</div>
-
-Major projects
-
-<div class="thumb-head">
-    SKILLS
-</div>
-
-Professional skills
-
-</div>
-
-
-<strong>
-    Modern Professional
-</strong>
-
-<span>
-    Bold modern blue layout
-</span>
-
-</div>
-
-</div>
-
-
-<label style="margin-top:15px">
-    PDF FORMAT
-</label>
-
-
-<select id="resumeFormat">
-
-<option value="standard">
-    Standard Multi-Page ATS Resume
-</option>
-
-<option value="onepage">
-    1-Page Professional — Interview Ready
-</option>
-
-</select>
-
-
-<input
-    type="hidden"
-    id="selectedTemplate"
-    value="standard">
-
-
-<button
-    class="btn btn-blue full"
-    onclick="continueToPreview()">
-
-    <i class="fa-solid fa-arrow-right"></i>
-
-    CONTINUE TO FINAL PREVIEW
-
-</button>
-
-</div>
-
-</section>
-
-
-<!-- ================= PREVIEW ================= -->
-
-<section id="previewArea">
-
-<div class="card">
-
-<div class="row-between">
-
-<div
-    class="card-title"
-    style="border:0;margin:0">
-
-    <i class="fa-solid fa-file-pdf"></i>
-
-    FINAL RESUME PREVIEW
-
-</div>
-
-
-<button
-    class="btn btn-white"
-    onclick="backToForm()">
-
-    ← Edit
-
-</button>
-
-</div>
-
-
-<div class="resume-wrap">
-
-<div
-    id="resume"
-    class="resume">
-</div>
-
-</div>
-
-
-<button
-    class="btn btn-blue full"
-    onclick="downloadPDF()">
-
-    <i class="fa-solid fa-download"></i>
-
-    DOWNLOAD PROFESSIONAL PDF
-
-</button>
-
-
-<button
-    class="btn btn-white full"
-    onclick="changeTemplate()">
-
-    <i class="fa-solid fa-layer-group"></i>
-
-    CHANGE TEMPLATE
-
-</button>
-
-</div>
-
-</section>
-
-</main>
-
-</div>
-
-
-<!-- ================= PHOTO CROPPER ================= -->
-
-<div
-    class="modal"
-    id="crop-modal">
-
-<div class="modal-content">
-
-<h3>
-
-    <i class="fa-solid fa-crop"></i>
-
-    Crop Your Photograph
-
-</h3>
-
-
-<img
-    id="cropper-img"
-    style="max-width:100%">
-
-
-<button
-    class="btn btn-blue full"
-    onclick="cropImage()">
-
-    Crop & Save
-
-</button>
-
-
-<button
-    class="btn btn-white full"
-    onclick="closeCrop()">
-
-    Cancel
-
-</button>
-
-</div>
-
-</div>
-
-
-<footer>
-
-© JOB FRIENDLY RESUME MAKER • CREATED AND DEVELOPED BY PUNYA BINAY SWAIN
-
-</footer>
 
 
 <script>
@@ -2244,2740 +1740,1602 @@ let photoData = '';
 let cropper = null;
 
 
-/* ================= NAVIGATION ================= */
+/* =========================================================
+                         NAVIGATION
+========================================================= */
 
-function go(id,btn){
+function openCreateResume(){
 
-    document
-    .querySelectorAll('.nav')
-    .forEach(x =>
-        x.classList.remove('active')
-    );
+ document.getElementById('homePage').style.display='none';
+ document.getElementById('atsApp').style.display='none';
+ document.getElementById('createApp').style.display='block';
 
-
-    document
-    .getElementById('builder')
-    .style.display = 'block';
-
-
-    document
-    .getElementById('templateChooser')
-    .classList.add('hidden');
-
-
-    document
-    .getElementById('previewArea')
-    .style.display = 'none';
-
-
-    if(btn){
-        btn.classList.add('active');
-    }
-
-
-    if(id === 'ats'){
-
-        setTimeout(() => {
-
-            document
-            .getElementById('ats')
-            .scrollIntoView({
-                behavior:'smooth',
-                block:'start'
-            });
-
-        },100);
-
-    }else{
-
-        window.scrollTo({
-            top:0,
-            behavior:'smooth'
-        });
-
-    }
-
+ window.scrollTo(0,0);
 }
 
 
-/* ================= TEMPLATE ================= */
+function openATSPage(){
+
+ document.getElementById('homePage').style.display='none';
+ document.getElementById('createApp').style.display='none';
+ document.getElementById('atsApp').style.display='block';
+
+ window.scrollTo(0,0);
+}
+
+
+function goHome(){
+
+ document.getElementById('homePage').style.display='block';
+ document.getElementById('createApp').style.display='none';
+ document.getElementById('atsApp').style.display='none';
+
+ window.scrollTo(0,0);
+}
+
+
+/* =========================================================
+                         TEMPLATE
+========================================================= */
 
 function selectTemplate(t){
 
-    document
-    .getElementById('selectedTemplate')
-    .value = t;
+ document.getElementById('selectedTemplate').value=t;
+
+ document.querySelectorAll('.template')
+ .forEach(x=>x.classList.remove('active'));
+
+ document.getElementById('tpl-'+t)
+ .classList.add('active');
+}
 
 
-    document
-    .querySelectorAll('.template')
-    .forEach(x =>
-        x.classList.remove('active')
-    );
+function generateResume(){
+
+ let name=document.getElementById('name').value.trim();
+
+ if(!name){
+
+  alert('Please enter your Full Name first.');
+
+  document.getElementById('name').focus();
+
+  return;
+ }
+
+ document.getElementById('builderSection').classList.add('hidden');
+ document.getElementById('templateSection').classList.remove('hidden');
+ document.getElementById('previewSection').classList.add('hidden');
+
+ document.getElementById('step1').classList.remove('active');
+ document.getElementById('step2').classList.add('active');
+ document.getElementById('step3').classList.remove('active');
+
+ window.scrollTo({top:0,behavior:'smooth'});
+}
 
 
-    document
-    .getElementById('tpl-' + t)
-    .classList.add('active');
+function backToBuilder(){
 
+ document.getElementById('templateSection').classList.add('hidden');
+ document.getElementById('previewSection').classList.add('hidden');
+ document.getElementById('builderSection').classList.remove('hidden');
+
+ document.getElementById('step1').classList.add('active');
+ document.getElementById('step2').classList.remove('active');
+ document.getElementById('step3').classList.remove('active');
+
+ window.scrollTo({top:0,behavior:'smooth'});
 }
 
 
 function changeTemplate(){
 
-    document
-    .getElementById('previewArea')
-    .style.display = 'none';
+ document.getElementById('previewSection').classList.add('hidden');
+ document.getElementById('templateSection').classList.remove('hidden');
 
+ document.getElementById('step2').classList.add('active');
+ document.getElementById('step3').classList.remove('active');
 
-    document
-    .getElementById('templateChooser')
-    .classList.remove('hidden');
-
-
-    document
-    .getElementById('step2')
-    .classList.add('active');
-
-
-    document
-    .getElementById('step3')
-    .classList.remove('active');
-
-
-    window.scrollTo({
-        top:0,
-        behavior:'smooth'
-    });
-
+ window.scrollTo({top:0,behavior:'smooth'});
 }
 
 
-/* ================= PHOTO ================= */
+function continueToPreview(){
 
-document
-.getElementById('photo')
-.onchange = e => {
+ render();
 
-    let f =
-    e.target.files[0];
+ document.getElementById('templateSection').classList.add('hidden');
+ document.getElementById('previewSection').classList.remove('hidden');
 
-    if(!f)return;
+ document.getElementById('step2').classList.remove('active');
+ document.getElementById('step3').classList.add('active');
 
+ window.scrollTo({top:0,behavior:'smooth'});
 
-    let r =
-    new FileReader();
+ /* AUTO ATS */
 
+ setTimeout(()=>{
 
-    r.onload = () => {
+  let text=document.getElementById('resume').innerText;
 
-        let img =
-        document.getElementById(
-            'cropper-img'
-        );
+  document.getElementById('autoATS').innerHTML=ats(text);
 
-
-        img.src = r.result;
+ },500);
+}
 
 
-        document
-        .getElementById('crop-modal')
-        .style.display = 'flex';
+/* =========================================================
+                         PHOTO
+========================================================= */
 
+document.getElementById('photo').onchange=e=>{
 
-        if(cropper){
-            cropper.destroy();
-        }
+ let file=e.target.files[0];
 
+ if(!file)return;
 
-        cropper =
-        new Cropper(img,{
-            aspectRatio:1,
-            viewMode:1,
-            autoCropArea:1,
-            responsive:true
-        });
+ let reader=new FileReader();
 
-    };
+ reader.onload=()=>{
 
+  let img=document.getElementById('cropper-img');
 
-    r.readAsDataURL(f);
+  img.src=reader.result;
 
+  document.getElementById('crop-modal').style.display='flex';
+
+  if(cropper){
+   cropper.destroy();
+  }
+
+  cropper=new Cropper(img,{
+   aspectRatio:1,
+   viewMode:1,
+   autoCropArea:1,
+   responsive:true
+  });
+
+ };
+
+ reader.readAsDataURL(file);
 };
 
 
 function cropImage(){
 
-    if(!cropper)return;
+ if(!cropper)return;
 
+ photoData=
+ cropper.getCroppedCanvas({
+  width:300,
+  height:300
+ }).toDataURL('image/jpeg',.78);
 
-    photoData =
-    cropper
-    .getCroppedCanvas({
-        width:300,
-        height:300
-    })
-    .toDataURL(
-        'image/jpeg',
-        .85
-    );
+ document.getElementById('photo-box').innerHTML=
+ '<img src="'+photoData+'">';
 
-
-    document
-    .getElementById('photo-box')
-    .innerHTML =
-    '<img src="' +
-    photoData +
-    '">';
-
-
-    closeCrop();
-
+ closeCrop();
 }
 
 
 function closeCrop(){
 
-    document
-    .getElementById('crop-modal')
-    .style.display = 'none';
+ document.getElementById('crop-modal').style.display='none';
 
-
-    if(cropper){
-
-        cropper.destroy();
-
-        cropper = null;
-
-    }
-
+ if(cropper){
+  cropper.destroy();
+  cropper=null;
+ }
 }
 
 
-/* ================= HELPERS ================= */
+/* =========================================================
+                         HELPERS
+========================================================= */
 
 function esc(v){
 
-    return String(v || '')
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;')
-    .replace(/'/g,'&#039;');
+ return String(v||'')
+ .replace(/&/g,'&amp;')
+ .replace(/</g,'&lt;')
+ .replace(/>/g,'&gt;')
+ .replace(/"/g,'&quot;')
+ .replace(/'/g,'&#039;');
 
 }
 
 
-/*
-   IMPORTANT:
-   Final PDF DOB format is DD-MM-YYYY
-*/
-
 function dateFmt(v){
 
-    if(!v)return '';
+ if(!v)return '';
 
-    let parts =
-    String(v).split('-');
+ let d=new Date(v);
 
+ if(isNaN(d.getTime()))return '';
 
-    if(parts.length === 3){
-
-        let y = parts[0];
-        let m = parts[1];
-        let d = parts[2];
-
-        return (
-            d.padStart(2,'0') +
-            '-' +
-            m.padStart(2,'0') +
-            '-' +
-            y
-        );
-
-    }
-
-
-    return '';
-
+ return d.toLocaleDateString('en-GB',{
+  day:'2-digit',
+  month:'short',
+  year:'numeric'
+ });
 }
 
 
 function duration(a,b){
 
-    if(!a)return '';
+ if(!a)return '';
 
-    let s =
-    new Date(a);
+ let s=new Date(a);
+ let e=b?new Date(b):new Date();
 
+ if(isNaN(s)||isNaN(e))return '';
 
-    let e =
-    b
-    ? new Date(b)
-    : new Date();
+ let m=(e.getFullYear()-s.getFullYear())*12+
+       (e.getMonth()-s.getMonth());
 
+ if(m<0)return '';
 
-    if(
-        isNaN(s.getTime()) ||
-        isNaN(e.getTime())
-    ){
+ let y=Math.floor(m/12);
+ m%=12;
 
-        return '';
+ if(y&&m)return y+' Yr '+m+' Mo';
+ if(y)return y+' Yr';
 
-    }
-
-
-    let m =
-    (e.getFullYear()-s.getFullYear())*12 +
-    (e.getMonth()-s.getMonth());
-
-
-    if(m < 0)return '';
-
-
-    let y =
-    Math.floor(m/12);
-
-
-    m =
-    m % 12;
-
-
-    if(y && m){
-        return y + ' Yr ' + m + ' Mo';
-    }
-
-
-    if(y){
-        return y + ' Yr';
-    }
-
-
-    return m + ' Mo';
-
+ return m+' Mo';
 }
 
 
 function url(v){
 
-    if(!v)return '';
+ if(!v)return '';
 
-    return /^https?:\/\//i.test(v)
-        ? v
-        : 'https://' + v;
-
+ return /^https?:\/\//i.test(v)
+ ? v
+ : 'https://'+v;
 }
 
 
 function hasValue(id){
 
-    const el =
-    document.getElementById(id);
+ let el=document.getElementById(id);
 
-
-    return !!(
-        el &&
-        el.value &&
-        el.value.trim()
-    );
-
+ return !!(
+  el &&
+  el.value &&
+  el.value.trim()
+ );
 }
 
 
 function hasList(id){
 
-    const el =
-    document.getElementById(id);
+ let el=document.getElementById(id);
 
+ if(!el)return false;
 
-    if(!el)return false;
+ return [...el.children].some(group=>{
 
+  let input=group.querySelector('input');
 
-    return [
-        ...el.children
-    ].some(group => {
+  return input && input.value.trim();
 
-        const input =
-        group.querySelector('input');
-
-
-        return input &&
-        input.value.trim();
-
-    });
-
+ });
 }
 
 
-/* ================= ADD FIELDS ================= */
+/* =========================================================
+                         ADD FIELDS
+========================================================= */
 
 function addField(type){
 
-    let c =
-    document.getElementById(
-        type + '-list'
-    );
+ let container=document.getElementById(type+'-list');
+
+ let d=document.createElement('div');
+
+ d.className='group';
+
+ d.innerHTML=
+ '<button class="remove" onclick="this.parentElement.remove()">X</button>';
 
 
-    let d =
-    document.createElement('div');
+ if(type==='edu'){
+
+  d.innerHTML+=`
+
+   <label>Course Name</label>
+   <input placeholder="COURSE NAME">
+
+   <label>Institute Name</label>
+   <input placeholder="INSTITUTE NAME">
+
+   <label>University Name</label>
+   <input placeholder="UNIVERSITY NAME">
+
+   <label>Passing Year</label>
+   <input type="number" min="1900" max="2100"
+   placeholder="PASSING YEAR">
+
+   <label>Percentage / CGPA</label>
+   <input placeholder="PERCENTAGE / CGPA">
+
+  `;
+ }
 
 
-    d.className = 'group';
+ if(type==='proj'){
+
+  d.innerHTML+=`
+
+   <label>Project Name</label>
+   <input placeholder="PROJECT NAME">
+
+   <label>Project Description</label>
+   <textarea placeholder="PROJECT DESCRIPTION"></textarea>
+
+  `;
+ }
 
 
-    d.innerHTML =
-    '<button class="remove" onclick="this.parentElement.remove()">X</button>';
+ if(type==='exp'){
+
+  d.innerHTML+=`
+
+   <label>Job Title</label>
+   <input placeholder="JOB TITLE">
+
+   <label>Company Name</label>
+   <input placeholder="COMPANY NAME">
+
+   <label>Start Date</label>
+   <input type="date">
+
+   <label>End Date</label>
+   <input type="date">
+
+   <label>Job Description</label>
+   <textarea placeholder="JOB DESCRIPTION"></textarea>
+
+  `;
+ }
 
 
-    if(type === 'edu'){
+ if(type==='strength'){
 
-        d.innerHTML += `
+  d.innerHTML+=`
 
-        <label>Course Name</label>
-        <input placeholder="COURSE NAME">
+   <label>Strength</label>
+   <input placeholder="STRENGTH">
 
-        <label>Institute Name</label>
-        <input placeholder="INSTITUTE NAME">
-
-        <label>University Name</label>
-        <input placeholder="UNIVERSITY NAME">
-
-        <label>Passing Year</label>
-        <input
-            type="number"
-            min="1900"
-            max="2100"
-            placeholder="PASSING YEAR">
-
-        <label>Percentage / CGPA</label>
-        <input placeholder="PERCENTAGE / CGPA">
-
-        `;
-
-    }
+  `;
+ }
 
 
-    if(type === 'proj'){
+ if(type.includes('skill')||type.includes('lang')){
 
-        d.innerHTML += `
+  d.innerHTML+=`
 
-        <label>Project Name</label>
+   <label>Name</label>
+   <input placeholder="NAME">
 
-        <input placeholder="PROJECT NAME">
+  `;
+ }
 
-        <label>Project Description</label>
-
-        <textarea
-            placeholder="PROJECT DESCRIPTION"></textarea>
-
-        `;
-
-    }
-
-
-    if(type === 'exp'){
-
-        d.innerHTML += `
-
-        <label>Job Title</label>
-
-        <input placeholder="JOB TITLE">
-
-        <label>Company Name</label>
-
-        <input placeholder="COMPANY NAME">
-
-        <label>Start Date</label>
-
-        <input type="date">
-
-        <label>End Date</label>
-
-        <input type="date">
-
-        <label>Job Description</label>
-
-        <textarea
-            placeholder="JOB DESCRIPTION"></textarea>
-
-        `;
-
-    }
-
-
-    if(type === 'strength'){
-
-        d.innerHTML += `
-
-        <label>Strength</label>
-
-        <input placeholder="STRENGTH">
-
-        `;
-
-    }
-
-
-    if(
-        type.includes('skill') ||
-        type.includes('lang')
-    ){
-
-        d.innerHTML += `
-
-        <label>Name</label>
-
-        <input placeholder="NAME">
-
-        `;
-
-    }
-
-
-    c.appendChild(d);
-
+ container.appendChild(d);
 }
 
 
-/* ================= LIST ================= */
+/* =========================================================
+                         LIST
+========================================================= */
 
 function list(id,title){
 
-    let el =
-    document.getElementById(id);
+ let el=document.getElementById(id);
 
+ if(!el)return '';
 
-    if(!el)return '';
+ let values=[...el.children]
+ .map(x=>{
 
+  let input=x.querySelector('input');
 
-    let a =
-    [...el.children]
-    .map(x => {
+  return input?input.value.trim():'';
 
-        let input =
-        x.querySelector('input');
+ })
+ .filter(Boolean);
 
+ if(!values.length)return '';
 
-        return input
-            ? input.value.trim()
-            : '';
+ return `
+  <div class="r-sub">
+   ${esc(title)}
+  </div>
 
-    })
-    .filter(Boolean);
-
-
-    if(!a.length)return '';
-
-
-    return `
-
-        <div class="r-sub">
-            ${esc(title)}
-        </div>
-
-        <p>
-            ${a.map(esc).join(' | ')}
-        </p>
-
-    `;
-
+  <p>
+   ${values.map(esc).join(' | ')}
+  </p>
+ `;
 }
 
 
-/* ================= EDUCATION ================= */
+/* =========================================================
+                         EDUCATION
+========================================================= */
 
 function education(){
 
-    let a =
-    [
-        ...document
-        .getElementById('edu-list')
-        .children
-    ];
+ let a=[...document.getElementById('edu-list').children];
 
+ let valid=a.filter(d=>
+  [...d.querySelectorAll('input')]
+  .some(i=>i.value.trim())
+ );
 
-    if(!a.length)return '';
+ if(!valid.length)return '';
 
+ let rows=valid.map(d=>{
 
-    let valid =
-    a.filter(d => {
+  let i=d.querySelectorAll('input');
 
-        return [
-            ...d.querySelectorAll('input')
-        ]
-        .some(i =>
-            i.value.trim()
-        );
+  return `
+   <tr>
+    <td>${esc(i[0].value)}</td>
+    <td>${esc(i[1].value)}</td>
+    <td>${esc(i[2].value)}</td>
+    <td>${esc(i[3].value)}</td>
+    <td>${esc(i[4].value)}</td>
+   </tr>
+  `;
 
-    });
+ }).join('');
 
+ return `
+  <div class="r-section">
 
-    if(!valid.length)return '';
+   <div class="r-title">
+    Education / Qualification
+   </div>
 
+   <table class="r-table">
 
-    let rows =
-    valid.map(d => {
+    <thead>
+     <tr>
+      <th>Course</th>
+      <th>Institute</th>
+      <th>University</th>
+      <th>Year</th>
+      <th>Percentage / CGPA</th>
+     </tr>
+    </thead>
 
-        let i =
-        d.querySelectorAll('input');
+    <tbody>
+     ${rows}
+    </tbody>
 
+   </table>
 
-        return `
-
-        <tr>
-
-            <td>${esc(i[0].value)}</td>
-
-            <td>${esc(i[1].value)}</td>
-
-            <td>${esc(i[2].value)}</td>
-
-            <td>${esc(i[3].value)}</td>
-
-            <td>${esc(i[4].value)}</td>
-
-        </tr>
-
-        `;
-
-    }).join('');
-
-
-    return `
-
-    <div class="r-section">
-
-        <div class="r-title">
-            Education / Qualification
-        </div>
-
-        <table class="r-table">
-
-            <thead>
-
-                <tr>
-
-                    <th>Course</th>
-                    <th>Institute</th>
-                    <th>University</th>
-                    <th>Year</th>
-                    <th>Percentage / CGPA</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                ${rows}
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-    `;
-
+  </div>
+ `;
 }
 
 
-/* ================= PROJECTS ================= */
+/* =========================================================
+                         PROJECTS
+========================================================= */
 
 function projects(){
 
-    let a =
-    [
-        ...document
-        .getElementById('proj-list')
-        .children
-    ];
+ let a=[...document.getElementById('proj-list').children];
 
+ let valid=a.filter(d=>
+  [...d.querySelectorAll('input,textarea')]
+  .some(i=>i.value.trim())
+ );
 
-    let valid =
-    a.filter(d => {
+ if(!valid.length)return '';
 
-        return [
-            ...d.querySelectorAll(
-                'input,textarea'
-            )
-        ]
-        .some(i =>
-            i.value.trim()
-        );
+ let x=valid.map(d=>{
 
-    });
+  let i=d.querySelectorAll('input,textarea');
 
+  return `
+   <div style="page-break-inside:avoid;margin:7px 0">
 
-    if(!valid.length)return '';
+    ${i[0].value.trim()
+     ?'<b>'+esc(i[0].value)+'</b><br>':''
+    }
 
+    ${i[1].value.trim()
+     ?'<span>'+esc(i[1].value)+'</span>':''
+    }
 
-    let x =
-    valid.map(d => {
+   </div>
+  `;
 
-        let i =
-        d.querySelectorAll(
-            'input,textarea'
-        );
+ }).join('');
 
+ return `
+  <div class="r-section">
 
-        let title =
-        i[0].value.trim();
+   <div class="r-title">
+    Projects
+   </div>
 
+   ${x}
 
-        let desc =
-        i[1].value.trim();
-
-
-        if(!title && !desc)return '';
-
-
-        return `
-
-        <div
-            style="
-            page-break-inside:avoid;
-            margin:7px 0">
-
-            ${
-                title
-                ? `<b>${esc(title)}</b><br>`
-                : ''
-            }
-
-            ${
-                desc
-                ? `<span>${esc(desc)}</span>`
-                : ''
-            }
-
-        </div>
-
-        `;
-
-    }).join('');
-
-
-    if(!x.trim())return '';
-
-
-    return `
-
-    <div class="r-section">
-
-        <div class="r-title">
-            Projects
-        </div>
-
-        ${x}
-
-    </div>
-
-    `;
-
+  </div>
+ `;
 }
 
 
-/* ================= EXPERIENCE ================= */
+/* =========================================================
+                         EXPERIENCE
+========================================================= */
 
 function experience(){
 
-    let a =
-    [
-        ...document
-        .getElementById('exp-list')
-        .children
-    ];
+ let a=[...document.getElementById('exp-list').children];
 
+ let valid=a.filter(d=>
+  [...d.querySelectorAll('input,textarea')]
+  .some(i=>i.value.trim())
+ );
 
-    let valid =
-    a.filter(d => {
+ if(!valid.length)return '';
 
-        return [
-            ...d.querySelectorAll(
-                'input,textarea'
-            )
-        ]
-        .some(i =>
-            i.value.trim()
-        );
+ let rows=valid.map(d=>{
 
-    });
+  let i=d.querySelectorAll('input,textarea');
 
+  return `
+   <tr>
 
-    if(!valid.length)return '';
+    <td><b>${esc(i[0].value)}</b></td>
 
+    <td>${esc(i[1].value)}</td>
 
-    let rows =
-    valid.map(d => {
+    <td>${dateFmt(i[2].value)}</td>
 
-        let i =
-        d.querySelectorAll(
-            'input,textarea'
-        );
+    <td>${dateFmt(i[3].value)}</td>
 
+    <td>${duration(i[2].value,i[3].value)}</td>
 
-        return `
+    <td>${esc(i[4].value)}</td>
 
-        <tr>
+   </tr>
+  `;
 
-            <td>
-                <b>${esc(i[0].value)}</b>
-            </td>
+ }).join('');
 
-            <td>
-                ${esc(i[1].value)}
-            </td>
+ return `
+  <div class="r-section">
 
-            <td>
-                ${dateFmt(i[2].value)}
-            </td>
+   <div class="r-title">
+    Experience
+   </div>
 
-            <td>
-                ${dateFmt(i[3].value)}
-            </td>
+   <table class="r-table">
 
-            <td>
-                ${duration(i[2].value,i[3].value)}
-            </td>
+    <thead>
+     <tr>
+      <th>Job Title</th>
+      <th>Company</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Duration</th>
+      <th>Description</th>
+     </tr>
+    </thead>
 
-            <td>
-                ${esc(i[4].value)}
-            </td>
+    <tbody>
+     ${rows}
+    </tbody>
 
-        </tr>
+   </table>
 
-        `;
-
-    }).join('');
-
-
-    return `
-
-    <div class="r-section">
-
-        <div class="r-title">
-            Experience
-        </div>
-
-        <table class="r-table">
-
-            <thead>
-
-                <tr>
-
-                    <th>Job Title</th>
-                    <th>Company</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Duration</th>
-                    <th>Description</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-                ${rows}
-            </tbody>
-
-        </table>
-
-    </div>
-
-    `;
-
+  </div>
+ `;
 }
 
 
-/* ================= STRENGTHS ================= */
+/* =========================================================
+                         STRENGTH
+========================================================= */
 
 function strengths(){
 
-    let a =
-    [
-        ...document
-        .getElementById('strength-list')
-        .children
-    ]
-    .map(x => {
+ let a=[...document.getElementById('strength-list').children]
+ .map(x=>{
 
-        let input =
-        x.querySelector('input');
+  let input=x.querySelector('input');
 
+  return input?input.value.trim():'';
 
-        return input
-            ? input.value.trim()
-            : '';
+ })
+ .filter(Boolean);
 
-    })
-    .filter(Boolean);
+ if(!a.length)return '';
 
+ return `
+  <div class="r-section">
 
-    if(!a.length)return '';
+   <div class="r-title">
+    Strengths
+   </div>
 
+   <p>
+    ${a.map(x=>'<b>'+esc(x)+'</b>').join(' | ')}
+   </p>
 
-    return `
-
-    <div class="r-section">
-
-        <div class="r-title">
-            Strengths
-        </div>
-
-        <p>
-
-            ${a.map(
-                x =>
-                '<b>' +
-                esc(x) +
-                '</b>'
-            ).join(' | ')}
-
-        </p>
-
-    </div>
-
-    `;
-
+  </div>
+ `;
 }
 
 
-/* ================= RENDER ================= */
+/* =========================================================
+                         RENDER RESUME
+========================================================= */
 
 function render(){
 
-    let r =
-    document.getElementById('resume');
+ let r=document.getElementById('resume');
+
+ let t=document.getElementById('selectedTemplate').value;
+
+ let f=document.getElementById('resumeFormat').value;
+
+ r.className='resume '+
+  (t==='executive'?'executive ':'')+
+  (t==='modern'?'modern ':'')+
+  (t==='slate'?'slate ':'')+
+  (f==='onepage'?'onepage':'');
 
 
-    let t =
-    document.getElementById(
-        'selectedTemplate'
-    ).value;
+ let li=document.getElementById('linkedin').value.trim();
+ let gh=document.getElementById('website').value.trim();
+
+ let name=esc(document.getElementById('name').value);
+ let email=esc(document.getElementById('email').value);
+ let phone=esc(document.getElementById('mobile').value);
+ let address=esc(document.getElementById('address').value);
+
+ let role='';
+
+ let ex=[...document.getElementById('exp-list').children];
+
+ if(ex.length){
+
+  let first=ex[0].querySelector('input');
+
+  if(first){
+   role=esc(first.value);
+  }
+ }
 
 
-    let f =
-    document.getElementById(
-        'resumeFormat'
-    ).value;
+ /* SLATE */
 
+ if(t==='slate'){
 
-    r.className =
-        'resume ' +
-        (t === 'executive'
-            ? 'executive '
-            : '') +
-        (t === 'modern'
-            ? 'modern '
-            : '') +
-        (t === 'slate'
-            ? 'slate '
-            : '') +
-        (f === 'onepage'
-            ? 'onepage'
-            : '');
+  r.innerHTML=`
 
+   <div class="slate-left">
 
-    let li =
-    document
-    .getElementById('linkedin')
-    .value.trim();
-
-
-    let gh =
-    document
-    .getElementById('website')
-    .value.trim();
-
-
-    let name =
-    esc(
-        document
-        .getElementById('name')
-        .value
-    );
-
-
-    let email =
-    esc(
-        document
-        .getElementById('email')
-        .value
-    );
-
-
-    let phone =
-    esc(
-        document
-        .getElementById('mobile')
-        .value
-    );
-
-
-    let address =
-    esc(
-        document
-        .getElementById('address')
-        .value
-    );
-
-
-    let role = '';
-
-
-    let ex =
-    [
-        ...document
-        .getElementById('exp-list')
-        .children
-    ];
-
-
-    if(ex.length){
-
-        let firstInput =
-        ex[0].querySelector('input');
-
-
-        if(firstInput){
-            role =
-            esc(firstInput.value);
-        }
-
+    ${photoData
+     ?'<img class="slate-photo" src="'+photoData+'">'
+     :''
     }
 
-
-    /* ================= SLATE ================= */
-
-    if(t === 'slate'){
-
-        r.innerHTML = `
-
-        <div class="slate-left slate-side">
-
-        ${
-            photoData
-
-            ?
-
-            `<img
-                class="slate-photo"
-                src="${photoData}">`
-
-            :
-
-            ''
-        }
-
-
-        <div class="slate-name">
-            ${name || 'YOUR NAME'}
-        </div>
-
-
-        ${
-            role
-            ?
-            `<div class="slate-role">
-                ${role}
-            </div>`
-            :
-            ''
-        }
-
-
-        ${
-            phone ||
-            email ||
-            address ||
-            li ||
-            gh
-
-            ?
-
-            `
-
-            <div class="slate-side-title">
-                Contact Details
-            </div>
-
-            ${
-                phone
-                ? `<p>☎ ${phone}</p>`
-                : ''
-            }
-
-            ${
-                email
-                ? `<p>✉ ${email}</p>`
-                : ''
-            }
-
-            ${
-                address
-                ? `<p>⌖ ${address}</p>`
-                : ''
-            }
-
-            ${
-                li
-                ?
-                `<p>
-                    <b>in</b>
-                    <a
-                        href="${url(li)}"
-                        target="_blank">
-                        ${esc(li)}
-                    </a>
-                </p>`
-                :
-                ''
-            }
-
-            ${
-                gh
-                ?
-                `<p>
-                    <b>⌘</b>
-                    <a
-                        href="${url(gh)}"
-                        target="_blank">
-                        ${esc(gh)}
-                    </a>
-                </p>`
-                :
-                ''
-            }
-
-            `
-
-            :
-
-            ''
-        }
-
-
-        ${
-            hasList('strength-list')
-
-            ?
-
-            `
-
-            <div class="slate-side-title">
-                Strengths
-            </div>
-
-            ${
-                [
-                    ...document
-                    .getElementById(
-                        'strength-list'
-                    )
-                    .children
-                ]
-                .map(x => {
-
-                    let i =
-                    x.querySelector('input');
-
-                    return i
-                    ? i.value.trim()
-                    : '';
-
-                })
-                .filter(Boolean)
-                .map(
-                    x =>
-                    `<p>• ${esc(x)}</p>`
-                )
-                .join('')
-            }
-
-            `
-
-            :
-
-            ''
-        }
-
-
-        ${
-            hasList('tech-skill-list') ||
-            hasList('soft-skill-list')
-
-            ?
-
-            `
-
-            <div class="slate-side-title">
-                Skills
-            </div>
-
-            ${list(
-                'tech-skill-list',
-                'Technical Skills'
-            )}
-
-            ${list(
-                'soft-skill-list',
-                'Soft Skills'
-            )}
-
-            `
-
-            :
-
-            ''
-        }
-
-
-        ${
-            hasList('tech-lang-list') ||
-            hasList('normal-lang-list')
-
-            ?
-
-            `
-
-            <div class="slate-side-title">
-                Languages
-            </div>
-
-            ${list(
-                'tech-lang-list',
-                'Technical Languages'
-            )}
-
-            ${list(
-                'normal-lang-list',
-                'Normal Languages'
-            )}
-
-            `
-
-            :
-
-            ''
-        }
-
-        </div>
-
-
-        <div class="slate-right">
-
-        ${
-            hasValue('summary')
-
-            ?
-
-            `
-
-            <div class="r-section">
-
-                <div class="r-title">
-                    Profile
-                </div>
-
-                <p>
-                    ${esc(
-                        document
-                        .getElementById('summary')
-                        .value
-                    )}
-                </p>
-
-            </div>
-
-            `
-
-            :
-
-            ''
-        }
-
-
-        ${experience()}
-
-        ${education()}
-
-        ${projects()}
-
-
-        ${
-            hasValue('declaration')
-
-            ?
-
-            `
-
-            <div class="r-section">
-
-                <div class="r-title">
-                    Declaration
-                </div>
-
-                <p>
-                    ${esc(
-                        document
-                        .getElementById(
-                            'declaration'
-                        )
-                        .value
-                    )}
-                </p>
-
-            </div>
-
-            `
-
-            :
-
-            ''
-        }
-
-        </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    /* ================= NORMAL TEMPLATES ================= */
-
-    r.innerHTML = `
-
-    <div class="r-head">
-
-        <div style="flex:1">
-
-            <h1>
-                ${name || 'YOUR NAME'}
-            </h1>
-
-
-            ${
-                hasValue('dob')
-
-                ?
-
-                `<p>
-                    <b>Date of Birth:</b>
-                    ${dateFmt(
-                        document
-                        .getElementById('dob')
-                        .value
-                    )}
-                </p>`
-
-                :
-
-                ''
-            }
-
-
-            ${
-                email || phone
-
-                ?
-
-                `<p>
-
-                    ${
-                        email
-                        ?
-                        `<b>Email:</b> ${email}`
-                        :
-                        ''
-                    }
-
-                    ${
-                        email && phone
-                        ?
-                        '&nbsp; | &nbsp;'
-                        :
-                        ''
-                    }
-
-                    ${
-                        phone
-                        ?
-                        `<b>Phone:</b> ${phone}`
-                        :
-                        ''
-                    }
-
-                </p>`
-
-                :
-
-                ''
-            }
-
-
-            ${
-                address
-
-                ?
-
-                `<p>
-                    <b>Address:</b>
-                    ${address}
-                </p>`
-
-                :
-
-                ''
-            }
-
-
-            ${
-                li
-
-                ?
-
-                `<p>
-
-                    <b>LinkedIn:</b>
-
-                    <a
-                        href="${url(li)}"
-                        target="_blank">
-
-                        ${esc(li)}
-
-                    </a>
-
-                </p>`
-
-                :
-
-                ''
-            }
-
-
-            ${
-                gh
-
-                ?
-
-                `<p>
-
-                    <b>GitHub / Portfolio:</b>
-
-                    <a
-                        href="${url(gh)}"
-                        target="_blank">
-
-                        ${esc(gh)}
-
-                    </a>
-
-                </p>`
-
-                :
-
-                ''
-            }
-
-        </div>
-
-
-        ${
-            photoData
-
-            ?
-
-            `<img
-                src="${photoData}"
-                class="r-photo">`
-
-            :
-
-            ''
-        }
-
+    <div class="slate-name">
+     ${name||'YOUR NAME'}
     </div>
 
-
-    ${
-        hasValue('summary')
-
-        ?
-
-        `
-
-        <div class="r-section">
-
-            <div class="r-title">
-                Profile Summary
-            </div>
-
-            <p>
-                ${esc(
-                    document
-                    .getElementById(
-                        'summary'
-                    )
-                    .value
-                )}
-            </p>
-
-        </div>
-
-        `
-
-        :
-
-        ''
+    ${role
+     ?'<div class="slate-role">'+role+'</div>'
+     :''
     }
 
+    ${(phone||email||address||li||gh)?`
 
-    ${education()}
+     <div class="slate-side-title">
+      Contact Details
+     </div>
 
-    ${projects()}
+     ${phone?'<p>☎ '+phone+'</p>':''}
+     ${email?'<p>✉ '+email+'</p>':''}
+     ${address?'<p>⌖ '+address+'</p>':''}
+
+     ${li
+      ?'<p><b>in</b> <a href="'+url(li)+'">'+esc(li)+'</a></p>'
+      :''
+     }
+
+     ${gh
+      ?'<p><b>⌘</b> <a href="'+url(gh)+'">'+esc(gh)+'</a></p>'
+      :''
+     }
+
+    `:''}
 
 
-    ${
-        hasList('tech-lang-list') ||
-        hasList('normal-lang-list')
+    ${hasList('strength-list')?`
 
-        ?
+     <div class="slate-side-title">
+      Strengths
+     </div>
 
-        `
+     ${[...document.getElementById('strength-list').children]
+     .map(x=>{
 
-        <div class="r-section">
+      let i=x.querySelector('input');
 
-            <div class="r-title">
-                Languages
-            </div>
+      return i&&i.value.trim()
+       ?'<p>• '+esc(i.value)+'</p>'
+       :'';
 
-            ${list(
-                'tech-lang-list',
-                'Technical Languages'
-            )}
+     }).join('')}
 
-            ${list(
-                'normal-lang-list',
-                'Normal Languages'
-            )}
+    `:''}
 
-        </div>
 
-        `
+    ${(hasList('tech-skill-list')||hasList('soft-skill-list'))?`
 
-        :
+     <div class="slate-side-title">
+      Skills
+     </div>
 
-        ''
-    }
+     ${list('tech-skill-list','Technical Skills')}
+     ${list('soft-skill-list','Soft Skills')}
 
+    `:''}
+
+
+    ${(hasList('tech-lang-list')||hasList('normal-lang-list'))?`
+
+     <div class="slate-side-title">
+      Languages
+     </div>
+
+     ${list('tech-lang-list','Technical Languages')}
+     ${list('normal-lang-list','Normal Languages')}
+
+    `:''}
+
+   </div>
+
+
+   <div class="slate-right">
+
+    ${hasValue('summary')?`
+
+     <div class="r-section">
+
+      <div class="r-title">
+       Profile
+      </div>
+
+      <p>${esc(document.getElementById('summary').value)}</p>
+
+     </div>
+
+    `:''}
 
     ${experience()}
+    ${education()}
+    ${projects()}
 
-    ${strengths()}
+    ${hasValue('declaration')?`
+
+     <div class="r-section">
+
+      <div class="r-title">
+       Declaration
+      </div>
+
+      <p>
+       ${esc(document.getElementById('declaration').value)}
+      </p>
+
+     </div>
+
+    `:''}
+
+   </div>
+  `;
+
+  return;
+ }
 
 
-    ${
-        hasList('tech-skill-list') ||
-        hasList('soft-skill-list')
+ /* NORMAL */
 
-        ?
+ r.innerHTML=`
 
-        `
+  <div class="r-head">
 
-        <div class="r-section">
+   <div style="flex:1">
 
-            <div class="r-title">
-                Skills
-            </div>
+    <h1>${name||'YOUR NAME'}</h1>
 
-            ${list(
-                'tech-skill-list',
-                'Technical Skills'
-            )}
-
-            ${list(
-                'soft-skill-list',
-                'Soft Skills'
-            )}
-
-        </div>
-
-        `
-
-        :
-
-        ''
+    ${hasValue('dob')
+     ?'<p><b>Date of Birth:</b> '+dateFmt(document.getElementById('dob').value)+'</p>'
+     :''
     }
 
+    ${(email||phone)?`
 
-    ${
-        hasValue('declaration')
+     <p>
+      ${email?'<b>Email:</b> '+email:''}
+      ${email&&phone?' | ':''}
+      ${phone?'<b>Phone:</b> '+phone:''}
+     </p>
 
-        ?
+    `:''}
 
-        `
-
-        <div class="r-section">
-
-            <div class="r-title">
-                Declaration
-            </div>
-
-            <p>
-                ${esc(
-                    document
-                    .getElementById(
-                        'declaration'
-                    )
-                    .value
-                )}
-            </p>
-
-        </div>
-
-        `
-
-        :
-
-        ''
+    ${address
+     ?'<p><b>Address:</b> '+address+'</p>'
+     :''
     }
 
-    `;
+    ${li
+     ?'<p><b>LinkedIn:</b> <a href="'+url(li)+'">'+esc(li)+'</a></p>'
+     :''
+    }
 
+    ${gh
+     ?'<p><b>GitHub / Portfolio:</b> <a href="'+url(gh)+'">'+esc(gh)+'</a></p>'
+     :''
+    }
+
+   </div>
+
+   ${photoData
+    ?'<img class="r-photo" src="'+photoData+'">'
+    :''
+   }
+
+  </div>
+
+
+  ${hasValue('summary')?`
+
+   <div class="r-section">
+
+    <div class="r-title">
+     Profile Summary
+    </div>
+
+    <p>
+     ${esc(document.getElementById('summary').value)}
+    </p>
+
+   </div>
+
+  `:''}
+
+
+  ${education()}
+
+  ${projects()}
+
+
+  ${(hasList('tech-lang-list')||hasList('normal-lang-list'))?`
+
+   <div class="r-section">
+
+    <div class="r-title">
+     Languages
+    </div>
+
+    ${list('tech-lang-list','Technical Languages')}
+    ${list('normal-lang-list','Normal Languages')}
+
+   </div>
+
+  `:''}
+
+
+  ${experience()}
+
+  ${strengths()}
+
+
+  ${(hasList('tech-skill-list')||hasList('soft-skill-list'))?`
+
+   <div class="r-section">
+
+    <div class="r-title">
+     Skills
+    </div>
+
+    ${list('tech-skill-list','Technical Skills')}
+    ${list('soft-skill-list','Soft Skills')}
+
+   </div>
+
+  `:''}
+
+
+  ${hasValue('declaration')?`
+
+   <div class="r-section">
+
+    <div class="r-title">
+     Declaration
+    </div>
+
+    <p>
+     ${esc(document.getElementById('declaration').value)}
+    </p>
+
+   </div>
+
+  `:''}
+
+ `;
 }
 
 
-/* ================= GENERATE ================= */
-
-function generateResume(){
-
-    if(
-        !document
-        .getElementById('name')
-        .value
-        .trim()
-    ){
-
-        alert(
-            'Please Enter Full Name'
-        );
-
-        return;
-
-    }
-
-
-    document
-    .getElementById('builder')
-    .style.display = 'none';
-
-
-    document
-    .getElementById('previewArea')
-    .style.display = 'none';
-
-
-    document
-    .getElementById('templateChooser')
-    .classList.remove('hidden');
-
-
-    document
-    .getElementById('step1')
-    .classList.remove('active');
-
-
-    document
-    .getElementById('step2')
-    .classList.add('active');
-
-
-    document
-    .getElementById('step3')
-    .classList.remove('active');
-
-
-    window.scrollTo({
-        top:0,
-        behavior:'smooth'
-    });
-
-}
-
-
-/* ================= CONTINUE PREVIEW ================= */
-
-function continueToPreview(){
-
-    render();
-
-
-    document
-    .getElementById('templateChooser')
-    .classList.add('hidden');
-
-
-    document
-    .getElementById('previewArea')
-    .style.display = 'block';
-
-
-    document
-    .getElementById('step2')
-    .classList.remove('active');
-
-
-    document
-    .getElementById('step3')
-    .classList.add('active');
-
-
-    window.scrollTo({
-        top:0,
-        behavior:'smooth'
-    });
-
-}
-
-
-/* ================= BACK ================= */
-
-function backToForm(){
-
-    document
-    .getElementById('previewArea')
-    .style.display = 'none';
-
-
-    document
-    .getElementById('templateChooser')
-    .classList.add('hidden');
-
-
-    document
-    .getElementById('builder')
-    .style.display = 'block';
-
-
-    document
-    .getElementById('step1')
-    .classList.add('active');
-
-
-    document
-    .getElementById('step2')
-    .classList.remove('active');
-
-
-    document
-    .getElementById('step3')
-    .classList.remove('active');
-
-
-    window.scrollTo({
-        top:0,
-        behavior:'smooth'
-    });
-
-}
-
-
-/* ================= PDF EXPORT ================= */
-
-async function downloadPDF(){
-
-    render();
-
-
-    const {
-        jsPDF
-    } = window.jspdf;
-
-
-    const el =
-    document.getElementById(
-        'resume'
-    );
-
-
-    const format =
-    document
-    .getElementById(
-        'resumeFormat'
-    )
-    .value;
-
-
-    const canvas =
-    await html2canvas(
-        el,
-        {
-            scale:1.25,
-            useCORS:true,
-            backgroundColor:'#fff',
-            logging:false,
-            imageTimeout:10000
-        }
-    );
-
-
-    const pdf =
-    new jsPDF({
-        orientation:'portrait',
-        unit:'mm',
-        format:'a4',
-        compress:true
-    });
-
-
-    const pageWidth = 210;
-    const pageHeight = 297;
-
-
-    const pxPerPage =
-    canvas.width *
-    pageHeight /
-    pageWidth;
-
-
-    let y = 0;
-    let page = 0;
-
-
-    while(y < canvas.height){
-
-        const pageCanvas =
-        document.createElement(
-            'canvas'
-        );
-
-
-        pageCanvas.width =
-        canvas.width;
-
-
-        pageCanvas.height =
-        Math.min(
-            pxPerPage,
-            canvas.height - y
-        );
-
-
-        const ctx =
-        pageCanvas.getContext(
-            '2d'
-        );
-
-
-        ctx.fillStyle = '#fff';
-
-
-        ctx.fillRect(
-            0,
-            0,
-            pageCanvas.width,
-            pageCanvas.height
-        );
-
-
-        ctx.drawImage(
-            canvas,
-            0,
-            y,
-            canvas.width,
-            pageCanvas.height,
-            0,
-            0,
-            pageCanvas.width,
-            pageCanvas.height
-        );
-
-
-        const img =
-        pageCanvas.toDataURL(
-            'image/jpeg',
-            format === 'onepage'
-                ? .58
-                : .52
-        );
-
-
-        if(page > 0){
-            pdf.addPage();
-        }
-
-
-        const imgHeight =
-        pageCanvas.height *
-        pageWidth /
-        pageCanvas.width;
-
-
-        pdf.addImage(
-            img,
-            'JPEG',
-            0,
-            0,
-            pageWidth,
-            imgHeight,
-            undefined,
-            'FAST'
-        );
-
-
-        y += pageCanvas.height;
-
-        page++;
-
-    }
-
-
-    let filename =
-    document
-    .getElementById('name')
-    .value
-    .trim()
-    .replace(
-        /[^a-z0-9]+/gi,
-        '_'
-    );
-
-
-    if(!filename){
-        filename = 'Resume';
-    }
-
-
-    pdf.save(
-        filename +
-        '_Job_Friendly_Resume.pdf'
-    );
-
-}
-
-
-/* ================= ATS ENGINE ================= */
+/* =========================================================
+                         ATS ENGINE
+========================================================= */
 
 function ats(text){
 
-    text =
-    String(text || '');
+ let l=text.toLowerCase();
+
+ let score=100;
 
+ let good=[];
+ let bad=[];
 
-    let l =
-    text.toLowerCase();
+ let words=text.trim().split(/\s+/).filter(Boolean);
+ let wc=words.length;
+
 
+ let email=/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i.test(text);
 
-    let score = 100;
+ if(email){
+  good.push('Professional email detected');
+ }else{
+  score-=10;
+  bad.push('Add a professional email');
+ }
 
-    let good = [];
 
-    let bad = [];
+ let phone=/(\+91[\s-]?)?[6-9]\d{9}/.test(text);
 
+ if(phone){
+  good.push('Contact number detected');
+ }else{
+  score-=8;
+  bad.push('Add a valid contact number');
+ }
 
-    let words =
-    text
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean);
 
+ if(
+  l.includes('profile summary')||
+  l.includes('summary')||
+  l.includes('profile')
+ ){
+  good.push('Profile Summary detected');
+ }else{
+  score-=8;
+  bad.push('Add a professional Profile Summary');
+ }
 
-    let wc =
-    words.length;
 
+ if(
+  l.includes('education')||
+  l.includes('qualification')||
+  l.includes('university')
+ ){
+  good.push('Education detected');
+ }else{
+  score-=8;
+  bad.push('Add Education / Qualification');
+ }
 
-    /* EMAIL */
 
-    let email =
-    /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i
-    .test(text);
+ if(l.includes('experience')){
+  good.push('Experience section detected');
+ }else{
+  bad.push('Add Experience if applicable');
+ }
 
 
-    if(email){
+ if(l.includes('skills')){
+  good.push('Skills section detected');
+ }else{
+  score-=10;
+  bad.push('Add Technical Skills');
+ }
 
-        good.push(
-            'Professional email detected'
-        );
 
-    }else{
+ if(l.includes('project')){
+  good.push('Projects detected');
+ }else{
+  score-=4;
+  bad.push('Add relevant projects');
+ }
 
-        score -= 10;
 
-        bad.push(
-            'Add a professional email'
-        );
+ if(l.includes('linkedin')){
+  good.push('LinkedIn detected');
+ }else{
+  score-=3;
+  bad.push('Add LinkedIn profile');
+ }
 
-    }
 
+ let actions=[
+  'developed','designed','managed','created',
+  'implemented','led','achieved','improved',
+  'built','analyzed','organised','organized',
+  'optimized','delivered','maintained','coordinated'
+ ];
 
-    /* PHONE */
+ let found=actions.filter(x=>l.includes(x));
 
-    let phone =
-    /(\+91[\s-]?)?[6-9]\d{9}/
-    .test(text);
+ if(found.length>=4){
+  good.push('Strong action verbs detected');
+ }else{
+  score-=5;
+  bad.push('Use stronger action verbs');
+ }
 
 
-    if(phone){
+ let keys=[
+  'leadership','teamwork','communication',
+  'management','problem solving','development',
+  'project','achievement','team',
+  'responsibility','results'
+ ];
 
-        good.push(
-            'Contact number detected'
-        );
+ let fk=keys.filter(x=>l.includes(x));
 
-    }else{
+ if(fk.length>=4){
+  good.push('Good professional keywords');
+ }else{
+  score-=5;
+  bad.push('Add job-specific keywords');
+ }
 
-        score -= 8;
 
-        bad.push(
-            'Add a valid contact number'
-        );
+ if(wc<180){
 
-    }
+  score-=8;
+  bad.push('Resume is short ('+wc+' words)');
 
+ }else if(wc>800){
 
-    /* SUMMARY */
+  score-=5;
+  bad.push('Resume is lengthy ('+wc+' words)');
 
-    if(
-        l.includes('profile summary') ||
-        l.includes('summary') ||
-        l.includes('profile')
-    ){
+ }else{
 
-        good.push(
-            'Profile Summary detected'
-        );
+  good.push('Good resume length ('+wc+' words)');
 
-    }else{
+ }
 
-        score -= 8;
 
-        bad.push(
-            'Add a professional Profile Summary'
-        );
+ if(
+  l.includes('passing year')||
+  l.includes('percentage')||
+  l.includes('cgpa')
+ ){
+  good.push('Academic data detected');
+ }
 
-    }
 
+ score=Math.max(0,Math.min(100,score));
 
-    /* EDUCATION */
 
-    if(
-        l.includes('education') ||
-        l.includes('qualification') ||
-        l.includes('university')
-    ){
+ let level=
+ score>=90?'Excellent':
+ score>=80?'Very Good':
+ score>=70?'Good':
+ score>=60?'Needs Improvement':
+ 'Weak';
 
-        good.push(
-            'Education detected'
-        );
 
-    }else{
+ return `
 
-        score -= 8;
+  <div class="ats-box">
 
-        bad.push(
-            'Add Education / Qualification'
-        );
+   <div class="score">
 
-    }
+    <div>ATS COMPATIBILITY</div>
 
+    <div class="score-num">
+     ${score}%
+    </div>
 
-    /* EXPERIENCE */
+    <b>${level}</b>
 
-    if(l.includes('experience')){
+    <div class="meter">
+     <div style="width:${score}%"></div>
+    </div>
 
-        good.push(
-            'Experience section detected'
-        );
+   </div>
 
-    }else{
 
-        bad.push(
-            'Add Experience if applicable'
-        );
+   <div class="ats-grid">
 
-    }
+    <div class="ats-card">
 
+     <b class="good">
+      ✓ STRENGTHS
+     </b>
 
-    /* SKILLS */
-
-    if(l.includes('skills')){
-
-        good.push(
-            'Skills section detected'
-        );
-
-    }else{
-
-        score -= 10;
-
-        bad.push(
-            'Add Technical Skills'
-        );
-
-    }
-
-
-    /* PROJECTS */
-
-    if(l.includes('project')){
-
-        good.push(
-            'Projects detected'
-        );
-
-    }else{
-
-        score -= 4;
-
-        bad.push(
-            'Add relevant projects'
-        );
-
-    }
-
-
-    /* LINKEDIN */
-
-    if(l.includes('linkedin')){
-
-        good.push(
-            'LinkedIn detected'
-        );
-
-    }else{
-
-        score -= 3;
-
-        bad.push(
-            'Add LinkedIn profile'
-        );
-
-    }
-
-
-    /* ACTION VERBS */
-
-    let actions = [
-
-        'developed',
-        'designed',
-        'managed',
-        'created',
-        'implemented',
-        'led',
-        'achieved',
-        'improved',
-        'built',
-        'analyzed',
-        'organised',
-        'organized',
-        'optimized',
-        'delivered',
-        'maintained',
-        'coordinated'
-
-    ];
-
-
-    let found =
-    actions.filter(
-        x => l.includes(x)
-    );
-
-
-    if(found.length >= 4){
-
-        good.push(
-            'Strong action verbs detected'
-        );
-
-    }else{
-
-        score -= 5;
-
-        bad.push(
-            'Use stronger action verbs'
-        );
-
-    }
-
-
-    /* KEYWORDS */
-
-    let keys = [
-
-        'leadership',
-        'teamwork',
-        'communication',
-        'management',
-        'problem solving',
-        'development',
-        'project',
-        'achievement',
-        'team',
-        'responsibility',
-        'results'
-
-    ];
-
-
-    let fk =
-    keys.filter(
-        x => l.includes(x)
-    );
-
-
-    if(fk.length >= 4){
-
-        good.push(
-            'Good professional keywords'
-        );
-
-    }else{
-
-        score -= 5;
-
-        bad.push(
-            'Add job-specific keywords'
-        );
-
-    }
-
-
-    /* WORD COUNT */
-
-    if(wc < 180){
-
-        score -= 8;
-
-        bad.push(
-            'Resume is short (' +
-            wc +
-            ' words)'
-        );
-
-    }else if(wc > 800){
-
-        score -= 5;
-
-        bad.push(
-            'Resume is lengthy (' +
-            wc +
-            ' words)'
-        );
-
-    }else{
-
-        good.push(
-            'Good resume length (' +
-            wc +
-            ' words)'
-        );
-
-    }
-
-
-    /* ACADEMIC */
-
-    if(
-        l.includes('passing year') ||
-        l.includes('percentage') ||
-        l.includes('cgpa')
-    ){
-
-        good.push(
-            'Academic data detected'
-        );
-
-    }
-
-
-    score =
-    Math.max(
-        0,
-        Math.min(
-            100,
-            score
-        )
-    );
-
-
-    let level =
-    score >= 90
-    ? 'Excellent'
-    :
-    score >= 80
-    ? 'Very Good'
-    :
-    score >= 70
-    ? 'Good'
-    :
-    score >= 60
-    ? 'Needs Improvement'
-    :
-    'Weak';
-
-
-    return `
-
-    <div class="ats-box">
-
-        <div class="score">
-
-            <div class="score-label">
-                ATS COMPATIBILITY SCORE
-            </div>
-
-            <div class="score-num">
-                ${score}%
-            </div>
-
-            <b>
-                ${level}
-            </b>
-
-            <div class="meter">
-
-                <div
-                    style="width:${score}%">
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="ats-grid">
-
-            <div class="ats-card">
-
-                <b class="good">
-                    ✓ STRENGTHS
-                </b>
-
-                <ul>
-
-                ${
-                    good
-                    .map(
-                        x =>
-                        '<li>' +
-                        esc(x) +
-                        '</li>'
-                    )
-                    .join('')
-
-                    ||
-
-                    '<li>None detected</li>'
-                }
-
-                </ul>
-
-            </div>
-
-
-            <div class="ats-card">
-
-                <b class="bad">
-                    ✗ IMPROVEMENTS
-                </b>
-
-                <ul>
-
-                ${
-                    bad
-                    .map(
-                        x =>
-                        '<li>' +
-                        esc(x) +
-                        '</li>'
-                    )
-                    .join('')
-
-                    ||
-
-                    '<li>Resume is ATS Ready</li>'
-                }
-
-                </ul>
-
-            </div>
-
-        </div>
-
-
-        <div
-            class="ats-card"
-            style="margin-top:10px">
-
-            <b>
-                DETAILED ATS REPORT
-            </b>
-
-
-            <table class="ats-table">
-
-                <tr>
-
-                    <td>
-                        Word Count
-                    </td>
-
-                    <td>
-                        ${wc}
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        Action Verbs
-                    </td>
-
-                    <td>
-                        ${found.length}
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        Keywords
-                    </td>
-
-                    <td>
-                        ${fk.length}
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        Email
-                    </td>
-
-                    <td>
-                    ${
-                        email
-                        ? '✓ Detected'
-                        : '✗ Missing'
-                    }
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        Phone
-                    </td>
-
-                    <td>
-                    ${
-                        phone
-                        ? '✓ Detected'
-                        : '✗ Missing'
-                    }
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        LinkedIn
-                    </td>
-
-                    <td>
-                    ${
-                        l.includes('linkedin')
-                        ? '✓ Detected'
-                        : '✗ Missing'
-                    }
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        Academic Data
-                    </td>
-
-                    <td>
-                    ${
-                        l.includes('passing year') ||
-                        l.includes('percentage') ||
-                        l.includes('cgpa')
-                        ? '✓ Detected'
-                        : 'Not Detected'
-                    }
-                    </td>
-
-                </tr>
-
-            </table>
-
-        </div>
+     <ul>
+      ${
+       good.map(x=>'<li>'+x+'</li>').join('')
+       ||
+       '<li>None detected</li>'
+      }
+     </ul>
 
     </div>
 
-    `;
 
+    <div class="ats-card">
+
+     <b class="bad">
+      ✗ IMPROVEMENTS
+     </b>
+
+     <ul>
+      ${
+       bad.map(x=>'<li>'+x+'</li>').join('')
+       ||
+       '<li>Resume is ATS Ready</li>'
+      }
+     </ul>
+
+    </div>
+
+   </div>
+
+
+   <div class="ats-card" style="margin-top:10px">
+
+    <b>DETAILED ATS REPORT</b>
+
+    <table class="ats-table">
+
+     <tr>
+      <td>Word Count</td>
+      <td>${wc}</td>
+     </tr>
+
+     <tr>
+      <td>Action Verbs</td>
+      <td>${found.length}</td>
+     </tr>
+
+     <tr>
+      <td>Keywords</td>
+      <td>${fk.length}</td>
+     </tr>
+
+     <tr>
+      <td>Email</td>
+      <td>${email?'✓ Detected':'✗ Missing'}</td>
+     </tr>
+
+     <tr>
+      <td>Phone</td>
+      <td>${phone?'✓ Detected':'✗ Missing'}</td>
+     </tr>
+
+     <tr>
+      <td>LinkedIn</td>
+      <td>${l.includes('linkedin')?'✓ Detected':'✗ Missing'}</td>
+     </tr>
+
+     <tr>
+      <td>Academic Data</td>
+      <td>
+       ${
+        l.includes('passing year')||
+        l.includes('percentage')||
+        l.includes('cgpa')
+        ?'✓ Detected'
+        :'Not Detected'
+       }
+      </td>
+     </tr>
+
+    </table>
+
+   </div>
+
+  </div>
+ `;
 }
 
 
-/* ================= BUILT RESUME ATS ================= */
-
-function runATSTest(){
-
-    render();
-
-
-    let result =
-    document.getElementById(
-        'ats-result'
-    );
-
-
-    /*
-       The built resume is generated
-       and analyzed from visible text.
-    */
-
-    result.innerHTML =
-    ats(
-        document
-        .getElementById('resume')
-        .innerText
-    );
-
-
-    result.scrollIntoView({
-        behavior:'smooth',
-        block:'start'
-    });
-
-}
-
-
-/* ================= UPLOADED RESUME ATS ================= */
+/* =========================================================
+                   PDF / DOCX ATS TEST
+========================================================= */
 
 async function handleFileUpload(e){
 
-    let f =
-    e.target.files[0];
+ let f=e.target.files[0];
 
+ if(!f)return;
 
-    if(!f)return;
+ document.getElementById('ats-upload-result').innerHTML=`
 
+  <div class="download-status">
+   <i class="fa-solid fa-spinner fa-spin"></i>
+   Reading resume...
+  </div>
 
-    let result =
-    document.getElementById(
-        'ats-upload-result'
-    );
+ `;
 
+ try{
 
-    result.innerHTML = `
+  let text='';
 
-        <div class="ats-card">
+  if(f.name.toLowerCase().endsWith('.pdf')){
 
-            <i class="fa-solid fa-spinner fa-spin"></i>
+   let pdf=await pdfjsLib
+   .getDocument(URL.createObjectURL(f))
+   .promise;
 
-            <b>
-                Reading ${esc(f.name)}...
-            </b>
+   for(let i=1;i<=pdf.numPages;i++){
 
-            <p style="font-size:10px;color:#64748b">
-                Extracting resume text and running ATS analysis.
-            </p>
+    let page=await pdf.getPage(i);
 
-        </div>
+    let content=await page.getTextContent();
 
-    `;
+    text+=content.items
+    .map(x=>x.str)
+    .join(' ')+' ';
+   }
 
+  }else{
 
-    try{
+   let result=await mammoth.extractRawText({
+    arrayBuffer:await f.arrayBuffer()
+   });
 
-        let text = '';
+   text=result.value;
+  }
 
 
-        /* ================= PDF ================= */
+  if(text.trim()){
 
-        if(
-            f.name
-            .toLowerCase()
-            .endsWith('.pdf')
-        ){
+   document.getElementById('ats-upload-result').innerHTML=
+   ats(text);
 
-            let pdf =
-            await pdfjsLib
-            .getDocument({
-                data:
-                await f.arrayBuffer()
-            })
-            .promise;
+  }else{
 
+   document.getElementById('ats-upload-result').innerHTML=
+   '<p class="bad">Could not extract readable text.</p>';
 
-            for(
-                let i = 1;
-                i <= pdf.numPages;
-                i++
-            ){
+  }
 
-                let page =
-                await pdf.getPage(i);
+ }catch(error){
 
+  console.error(error);
 
-                let content =
-                await page.getTextContent();
+  document.getElementById('ats-upload-result').innerHTML=
+  '<p class="bad">Unable to read this file.</p>';
 
-
-                text +=
-                content.items
-                .map(x => x.str)
-                .join(' ') +
-                ' ';
-
-            }
-
-        }
-
-
-        /* ================= DOCX ================= */
-
-        else if(
-            f.name
-            .toLowerCase()
-            .endsWith('.docx')
-        ){
-
-            let r =
-            await mammoth
-            .extractRawText({
-                arrayBuffer:
-                await f.arrayBuffer()
-            });
-
-
-            text =
-            r.value || '';
-
-        }
-
-
-        else{
-
-            throw new Error(
-                'Unsupported file'
-            );
-
-        }
-
-
-        if(!text.trim()){
-
-            result.innerHTML = `
-
-                <div class="ats-card">
-
-                    <b class="bad">
-                        ✗ No readable text found
-                    </b>
-
-                    <p style="font-size:10px;color:#64748b">
-                        This resume may be scanned/image-based or protected.
-                        Please upload a text-readable PDF or DOCX file.
-                    </p>
-
-                </div>
-
-            `;
-
-            return;
-
-        }
-
-
-        result.innerHTML = `
-
-            <div style="margin:12px 0 8px">
-
-                <b style="font-size:11px">
-                    ATS RESULT: ${esc(f.name)}
-                </b>
-
-                <p style="font-size:9px;color:#64748b;margin:4px 0">
-                    Resume successfully analyzed.
-                </p>
-
-            </div>
-
-            ${ats(text)}
-
-        `;
-
-
-        result.scrollIntoView({
-            behavior:'smooth',
-            block:'start'
-        });
-
-    }
-
-    catch(err){
-
-        console.error(err);
-
-
-        result.innerHTML = `
-
-            <div class="ats-card">
-
-                <b class="bad">
-                    ✗ Unable to read this resume
-                </b>
-
-                <p style="font-size:10px;color:#64748b">
-                    Please make sure the file is a valid PDF or DOCX resume.
-                </p>
-
-            </div>
-
-        `;
-
-    }
-
-
-    /*
-       Allow the same file to be selected again.
-    */
-
-    e.target.value = '';
-
+ }
 }
 
 
-/* ================= DEFAULT ================= */
+/* =========================================================
+              COMPRESSED PDF UNDER 1 MB
+========================================================= */
 
-/*
-   No default fields are added.
-   User can add only what they need.
-*/
+async function createCompressedPDF(){
+
+ const {jsPDF}=window.jspdf;
+
+ const el=document.getElementById('resume');
+
+ /*
+    First render at a reasonable resolution.
+    This keeps the PDF readable while reducing size.
+ */
+
+ let canvas=await html2canvas(el,{
+  scale:1,
+  useCORS:true,
+  backgroundColor:'#fff',
+  logging:false,
+  imageTimeout:10000
+ });
+
+
+ const pageWidth=210;
+ const pageHeight=297;
+
+ let qualities=[
+  0.55,
+  0.48,
+  0.42,
+  0.36,
+  0.30,
+  0.25,
+  0.20
+ ];
+
+
+ for(let q of qualities){
+
+  const pdf=new jsPDF({
+   orientation:'portrait',
+   unit:'mm',
+   format:'a4',
+   compress:true
+  });
+
+
+  const pxPerPage=
+   canvas.width*pageHeight/pageWidth;
+
+  let y=0;
+  let page=0;
+
+
+  while(y<canvas.height){
+
+   let pageCanvas=document.createElement('canvas');
+
+   pageCanvas.width=canvas.width;
+
+   pageCanvas.height=Math.min(
+    pxPerPage,
+    canvas.height-y
+   );
+
+
+   let ctx=pageCanvas.getContext('2d');
+
+   ctx.fillStyle='#fff';
+
+   ctx.fillRect(
+    0,
+    0,
+    pageCanvas.width,
+    pageCanvas.height
+   );
+
+
+   ctx.drawImage(
+    canvas,
+    0,
+    y,
+    canvas.width,
+    pageCanvas.height,
+    0,
+    0,
+    canvas.width,
+    pageCanvas.height
+   );
+
+
+   let img=pageCanvas.toDataURL(
+    'image/jpeg',
+    q
+   );
+
+
+   if(page>0){
+    pdf.addPage();
+   }
+
+
+   let imgHeight=
+    pageCanvas.height*
+    pageWidth/
+    pageCanvas.width;
+
+
+   pdf.addImage(
+    img,
+    'JPEG',
+    0,
+    0,
+    pageWidth,
+    imgHeight,
+    undefined,
+    'FAST'
+   );
+
+
+   y+=pageCanvas.height;
+   page++;
+  }
+
+
+  let blob=pdf.output('blob');
+
+  /*
+     IMPORTANT:
+     Stop when PDF is below 1 MB.
+  */
+
+  if(blob.size<=1024*1024){
+
+   return {
+    pdf:pdf,
+    size:blob.size
+   };
+
+  }
+
+ }
+
+
+ /*
+    Final emergency compression.
+    Smaller canvas + very low JPEG quality.
+ */
+
+ let smallCanvas=await html2canvas(el,{
+  scale:.72,
+  useCORS:true,
+  backgroundColor:'#fff',
+  logging:false
+ });
+
+
+ const pdf=new jsPDF({
+  orientation:'portrait',
+  unit:'mm',
+  format:'a4',
+  compress:true
+ });
+
+
+ const pxPerPage=
+  smallCanvas.width*pageHeight/pageWidth;
+
+ let y=0;
+ let page=0;
+
+
+ while(y<smallCanvas.height){
+
+  let pc=document.createElement('canvas');
+
+  pc.width=smallCanvas.width;
+
+  pc.height=Math.min(
+   pxPerPage,
+   smallCanvas.height-y
+  );
+
+
+  let ctx=pc.getContext('2d');
+
+  ctx.drawImage(
+   smallCanvas,
+   0,
+   y,
+   smallCanvas.width,
+   pc.height,
+   0,
+   0,
+   smallCanvas.width,
+   pc.height
+  );
+
+
+  if(page>0){
+   pdf.addPage();
+  }
+
+
+  let img=pc.toDataURL(
+   'image/jpeg',
+   .15
+  );
+
+
+  let h=pc.height*pageWidth/pc.width;
+
+  pdf.addImage(
+   img,
+   'JPEG',
+   0,
+   0,
+   pageWidth,
+   h,
+   undefined,
+   'FAST'
+  );
+
+
+  y+=pc.height;
+  page++;
+ }
+
+
+ return {
+  pdf:pdf,
+  size:pdf.output('blob').size
+ };
+}
+
+
+/* =========================================================
+                         DOWNLOAD PDF
+========================================================= */
+
+async function downloadPDF(){
+
+ const status=document.getElementById('downloadStatus');
+
+ status.innerHTML=`
+  <i class="fa-solid fa-spinner fa-spin"></i>
+  Creating compressed PDF...
+ `;
+
+
+ try{
+
+  render();
+
+  let result=await createCompressedPDF();
+
+  let sizeMB=result.size/(1024*1024);
+
+  let filename=
+   document.getElementById('name')
+   .value.trim()
+   .replace(/[^a-z0-9]+/gi,'_');
+
+  if(!filename){
+   filename='Resume';
+  }
+
+
+  result.pdf.save(
+   filename+'_Job_Friendly_Resume.pdf'
+  );
+
+
+  status.innerHTML=`
+
+   <b>
+    <i class="fa-solid fa-circle-check"></i>
+    PDF READY
+   </b>
+
+   <br>
+
+   File Size:
+   <strong>${sizeMB.toFixed(2)} MB</strong>
+
+   ${
+    result.size<=1024*1024
+    ?'<br><span class="good">✓ Under 1 MB</span>'
+    :'<br><span class="bad">⚠ Could not reach below 1 MB without further quality reduction.</span>'
+   }
+
+  `;
+
+ }catch(error){
+
+  console.error(error);
+
+  status.innerHTML=`
+   <span class="bad">
+    Unable to generate PDF. Please try again.
+   </span>
+  `;
+ }
+}
 
 </script>
 
